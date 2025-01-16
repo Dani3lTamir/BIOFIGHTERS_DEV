@@ -84,7 +84,7 @@ public class Tentacle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((other.CompareTag("Enemy") || other.CompareTag("Ally")) && isStretching)
+        if ((other.CompareTag("Enemy") || other.CompareTag("Ally") || other.CompareTag("Special Enemy")) && isStretching)
         {
             StartCoroutine(VacuumMicrobe(other.gameObject));
         }

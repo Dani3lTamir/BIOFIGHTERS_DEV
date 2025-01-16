@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private EnemyPool pool;
+    public EnemyPool pool;
 
     void Start()
     {
-        pool = FindFirstObjectByType<EnemyPool>();
     }
 
     void Update()

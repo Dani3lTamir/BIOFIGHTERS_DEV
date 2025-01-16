@@ -1,19 +1,37 @@
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class SpecialEnemySpawner : MonoBehaviour
 {
     public EnemyPool enemyPool;  // Reference to the enemy pool
     public float spawnInterval = 2f;  // Time between spawns
     public float minX = -5f;  // Minimum X position
     public float maxX = 5f;  // Maximum X position
+    public bool isStarted = false;
+    public float scoreThreshold = 100f;
 
     private void Start()
     {
-        // Start spawning enemies at regular intervals
-        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
     }
 
-    protected virtual void SpawnEnemy()
+    private void Update()
+    {
+        if (!isStarted && (ScoreManager.Instance.GetScore() >= scoreThreshold))
+        {
+            InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+            isStarted = true;
+
+        }
+
+        else if (isStarted && (ScoreManager.Instance.GetScore() < scoreThreshold))
+        {
+            CancelInvoke("SpawnEnemy");
+            isStarted = false;
+        }
+    }
+
+
+
+    void SpawnEnemy()
     {
         // Get an enemy from the pool
         GameObject enemy = enemyPool.GetEnemy();
