@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class SpecialEnemy : MonoBehaviour
 {
     public EnemyPool pool;
 
@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     {
         if (transform.position.y < -15f) //  enemy falls off-screen
         {
-            int scoreValue = ScoreManager.Instance.GetObjectScore("EnemyEscape");//deduct points for uncought enemy
+            int scoreValue = ScoreManager.Instance.GetObjectScore("SpecialEnemyEscape");//deduct points for uncought enemy
             ScoreManager.Instance.AddScore(scoreValue);
             pool.ReturnEnemy(gameObject);
         }

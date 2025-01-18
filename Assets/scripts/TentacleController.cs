@@ -6,14 +6,14 @@ public class Tentacle : MonoBehaviour
 {
     public Transform characterCenter; // Reference to the character's center
     public float stretchSpeed = 8f;   // Speed of stretching
-    //public float vacuumSpeed = 15f;   // Speed of stretching
-    public float retractSpeed = 7f;  // Speed of retraction
-    public float maxStretch = 5f;    // Maximum stretch length
-    public KeyCode key;              // Key to control this tentacle
+    public float retractSpeed = 7f;   // Speed of retraction
+    public float maxStretch = 5f;     // Maximum stretch length
+    public KeyCode key;               // Key to control this tentacle
     private Vector2 originalPosition; // Local position of the tentacle's base
     private bool isStretching = false;
     private bool isRetracting = false;
-    private Vector3 originalScale;   // Original scale of the tentacle
+    private Vector3 originalScale;    // Original scale of the tentacle
+    private bool keepStretching = false; // Flag to keep the tentacle stretched
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class Tentacle : MonoBehaviour
     void Update()
     {
         // Start stretching when the button is pressed
-        if (Input.GetKeyDown(key) && !isStretching && !isRetracting) // Prevent overlapping stretches
+        if (Input.GetKeyDown(key) && !isStretching && !isRetracting && !keepStretching) // Prevent overlapping stretches
         {
             isStretching = true;
             isRetracting = false;
@@ -39,9 +39,17 @@ public class Tentacle : MonoBehaviour
         {
             Retract();
         }
+
+        // If the tentacle is set to keep stretching, force it to stay stretched
+        if (keepStretching)
+        {
+            StretchToMax();
+        }
+
+
     }
 
-    void Stretch()
+    public void Stretch()
     {
         // Check if the tentacle has reached maximum stretch
         if (Math.Abs(transform.localScale.x) >= maxStretch)
@@ -63,11 +71,20 @@ public class Tentacle : MonoBehaviour
         }
     }
 
-    void Retract()
+    public void Retract()
     {
-        if (transform.localScale.x > originalScale.x)
+        keepStretching = false;
+
+        // Calculate the direction for retraction
+        Vector3 scaleChange = new Vector3(retractSpeed * Time.deltaTime, 0, 0);
+        if (originalScale.x < 0) // If the tentacle's scale is inverted
         {
-            transform.localScale -= new Vector3(retractSpeed * Time.deltaTime, 0, 0);
+            scaleChange = -scaleChange; // Invert the direction
+        }
+
+        if (Mathf.Abs(transform.localScale.x) > Mathf.Abs(originalScale.x))
+        {
+            transform.localScale -= scaleChange;
             transform.localPosition = Vector2.MoveTowards(
                 transform.localPosition,
                 originalPosition,
@@ -82,22 +99,56 @@ public class Tentacle : MonoBehaviour
         }
     }
 
+    public void RetractToMin()
+    {
+        keepStretching = false;
+        isStretching = false;
+        isRetracting = true;
+    }
+
+
+    // Method to force the tentacle to stretch to the maximum length and keep it there
+    public void KeepStretching()
+    {
+        keepStretching = true;
+        StretchToMax();
+    }
+
+    // Method to stretch the tentacle to its maximum length and keep it there
+    private void StretchToMax()
+    {
+        if (Math.Abs(transform.localScale.x) < maxStretch)
+        {
+            if (key == KeyCode.A)
+            {
+                transform.localScale -= new Vector3(stretchSpeed * Time.deltaTime, 0, 0);
+                transform.Translate(Vector2.left * stretchSpeed / 2 * Time.deltaTime);
+            }
+            else
+            {
+                transform.localScale += new Vector3(stretchSpeed * Time.deltaTime, 0, 0);
+                transform.Translate(Vector2.right * stretchSpeed / 2 * Time.deltaTime);
+            }
+
+        }
+
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((other.CompareTag("Enemy") || other.CompareTag("Ally") || other.CompareTag("Special Enemy")) && isStretching)
+        if ((other.CompareTag("Enemy") || other.CompareTag("Ally") || other.CompareTag("Influenza")) && (isStretching || keepStretching))
         {
+            if(!(keepStretching && other.CompareTag("Ally"))) // no ally vaccuming with this power up
             StartCoroutine(VacuumMicrobe(other.gameObject));
         }
     }
 
     private IEnumerator VacuumMicrobe(GameObject target)
     {
-        //neutrulize the physics apllied to the 
+        // Neutralize the physics applied to the target
         Rigidbody2D rb = target.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.linearVelocity = Vector2.zero;
-
-
 
         while (Vector2.Distance(target.transform.position, characterCenter.position) > 0.1f)
         {
@@ -108,22 +159,31 @@ public class Tentacle : MonoBehaviour
             );
             yield return null;
         }
+
         Renderer targetRenderer = target.GetComponent<Renderer>();
         Color targetColor = targetRenderer.material.color;
+        int scoreValue = ScoreManager.Instance.GetObjectScore(target.tag);
+
         // Check the tag and update the score
         if (target.CompareTag("Enemy"))
         {
-            if(targetColor == Color.white) ScoreManager.Instance.AddScore(10); // Add points for a white enemy
-            else ScoreManager.Instance.AddScore(10);
+            if (targetColor == Color.white) scoreValue = ScoreManager.Instance.GetObjectScore("WhiteEnemy"); // Add points for a white enemy
         }
         else if (target.CompareTag("Ally"))
         {
-            ScoreManager.Instance.AddScore(-2); // Deduct points for an ally
+            GameCountManager.Instance.UpdateCounter("AlliesLeft", -1); // update ally counter
+            if (targetColor == Color.yellow)
+            {
+                scoreValue = ScoreManager.Instance.GetObjectScore("YellowAlly"); // Deduct points for an ally
+            }
+        }
+        else if (target.CompareTag("Influenza"))
+        {
+            GameCountManager.Instance.UpdateCounter("InfluenzaLeft", -1); // update influenza counter
         }
 
+        ScoreManager.Instance.AddScore(scoreValue);
         target.SetActive(false);
         rb.bodyType = RigidbodyType2D.Dynamic;
-        //rb.linearVelocity = Vector2.zero;
-
     }
 }

@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
         InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
     }
 
-    protected virtual void SpawnEnemy()
+    void SpawnEnemy()
     {
         // Get an enemy from the pool
         GameObject enemy = enemyPool.GetEnemy();

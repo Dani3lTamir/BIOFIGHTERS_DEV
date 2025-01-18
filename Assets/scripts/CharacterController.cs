@@ -3,6 +3,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public float speed = 5f;
+    public Tentacle[] tetacleControllers;
 
     void Update()
     {
@@ -11,4 +12,22 @@ public class CharacterController : MonoBehaviour
         Vector2 move = new Vector2(moveX, moveY) * speed * Time.deltaTime;
         transform.Translate(move);
     }
+
+    public void StretchAllTentacles()
+    {
+        foreach (Tentacle tentacle in tetacleControllers)
+        {
+            tentacle.KeepStretching();
+        }
+    }
+
+    public void RetractAllTentacles()
+    {
+        foreach (Tentacle tentacle in tetacleControllers)
+        {
+            tentacle.RetractToMin();
+        }
+
+    }
+
 }

@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Ally
   - Special Enemy
+  - Influenza
   layers:
   - Default
   - TransparentFX
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Above Character
     uniqueID: 1269343917
+    locked: 0
+  - name: UI
+    uniqueID: 2310509107
     locked: 0
   m_RenderingLayers:
   - Default

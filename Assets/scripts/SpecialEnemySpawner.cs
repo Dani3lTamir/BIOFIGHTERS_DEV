@@ -8,6 +8,7 @@ public class SpecialEnemySpawner : MonoBehaviour
     public float maxX = 5f;  // Maximum X position
     public bool isStarted = false;
     public float scoreThreshold = 100f;
+    public float slowedEnemySpeed = 1;
 
     private void Start()
     {
@@ -60,7 +61,9 @@ public class SpecialEnemySpawner : MonoBehaviour
         Renderer enemyRenderer = enemy.GetComponent<Renderer>();
         if (enemyRenderer != null)
         {
-            enemyRenderer.material.color = predefinedColors[randomIndex];
+           // enemyRenderer.material.color = predefinedColors[randomIndex];
         }
     }
+
+
 }

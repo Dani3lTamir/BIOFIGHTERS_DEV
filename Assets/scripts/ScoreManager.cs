@@ -1,12 +1,20 @@
 using UnityEngine;
-using TMPro; // Import TextMeshPro namespace
+using System.Collections.Generic;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance; // Singleton instance
-
+    private Dictionary<string, int> objectScoreValues; //maps objects to their score value
     public int score = 0;
-    public TextMeshProUGUI scoreText; // Reference to the TextMeshPro UI element
+
+    [System.Serializable]
+    public class ObjectScore //to make scores available for change in the inspector
+    {
+        public string Tag;
+        public int scoreValue;
+    }
+
+    public ObjectScore[] levelObjectScores;
 
     private void Awake()
     {
@@ -20,17 +28,28 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        objectScoreValues = new Dictionary<string, int>();
+        foreach (var objectScore in levelObjectScores)
+        {
+            objectScoreValues[objectScore.Tag] = objectScore.scoreValue;
+        }
+
     }
 
     private void Start()
     {
-        UpdateScoreUI(); // Initialize the score UI
     }
 
     public void AddScore(int points)
     {
-        score += points;
-        UpdateScoreUI();
+        if ((score + points) >= 0) score += points; //disable negative score
+        else score = 0;
+    }
+
+    public int GetObjectScore(string Tag)
+    {
+        return objectScoreValues.ContainsKey(Tag) ? objectScoreValues[Tag] : 0;
     }
 
     public int GetScore()
@@ -38,15 +57,5 @@ public class ScoreManager : MonoBehaviour
         return score;
     }
 
-    private void UpdateScoreUI()
-    {
-        if (scoreText != null)
-        {
-            scoreText.text = ""+score;
-        }
-        else
-        {
-            Debug.LogError("ScoreText is not assigned in the Inspector!");
-        }
-    }
+
 }
