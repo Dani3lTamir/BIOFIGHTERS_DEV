@@ -6,8 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Ally
-  - Special Enemy
   - Influenza
+  - WhiteEnemy
+  - YellowAlly
   layers:
   - Default
   - TransparentFX

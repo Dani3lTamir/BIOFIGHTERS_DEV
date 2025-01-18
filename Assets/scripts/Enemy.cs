@@ -12,8 +12,7 @@ public class Enemy : MonoBehaviour
     {
         if (transform.position.y < -15f) //  enemy falls off-screen
         {
-            int scoreValue = ScoreManager.Instance.GetObjectScore("EnemyEscape");//deduct points for uncought enemy
-            ScoreManager.Instance.AddScore(scoreValue);
+            ScoreManager.Instance.UpdateScoreForObject("EnemyEscape");
             pool.ReturnEnemy(gameObject);
         }
     }

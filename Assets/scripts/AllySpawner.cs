@@ -34,7 +34,8 @@ public class AllySpawner : MonoBehaviour
 
         // Randomly pick one of the predefined colors
         int randomIndex = Random.Range(0, predefinedColors.Length);
-
+        if (predefinedColors[randomIndex].Equals(Color.yellow)) ally.tag = "YellowAlly";// notice a yellow ally
+        else ally.tag = "Ally";
         // Assign the selected color to the ally
         Renderer allyRenderer = ally.GetComponent<Renderer>();
         if (allyRenderer != null)

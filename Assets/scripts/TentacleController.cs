@@ -136,9 +136,9 @@ public class Tentacle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((other.CompareTag("Enemy") || other.CompareTag("Ally") || other.CompareTag("Influenza")) && (isStretching || keepStretching))
+        if ((isStretching || keepStretching))
         {
-            if(!(keepStretching && other.CompareTag("Ally"))) // no ally vaccuming with this power up
+            if(!(keepStretching && (other.CompareTag("Ally") || other.CompareTag("YellowAlly")))) // no ally vaccuming with strech power up
             StartCoroutine(VacuumMicrobe(other.gameObject));
         }
     }
@@ -162,27 +162,16 @@ public class Tentacle : MonoBehaviour
 
         Renderer targetRenderer = target.GetComponent<Renderer>();
         Color targetColor = targetRenderer.material.color;
-        int scoreValue = ScoreManager.Instance.GetObjectScore(target.tag);
-
-        // Check the tag and update the score
-        if (target.CompareTag("Enemy"))
-        {
-            if (targetColor == Color.white) scoreValue = ScoreManager.Instance.GetObjectScore("WhiteEnemy"); // Add points for a white enemy
-        }
-        else if (target.CompareTag("Ally"))
+        // Check the tag and update the stats
+        if (target.CompareTag("Ally") || target.CompareTag("YellowAlly"))
         {
             GameCountManager.Instance.UpdateCounter("AlliesLeft", -1); // update ally counter
-            if (targetColor == Color.yellow)
-            {
-                scoreValue = ScoreManager.Instance.GetObjectScore("YellowAlly"); // Deduct points for an ally
-            }
         }
         else if (target.CompareTag("Influenza"))
         {
             GameCountManager.Instance.UpdateCounter("InfluenzaLeft", -1); // update influenza counter
         }
-
-        ScoreManager.Instance.AddScore(scoreValue);
+        ScoreManager.Instance.UpdateScoreForObject(target.tag);//update score for given object
         target.SetActive(false);
         rb.bodyType = RigidbodyType2D.Dynamic;
     }

@@ -37,7 +37,8 @@ public class EnemySpawner : MonoBehaviour
 
         // Randomly pick one of the predefined colors
         int randomIndex = Random.Range(0, predefinedColors.Length);
-
+        if (predefinedColors[randomIndex].Equals(Color.white)) enemy.tag = "WhiteEnemy";// notice a white enemy
+        else enemy.tag = "Enemy";
         // Assign the selected color to the enemy
         Renderer enemyRenderer = enemy.GetComponent<Renderer>();
         if (enemyRenderer != null)

@@ -3,7 +3,7 @@ using System.Collections; // For IEnumerator and coroutines
 using System;
 
 
-public class MacropaghPowerUpManager : MonoBehaviour
+public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
 {
     public static MacropaghPowerUpManager Instance;
 
@@ -18,8 +18,8 @@ public class MacropaghPowerUpManager : MonoBehaviour
     public float slowEnemiesDuration = 5f; // Duration for slowing enemies
     public float slowedSpeed = 0.5f;
 
-    public bool isSpeedUpActive = false;
-    public float speedUpDuration = 5f; // Duration for speeding up player
+    public bool isDoublePointsActive = false;
+    public float doublePointsDuration = 5f; // Duration for Double Points
 
     private void Awake()
     {
@@ -49,6 +49,16 @@ public class MacropaghPowerUpManager : MonoBehaviour
         {
             MacropaghPowerUpManager.Instance.ActivateTentaclesStretch();
         }
+
+        if (Input.GetKey(KeyCode.P))//for debuging purposes get the slow down power up when pressing 'p'
+        {
+            MacropaghPowerUpManager.Instance.ActivateSlowEnemies();
+        }
+        if (Input.GetKey(KeyCode.I))//for debuging purposes get the double points power up when pressing 'p'
+        {
+            MacropaghPowerUpManager.Instance.ActivateDoublePoints();
+        }
+
 
     }
 
@@ -95,21 +105,21 @@ public class MacropaghPowerUpManager : MonoBehaviour
 
     }
 
-    public void ActivateSpeedUp()
+    public void ActivateDoublePoints()
     {
-        if (!isSpeedUpActive)
+        if (!isDoublePointsActive)
         {
-            isSpeedUpActive = true;
-        //    playerController.SpeedUp(); // Call function to speed up player
-            StartCoroutine(DeactivateSpeedUp());
+            isDoublePointsActive = true;
+            ScoreManager.Instance.ActivateDoublePoints(); // Call function to ActivateDoublePoints
+            StartCoroutine(DeactivateDoublePoints());
         }
     }
 
-    private IEnumerator DeactivateSpeedUp()
+    private IEnumerator DeactivateDoublePoints()
     {
-        yield return new WaitForSeconds(speedUpDuration);
-        isSpeedUpActive = false;
-      //  playerController.ResetSpeed(); // Reset player speed
+        yield return new WaitForSeconds(doublePointsDuration);
+        isDoublePointsActive = false;
+        ScoreManager.Instance.DeactivateDoublePoints(); // Reset player Double Points
     }
 
     // You can also manually check and deactivate the power-ups if you want:
@@ -117,10 +127,31 @@ public class MacropaghPowerUpManager : MonoBehaviour
     {
         isTentaclesStretched = false;
         isEnemiesSlowed = false;
-        isSpeedUpActive = false;
+        isDoublePointsActive = false;
 
         playerController.RetractAllTentacles();
         DeactivateSlowEnemies();
-      //  playerController.ResetSpeed();
+        ScoreManager.Instance.DeactivateDoublePoints();
+    }
+
+    public void ActivateRandomPowerUp()
+    {
+        int randomPowerUp = UnityEngine.Random.Range(0, 3);
+
+        switch (randomPowerUp)
+        {
+            case 0:
+                ActivateTentaclesStretch();
+                Debug.Log("Stretch All Tentacles Activated!");
+                break;
+            case 1:
+                ActivateSlowEnemies();
+                Debug.Log("Slow Enemies Activated!");
+                break;
+            case 2:
+                ActivateDoublePoints();
+                Debug.Log("Double Points Activated!");
+                break;
+        }
     }
 }
