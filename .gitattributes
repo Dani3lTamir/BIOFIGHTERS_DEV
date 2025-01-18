@@ -1,0 +1,9 @@
+# Handle line endings automatically for text files
+* text=auto
+
+# Force specific line endings for certain file types (optional)
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cs text eol=crlf
+*.unity text eol=crlf
+*.json text eol=crlf
