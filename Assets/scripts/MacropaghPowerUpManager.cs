@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections; // For IEnumerator and coroutines
 using System;
 
-
 public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
 {
     public static MacropaghPowerUpManager Instance;
@@ -10,6 +9,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     // References to the player and other necessary components
     public CharacterController playerController;
     private EnemyPool[] allPools;
+
     // Public bool flags for each power-up
     public bool isTentaclesStretched = false;
     public float tentacleStretchDuration = 5f; // Duration for tentacles stretch
@@ -20,6 +20,14 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
 
     public bool isDoublePointsActive = false;
     public float doublePointsDuration = 5f; // Duration for Double Points
+
+    // Sprites for power-up icons
+    public Sprite tentaclesStretchIcon;
+    public Sprite slowEnemiesIcon;
+    public Sprite doublePointsIcon;
+
+    // Reference to the UIManager
+    public UIManager uiManager;
 
     private void Awake()
     {
@@ -36,30 +44,28 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
 
     private void Start()
     {
-       allPools = FindObjectsByType<EnemyPool>(
+        allPools = FindObjectsByType<EnemyPool>(
             FindObjectsInactive.Exclude, // Only active objects
             FindObjectsSortMode.None     // No sorting
-        );//get enemy pools
-
+        ); // Get enemy pools
+        uiManager.UpdatePowerUpIcon(null); // Clear the Power Up UI initially
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.O))//for debuging purposes get the strech power up when pressing 'o'
+        if (Input.GetKey(KeyCode.O)) // For debugging purposes, get the stretch power-up when pressing 'O'
         {
             MacropaghPowerUpManager.Instance.ActivateTentaclesStretch();
         }
 
-        if (Input.GetKey(KeyCode.P))//for debuging purposes get the slow down power up when pressing 'p'
+        if (Input.GetKey(KeyCode.P)) // For debugging purposes, get the slow down power-up when pressing 'P'
         {
             MacropaghPowerUpManager.Instance.ActivateSlowEnemies();
         }
-        if (Input.GetKey(KeyCode.I))//for debuging purposes get the double points power up when pressing 'p'
+        if (Input.GetKey(KeyCode.I)) // For debugging purposes, get the double points power-up when pressing 'I'
         {
             MacropaghPowerUpManager.Instance.ActivateDoublePoints();
         }
-
-
     }
 
     // Power-up functions
@@ -67,9 +73,9 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     {
         if (!isTentaclesStretched)
         {
-            
             isTentaclesStretched = true;
-            playerController.StretchAllTentacles(); //  call to the function to stretch all tentacles
+            playerController.StretchAllTentacles(); // Call to the function to stretch all tentacles
+            uiManager.UpdatePowerUpIcon(tentaclesStretchIcon); // Update the UI
             StartCoroutine(DeactivateTentaclesStretch());
         }
     }
@@ -79,6 +85,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         yield return new WaitForSeconds(tentacleStretchDuration);
         isTentaclesStretched = false;
         playerController.RetractAllTentacles(); // Reset tentacles
+        uiManager.UpdatePowerUpIcon(null); // Clear the UI
     }
 
     public void ActivateSlowEnemies()
@@ -88,8 +95,9 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
             isEnemiesSlowed = true;
             foreach (EnemyPool enemyPool in allPools)
             {
-                enemyPool.ChangeEnemiesSpeed(slowedSpeed); //  enemyPool to slow enemies
+                enemyPool.ChangeEnemiesSpeed(slowedSpeed); // Slow enemies
             }
+            uiManager.UpdatePowerUpIcon(slowEnemiesIcon); // Update the UI
             StartCoroutine(DeactivateSlowEnemies());
         }
     }
@@ -102,7 +110,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         {
             enemyPool.ResetEnemiesSpeed(); // Reset enemies speed
         }
-
+        uiManager.UpdatePowerUpIcon(null); // Clear the UI
     }
 
     public void ActivateDoublePoints()
@@ -110,7 +118,8 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         if (!isDoublePointsActive)
         {
             isDoublePointsActive = true;
-            ScoreManager.Instance.ActivateDoublePoints(); // Call function to ActivateDoublePoints
+            ScoreManager.Instance.ActivateDoublePoints(); // Call function to activate double points
+            uiManager.UpdatePowerUpIcon(doublePointsIcon); // Update the UI
             StartCoroutine(DeactivateDoublePoints());
         }
     }
@@ -119,10 +128,10 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     {
         yield return new WaitForSeconds(doublePointsDuration);
         isDoublePointsActive = false;
-        ScoreManager.Instance.DeactivateDoublePoints(); // Reset player Double Points
+        ScoreManager.Instance.DeactivateDoublePoints(); // Reset player double points
+        uiManager.UpdatePowerUpIcon(null); // Clear the UI
     }
 
-    // You can also manually check and deactivate the power-ups if you want:
     public void DeactivateAllPowerUps()
     {
         isTentaclesStretched = false;
@@ -132,6 +141,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         playerController.RetractAllTentacles();
         DeactivateSlowEnemies();
         ScoreManager.Instance.DeactivateDoublePoints();
+        uiManager.UpdatePowerUpIcon(null); // Clear the UI
     }
 
     public void ActivateRandomPowerUp()
