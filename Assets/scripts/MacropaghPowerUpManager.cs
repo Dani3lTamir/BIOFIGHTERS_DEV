@@ -27,7 +27,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     public Sprite doublePointsIcon;
 
     // Reference to the UIManager
-    public UIManager uiManager;
+    public MacrophagUIManager uiManager;
 
     private void Awake()
     {
