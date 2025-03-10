@@ -131,7 +131,7 @@ MonoBehaviour:
     m_UnitsPerEM: 2048
     m_LineHeight: 86.66016
     m_AscentLine: 68.774414
-    m_CapLine: 0
+    m_CapLine: 50.40625
     m_MeanLine: 0
     m_Baseline: 0
     m_DescentLine: -17.885742
@@ -141,7 +141,7 @@ MonoBehaviour:
     m_SubscriptSize: 0.5
     m_UnderlineOffset: -14.194336
     m_UnderlineThickness: 4.482422
-    m_StrikethroughOffset: 0
+    m_StrikethroughOffset: 20.1625
     m_StrikethroughThickness: 4.482422
     m_TabWidth: 20
   m_Material: {fileID: -7844964587725075650}

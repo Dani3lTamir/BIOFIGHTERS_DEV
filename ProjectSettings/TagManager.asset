@@ -9,6 +9,7 @@ TagManager:
   - Influenza
   - WhiteEnemy
   - YellowAlly
+  - SleepingTCell
   layers:
   - Default
   - TransparentFX
