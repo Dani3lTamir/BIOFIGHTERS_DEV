@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7941a5674069b3b43be8be05b4932738
+guid: d6440a2b65617614a87b9559591144e3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5032360287420300153
-    second: "__\u05DE\u05E7\u05E8\u05D5\u05E4\u05D0\u05D2_-removebg-preview (1)_0"
+      213: -1836330436245040283
+    second: Neutrophil_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "__\u05DE\u05E7\u05E8\u05D5\u05E4\u05D0\u05D2_-removebg-preview (1)_0"
+      name: Neutrophil_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 31
-        width: 507
-        height: 430
+        x: 25
+        y: 13
+        width: 463
+        height: 460
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 97b3871d40986d540800000000000000
-      internalID: 5032360287420300153
+      spriteID: 5635061923b0486e0800000000000000
+      internalID: -1836330436245040283
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "__\u05DE\u05E7\u05E8\u05D5\u05E4\u05D0\u05D2_-removebg-preview (1)_0": 5032360287420300153
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

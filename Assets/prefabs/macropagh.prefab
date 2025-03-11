@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  tetacleControllers: []
 --- !u!1 &6381025758151886917
 GameObject:
   m_ObjectHideFlags: 0
