@@ -138,4 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   antibody: {fileID: 0}
-  antibodyGenerator: {fileID: 0}
+  isAwake: 0
+  wakeKey: 99
+  hasCorrectAntibody: 0
+  hideAntiBodyOnExit: 0

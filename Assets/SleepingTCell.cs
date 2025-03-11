@@ -8,6 +8,8 @@ public class SleepingTCell : MonoBehaviour
     public KeyCode wakeKey = KeyCode.C; // Key to wake up the T cell
     public bool hasCorrectAntibody = false; // Flag to indicate if the antibody is correct
     private bool playerInRange = false; // Flag to indicate if the player is in range
+    public bool hideAntiBodyOnExit = false;
+    public float timePenalty = -5f; // Time penalty for incorrect antibody
 
     public void Start()
     {
@@ -36,6 +38,9 @@ public class SleepingTCell : MonoBehaviour
             else
             {
                 Debug.Log("Incorrect Antibody!");
+                // Incorrect choice penalty
+                GameCountManager.Instance.UpdateCounter("AttemptsLeft", -1);
+                Timer.Instance.AddTime(timePenalty);
             }
         }
     }
@@ -60,7 +65,7 @@ public class SleepingTCell : MonoBehaviour
         {
             playerInRange = false;
             // Hide the antibody sprite if its not destroyed
-            if (antibody != null)
+            if (antibody != null && hideAntiBodyOnExit)
             {
                 antibodySpriteRenderer.enabled = false;
             }

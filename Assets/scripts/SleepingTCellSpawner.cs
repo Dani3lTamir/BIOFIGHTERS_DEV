@@ -50,6 +50,21 @@ public class SleepingTCellSpawner : MonoBehaviour
 
             // Initialize the antibody
             antibodyGenerator.Initialize();
+            //check if it's unique
+            List<AntibodyGenerator> antibodies = new List<AntibodyGenerator>(tCellAntibodyMap.Values);
+            bool isUnique = false;
+            while (!isUnique)
+            {
+                if (AntibodyGenerator.IsUniqueAntibody(antibodies, antibodyGenerator))
+                {
+                    isUnique = true;
+                }
+                else
+                {
+                    antibodyGenerator.Initialize();
+                }
+            }
+
 
             // Set the antibody reference in the SleepingTCell script
             SleepingTCell tCellScript = tCell.GetComponent<SleepingTCell>();

@@ -1,19 +1,20 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AntibodyGenerator : MonoBehaviour
 {
     public int baseHeight = 20;   // Height of the base
-    public int minPins = 2;       // Minimum number of pins
-    public int maxPins = 3;       // Maximum number of pins
+    public int minPins = 3;       // Minimum number of pins
+    public int maxPins = 4;       // Maximum number of pins
     public int minPinWidth = 1;   // Minimum width of a pin
     public int maxPinWidth = 3;   // Maximum width of a pin
-    public float minPinSpacing = 2f; // Minimum spacing between pins
-    public float maxPinSpacing = 5f; // Maximum spacing between pins
+    public int minPinSpacing = 2; // Minimum spacing between pins
+    public int maxPinSpacing = 5; // Maximum spacing between pins
     public Color shapeColor = Color.white;
 
     public int numPins;           // Number of pins
     public int[] pinWidths;       // Width of each pin
-    public float[] pinSpacings;   // Spacing between pins
+    public int[] pinSpacings;   // Spacing between pins
     public int baseWidth;         // Width of the base (calculated dynamically)
 
     public void Initialize()
@@ -32,8 +33,13 @@ public class AntibodyGenerator : MonoBehaviour
             // Create a sprite from the texture
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
 
-            // Add a SpriteRenderer component to the antibody
-            SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+            // Check if a SpriteRenderer component already exists
+            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            if (spriteRenderer == null)
+            {
+                // Add a SpriteRenderer component to the antibody
+                spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+            }
             spriteRenderer.sortingLayerName = "Above Character"; // Set the sorting layer
 
             // Assign the sprite to the SpriteRenderer
@@ -52,14 +58,14 @@ public class AntibodyGenerator : MonoBehaviour
 
         // Randomize the pin widths and spacings
         pinWidths = new int[numPins];
-        pinSpacings = new float[numPins - 1]; // Spacings are between pins
+        pinSpacings = new int[numPins - 1]; // Spacings are between pins
 
         for (int i = 0; i < numPins; i++)
         {
-            pinWidths[i] = Random.Range(minPinWidth, maxPinWidth + 1);
+            pinWidths[i] =  Random.Range(minPinWidth, maxPinWidth + 1);
             if (i < numPins - 1)
             {
-                pinSpacings[i] = Random.Range(minPinSpacing, maxPinSpacing);
+                pinSpacings[i] =  Random.Range(minPinSpacing, maxPinSpacing);
             }
         }
 
@@ -140,4 +146,42 @@ public class AntibodyGenerator : MonoBehaviour
         }
         return totalWidth;
     }
+
+    // Check if an antibody is unique based on its pins and spacings
+    public static bool IsUniqueAntibody(List<AntibodyGenerator> antibodyList, AntibodyGenerator antibody)
+    {
+        foreach (AntibodyGenerator existingAntibody in antibodyList)
+        {
+            if (existingAntibody.numPins == antibody.numPins &&
+                AreArraysEqual(existingAntibody.pinWidths, antibody.pinWidths) &&
+                AreArraysEqual(existingAntibody.pinSpacings, antibody.pinSpacings))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static bool AreArraysEqual<T>(T[] array1, T[] array2)
+    {
+        if (array1 == null || array2 == null)
+        {
+            return false;
+        }
+
+        if (array1.Length != array2.Length)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < array1.Length; i++)
+        {
+            if (!EqualityComparer<T>.Default.Equals(array1[i], array2[i]))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

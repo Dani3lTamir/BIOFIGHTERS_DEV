@@ -50,6 +50,7 @@ public class GameCountManager : MonoBehaviour
         }
     }
 
+
     // Get the value of a counter by name
     public int GetCounterValue(string counterName)
     {

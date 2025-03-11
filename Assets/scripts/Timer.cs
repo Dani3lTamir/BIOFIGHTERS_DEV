@@ -5,8 +5,21 @@ public class Timer : MonoBehaviour
 {
     public float countdownTime = 60f; // Duration of the timer in seconds
     public bool isTimeUp { get; private set; } // Boolean to indicate if the time is up
-
+    public static Timer Instance; // Singleton instance
     private float timeRemaining;
+
+    private void Awake()
+    {
+        // Ensure there's only one instance of the Timer
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -58,6 +71,11 @@ public class Timer : MonoBehaviour
     public void SetTime(float time)
     {
         timeRemaining = time;
+    }
+
+    public void AddTime(float time)
+    {
+        timeRemaining += time;
     }
 }
 

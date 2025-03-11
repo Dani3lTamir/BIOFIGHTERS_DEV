@@ -23,7 +23,7 @@ public class AntigenGenerator : MonoBehaviour
         //set the t-cell as having the correct antibody
         correctTCell.SetCorrectAntibody(true);
         // Create the antigen
-        GameObject antigen = Instantiate(antigenPrefab, new Vector3(0, 5, 0), Quaternion.identity);
+        GameObject antigen = Instantiate(antigenPrefab, new Vector3(0, -1000, 1000), Quaternion.identity);
 
         // Generate the antigen's shape to complement the correct antibody
         Texture2D antigenTexture = CreateComplementaryShapeTexture(correctAntibody);
