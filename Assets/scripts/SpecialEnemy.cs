@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class SpecialEnemy : MonoBehaviour
 {
-    public EnemyPool pool;
+    private EnemyPool pool;
 
     void Start()
     {
+        // find the pool by tag
+        pool = GameObject.FindGameObjectWithTag("SpecialEnemyPool").GetComponent<EnemyPool>();
     }
 
     void Update()

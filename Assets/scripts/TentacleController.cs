@@ -167,9 +167,9 @@ public class Tentacle : MonoBehaviour
         {
             GameCountManager.Instance.UpdateCounter("AlliesLeft", -1); // update ally counter
         }
-        else if (target.CompareTag("Influenza"))
+        else if (target.CompareTag("Salmonela"))
         {
-            GameCountManager.Instance.UpdateCounter("InfluenzaLeft", -1); // update influenza counter
+            GameCountManager.Instance.UpdateCounter("SalmonelaLeft", -1); // update influenza counter
         }
         ScoreManager.Instance.UpdateScoreForObject(target.tag);//update score for given object
         target.SetActive(false);

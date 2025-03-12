@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1726217898358871602}
   - component: {fileID: 1019114620286829044}
+  - component: {fileID: 5679030942873181408}
   - component: {fileID: 8257612794327151354}
-  - component: {fileID: -6671166589851411586}
   m_Layer: 0
-  m_Name: white_cell
+  m_Name: B_cell_AI
   m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1269343917
-  m_SortingLayer: 2
+  m_SortingLayerID: 354134327
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -4054151910161285165, guid: 98e633bcea63d3e40b9dc1cc3408abb9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -89,6 +89,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5679030942873181408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3520783666115149992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b059732032379b46aa90216eb0c8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &8257612794327151354
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -125,30 +137,3 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 2.5
---- !u!50 &-6671166589851411586
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3520783666115149992}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0.5
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

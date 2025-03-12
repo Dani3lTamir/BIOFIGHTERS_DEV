@@ -5,14 +5,14 @@ using UnityEngine.UI;
 public class MacrophagUIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI InfluenzaLeft;
+    public TextMeshProUGUI SalmonelaLeft;
     public TextMeshProUGUI AlliesLeft;
     public Image powerUpIconImage; // Reference to the UI Image component for the power-up icon
 
     private void Update()
     {
         scoreText.text = "" + ScoreManager.Instance.GetScore();
-        InfluenzaLeft.text = "" + GameCountManager.Instance.GetCounterValue("InfluenzaLeft");
+        SalmonelaLeft.text = "" + GameCountManager.Instance.GetCounterValue("SalmonelaLeft");
         AlliesLeft.text = "" + GameCountManager.Instance.GetCounterValue("AlliesLeft");
     }
 

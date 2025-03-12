@@ -30,7 +30,6 @@ public class MainUIManager : MonoBehaviour
         timerText.text = timer.FormatTime(timer.GetTimeRemaining());
         scoreText.text = "" + ScoreManager.Instance.GetScore();
         coins.text = "" + GameCountManager.Instance.GetCounterValue("Coins");
-
     }
 
 }

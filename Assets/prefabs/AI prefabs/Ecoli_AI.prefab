@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &457333542468240075
+--- !u!1 &7834864787724264456
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2201468738028232591}
-  - component: {fileID: 173109410804612618}
-  - component: {fileID: 9021320750084531170}
-  - component: {fileID: 7200118338458041954}
+  - component: {fileID: 4596966616083083873}
+  - component: {fileID: 2826531087813992135}
+  - component: {fileID: 1823896840073413873}
+  - component: {fileID: 5944990341257991110}
+  - component: {fileID: 5486332040132687765}
   m_Layer: 0
-  m_Name: influenza
-  m_TagString: Special Enemy
+  m_Name: Ecoli_AI
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2201468738028232591
+--- !u!4 &4596966616083083873
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457333542468240075}
+  m_GameObject: {fileID: 7834864787724264456}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.56, y: -21.57, z: 0}
-  m_LocalScale: {x: 0.7159904, y: 0.6787324, z: 1}
+  m_LocalPosition: {x: -5.74, y: -21.6, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &173109410804612618
+--- !u!212 &2826531087813992135
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457333542468240075}
+  m_GameObject: {fileID: 7834864787724264456}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 1269343917
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -215938281379677897, guid: 101a49ac9239090488613f073cc7c9d9, type: 3}
+  m_Sprite: {fileID: -5182225996945875818, guid: a9b8ca3c070ec174c9c8caa7245ae716, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,14 +90,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &9021320750084531170
+--- !u!50 &1823896840073413873
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457333542468240075}
+  m_GameObject: {fileID: 7834864787724264456}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -116,13 +117,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &7200118338458041954
+--- !u!58 &5944990341257991110
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457333542468240075}
+  m_GameObject: {fileID: 7834864787724264456}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -150,5 +151,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.06730937}
-  m_Radius: 1.6681302
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 2.37
+--- !u!114 &5486332040132687765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834864787724264456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c30eea87c5bd0498f4bd3072a909c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool: {fileID: 0}

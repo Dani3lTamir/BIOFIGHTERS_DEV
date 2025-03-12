@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 101a49ac9239090488613f073cc7c9d9
+guid: a9b8ca3c070ec174c9c8caa7245ae716
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -215938281379677897
-    second: influenza_0
+      213: -5182225996945875818
+    second: Ecoli_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: influenza_0
+      name: Ecoli_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 51
-        width: 442
-        height: 422
+        x: 14
+        y: 7
+        width: 456
+        height: 474
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 739b4f4f645d00df0800000000000000
-      internalID: -215938281379677897
+      spriteID: 69c1f3299e80518b0800000000000000
+      internalID: -5182225996945875818
       vertices: []
       indices: 
       edges: []
