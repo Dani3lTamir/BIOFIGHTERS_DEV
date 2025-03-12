@@ -10,7 +10,7 @@
 - The macrophage engulfs the novel pathogen and passes it to a **dendritic cell**, setting up the next phase of the game.
 
 ### 2. **Dendritic Cell Level** (Mini-Game 2)
-- The player now controls a **dendritic cell**, whose job is to carry the novel pathogen to the nearest **lymph node**.
+- The player now controls a **dendritic cell**, whose job is to carry the novel pathogen through the **lymph node maze**.
 - Once in the lymph node, the player must identify the correct **T cell** that can recognize and respond to this pathogen.
 - Successfully finding the right T cell triggers the activation of the immune defense.
 
@@ -20,6 +20,8 @@
   - **B cells** (produce antibodies to neutralize pathogens)
   - **Macrophages** (engulf and digest pathogens)
   - **Neutrophils** (attack and destroy invaders with toxic enzymes)
+  - **Dandritic Cells** (sweep and engulf pathogens)
+
 - These immune cells then work together to eliminate the invading pathogens.
 
 ## Game Loop
@@ -29,10 +31,10 @@
 ## Features
 - **Dynamic Difficulty**: The game adjusts as the player progresses, making each cycle more challenging.
 - **Unique Abilities**: Different immune cells have distinct skills, encouraging strategic gameplay.
-- **Educational Elements**: Players learn about immune system functions in an interactive way.
+- **Educational Elements**: Players learn about immune system functions in an interactive way through the MicroPedia.
 
-## Conclusion
-BIOFIGHTERS is both an entertaining and educational experience, blending action with scientific accuracy. Are you ready to take control of the body's immune defenses and fight off the toughest pathogens?
+## Lets Play!
+**BIOFIGHTERS** is both an entertaining and educational experience, blending action with scientific accuracy. Are you ready to take control of the body's immune defenses and fight off the toughest pathogens?
 
 Stay tuned for updates and new features!
 
