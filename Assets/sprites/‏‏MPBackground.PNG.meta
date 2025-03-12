@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e7c709fab360232469fb12bd41276bc1
+guid: c3bbe16227df94f4eb73e8a881ad9c1e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7648872560218452113
-    second: "\u05EA\u05D0 T \u05D9\u05E9\u05DF_0"
+      213: -9183922797402737780
+    second: "\u200F\u200FMPBackground_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u05EA\u05D0 T \u05D9\u05E9\u05DF_0"
+      name: "\u200F\u200FMPBackground_0"
       rect:
         serializedVersion: 2
-        x: 26
-        y: 27
-        width: 451
-        height: 396
+        x: 0
+        y: 0
+        width: 1001
+        height: 501
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f6f42f39eeeb9d590800000000000000
-      internalID: -7648872560218452113
+      spriteID: c83b230dfd62c8080800000000000000
+      internalID: -9183922797402737780
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u05EA\u05D0 T \u05D9\u05E9\u05DF_0": -7648872560218452113
+      "\u200F\u200FMPBackground_0": -9183922797402737780
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
