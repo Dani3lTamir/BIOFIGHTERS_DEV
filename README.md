@@ -34,7 +34,7 @@
 - **Educational Elements**: Players learn about immune system functions in an interactive way through the MicroPedia.
 
 ## Lets Play!
-BIOFIGHTERS is both an entertaining and educational experience, blending action with scientific accuracy. Are you ready to take control of the body's immune defenses and fight off the toughest pathogens?
+**BIOFIGHTERS** is both an entertaining and educational experience, blending action with scientific accuracy. Are you ready to take control of the body's immune defenses and fight off the toughest pathogens?
 
 Stay tuned for updates and new features!
 
