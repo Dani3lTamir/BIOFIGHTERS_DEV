@@ -36,6 +36,12 @@ public class DefenderSpawner : MonoBehaviour
             {
                 PlaceDefender(mousePosition);
             }
+            // Cancel dragging when the player right-clicks
+            else if (Input.GetMouseButtonDown(1))
+            {
+                Destroy(defenderPreview);
+                isDragging = false;
+            }
         }
     }
 
@@ -60,7 +66,7 @@ public class DefenderSpawner : MonoBehaviour
     void PlaceDefender(Vector2 position)
     {
         // Instantiate the actual defender at the placement position
-        Instantiate(selectedDefender, position, Quaternion.identity);
+        GameObject placedDefender = Instantiate(selectedDefender, position, Quaternion.identity);
 
         // Clean up the preview
         Destroy(defenderPreview);

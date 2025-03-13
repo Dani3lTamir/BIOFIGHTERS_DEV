@@ -9,6 +9,9 @@ public class EcoliAI : MonoBehaviour
 
     private Transform targetCell; // The body cell the Ecoli is targeting
     private bool isAttacking = false;
+    private Vector3 randomTargetPosition; // Random position inside the cell collider
+    private bool isMovementEnabled = true; // Whether movement is enabled
+
 
     void OnEnable()
     {
@@ -26,8 +29,10 @@ public class EcoliAI : MonoBehaviour
 
     void Update()
     {
+        if (!isMovementEnabled) return; // Skip movement logic if movement is disabled
         if (targetCell == null)
         {
+            isAttacking = false;
             // If the target is destroyed, choose a new one
             ChooseRandomTarget();
             return;
@@ -49,20 +54,41 @@ public class EcoliAI : MonoBehaviour
         {
             // Choose a random body cell from the list
             targetCell = bodyCells[Random.Range(0, bodyCells.Length)].transform;
+            // Generate a random position inside the cell collider
+            GenerateRandomTargetPosition();
+
         }
         else
         {
-            Debug.LogWarning("No body cells found!");
+            Debug.Log("You Lost!");
         }
     }
 
+    void GenerateRandomTargetPosition()
+    {
+        if (targetCell.TryGetComponent<Collider2D>(out Collider2D collider))
+        {
+            Bounds bounds = collider.bounds;
+            randomTargetPosition = new Vector3(
+                Random.Range(bounds.min.x, bounds.max.x),
+                Random.Range(bounds.min.y, bounds.max.y),
+                transform.position.z
+            );
+        }
+        else
+        {
+            Debug.LogWarning("Target cell does not have a Collider2D component!");
+        }
+    }
+
+
     void MoveTowardsTarget()
     {
-        // Move towards the target body cell
-        transform.position = Vector3.MoveTowards(transform.position, targetCell.position, moveSpeed * Time.deltaTime);
+        // Move towards the random position inside the target body cell
+        transform.position = Vector3.MoveTowards(transform.position, randomTargetPosition, moveSpeed * Time.deltaTime);
 
-        // Check if the Ecoli has reached the target body cell
-        if (Vector3.Distance(transform.position, targetCell.position) < 0.1f)
+        // Check if the Ecoli has reached the random position inside the target body cell
+        if (Vector3.Distance(transform.position, randomTargetPosition) < 0.1f)
         {
             StartCoroutine(AttackCell());
         }
@@ -86,5 +112,30 @@ public class EcoliAI : MonoBehaviour
 
         // If the target is destroyed, stop attacking
         isAttacking = false;
+    }
+
+    public void DisableMovement()
+    {
+        isMovementEnabled = false;
+    }
+
+    public void EnableMovement()
+    {
+        isMovementEnabled = true;
+    }
+
+    public bool getMovmentStatus()
+    {
+        return isMovementEnabled;
+    }
+
+
+    public void setTargetCell(Transform newTarget)
+    {
+        targetCell = newTarget;
+    }
+    public Transform getTargetCell()
+    {
+        return targetCell;
     }
 }

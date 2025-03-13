@@ -590,7 +590,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  tetacleControllers: []
+  tetacleControllers:
+  - {fileID: 724347433885429654}
+  - {fileID: 611661900184569935}
+  - {fileID: 2778931663720019277}
+  - {fileID: 1785492353244469595}
+  - {fileID: 7202862944255770216}
 --- !u!1 &6381025758151886917
 GameObject:
   m_ObjectHideFlags: 0

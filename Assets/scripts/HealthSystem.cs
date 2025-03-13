@@ -68,6 +68,7 @@ public class HealthSystem : MonoBehaviour
     {
         // Handle death (e.g., play animation, destroy object, etc.)
         Debug.Log($"{gameObject.name} has died!");
+        healthBarInstance.SetActive(false);
         Destroy(gameObject); 
     }
 

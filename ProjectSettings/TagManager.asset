@@ -17,6 +17,7 @@ TagManager:
   - EcoliPool
   - SalmonelaPool
   - BodyCell
+  - Ecoli
   layers:
   - Default
   - TransparentFX
