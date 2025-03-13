@@ -4,6 +4,7 @@ using System.Collections;
 public class HealthSystem : MonoBehaviour
 {
     public float maxHealth = 100f;
+    public float Yoffset = 50f; // Offset of the health bar above the object
     private float currentHealth;
 
     public GameObject healthBarPrefab; // Reference to the Health Bar prefab
@@ -78,7 +79,12 @@ public class HealthSystem : MonoBehaviour
         if (healthBarInstance != null && healthBarInstance.activeSelf)
         {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-            healthBarInstance.transform.position = screenPosition + new Vector3(0, 50, 0); // Adjust offset as needed
+            healthBarInstance.transform.position = screenPosition + new Vector3(0, Yoffset, 0); // Adjust offset as needed
         }
+    }
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }
