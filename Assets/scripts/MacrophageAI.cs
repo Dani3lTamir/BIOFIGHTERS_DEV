@@ -8,11 +8,13 @@ public class MacrophageAI : MonoBehaviour
     public float cooldownDuration = 2f; // Cooldown after catching an enemy
     public TentacleAI[] tentacles; // Array of tentacles
     public float yOffset = 1f; // Y-axis offset when moving towards the enemy
-
+    public int catchLimit = 10; // Maximum number of enemies that can be caught
+    public float deathDelay = 1f; // Delay before dying after reaching the catch limit
 
     private GameObject closestEnemy; // The closest enemy
     private bool isOnCooldown = false; // Cooldown state
     private bool isStretching = false; // Whether the Macrophage is currently stretching a tentacle
+    private int caughtEnemiesCount = 0; // Counter for caught enemies
 
     void Update()
     {
@@ -31,7 +33,6 @@ public class MacrophageAI : MonoBehaviour
             // Check if any tentacle is in range to catch the enemy
             foreach (var tentacle in tentacles)
             {
-
                 if (Vector2.Distance(tentacle.transform.position, closestEnemy.transform.position) <= detectionRange)
                 {
                     Debug.Log("Catching enemy!");
@@ -50,6 +51,8 @@ public class MacrophageAI : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
+            // only if the enemy is not already caught by another defender
+            if (!(enemy.GetComponent<EcoliAI>().getMovmentStatus())) continue;
             float distance = Vector2.Distance(transform.position, enemy.transform.position);
             if (distance < closestDistance)
             {
@@ -71,7 +74,6 @@ public class MacrophageAI : MonoBehaviour
         transform.Translate(direction * moveSpeed * Time.deltaTime);
     }
 
-
     IEnumerator CatchEnemy(TentacleAI tentacle)
     {
         // Stop moving
@@ -80,7 +82,7 @@ public class MacrophageAI : MonoBehaviour
         // Stretch the tentacle to catch the enemy
         tentacle.Stretch();
 
-        //Avoid race condition with other macrophages
+        // Avoid race condition with other macrophages
         EcoliAI ecoliAI = closestEnemy.GetComponent<EcoliAI>();
         if (ecoliAI.getMovmentStatus())
         {
@@ -91,6 +93,18 @@ public class MacrophageAI : MonoBehaviour
             // Wait for the tentacle to retract
             yield return new WaitUntil(() => !tentacle.IsStretching());
 
+            // Increment the counter for caught enemies
+            caughtEnemiesCount++;
+
+            // Check if the catch limit is reached
+            if (caughtEnemiesCount >= catchLimit)
+            {
+                // Add a short delay before dying
+                yield return new WaitForSeconds(deathDelay);
+                Die();
+                yield break; // Exit the coroutine
+            }
+
             // Enter cooldown
             isOnCooldown = true;
             yield return new WaitForSeconds(cooldownDuration);
@@ -98,5 +112,12 @@ public class MacrophageAI : MonoBehaviour
         }
         // Resume movement
         isStretching = false;
+    }
+
+    void Die()
+    {
+        // Handle the death of the Macrophage (e.g., play animation, destroy object, etc.)
+        Debug.Log("Macrophage has reached the catch limit and is dying.");
+        Destroy(gameObject);
     }
 }

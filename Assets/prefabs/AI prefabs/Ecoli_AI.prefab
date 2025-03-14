@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4596966616083083873}
   - component: {fileID: 2826531087813992135}
-  - component: {fileID: 5944990341257991110}
   - component: {fileID: 293862246078047968}
+  - component: {fileID: 3457551476109218949}
+  - component: {fileID: -9032693745025823718}
   m_Layer: 0
   m_Name: Ecoli_AI
   m_TagString: Ecoli
@@ -89,8 +90,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5944990341257991110
-CircleCollider2D:
+--- !u!114 &293862246078047968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834864787724264456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe521465710a1440bf560355f0467cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  damageInterval: 1
+  damagePerTick: 1
+--- !u!70 &3457551476109218949
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,20 +139,33 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 2.37
---- !u!114 &293862246078047968
-MonoBehaviour:
+  m_Offset: {x: -0.031288553, y: -0.013499246}
+  m_Size: {x: 3.9088585, y: 4.406886}
+  m_Direction: 0
+--- !u!50 &-9032693745025823718
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7834864787724264456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe521465710a1440bf560355f0467cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  damageInterval: 1
-  damagePerTick: 1
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

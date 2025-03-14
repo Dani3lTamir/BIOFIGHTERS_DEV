@@ -3032,7 +3032,9 @@ MonoBehaviour:
     InitialValue: 100
   - CounterName: Lives
     InitialValue: 100
-  - CounterName: InfluenzaKilled
+  - CounterName: SalmonelaKilled
+    InitialValue: 0
+  - CounterName: EcoliKilled
     InitialValue: 0
 --- !u!4 &983154849
 Transform:
@@ -3216,9 +3218,9 @@ MonoBehaviour:
   score: 0
   isDoublePoints: 0
   levelObjectScores:
-  - Tag: Enemy
+  - Tag: Ecoli
     scoreValue: 10
-  - Tag: Influenza
+  - Tag: Salmonela
     scoreValue: 50
   - Tag: RightAnswer
     scoreValue: 20
@@ -3419,7 +3421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPool: {fileID: 1880900976}
   spawnInterval: 30
-  waveSize: 5
+  waveSize: 10
   waveSizeMultiplier: 1.2
   spawnPosition: {x: 1.54, y: 15, z: 0}
   spawnDelay: 0.2

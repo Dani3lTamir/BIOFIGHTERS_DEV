@@ -138,4 +138,15 @@ public class EcoliAI : MonoBehaviour
     {
         return targetCell;
     }
+
+    public void Die()
+    {
+        // Handle Ecoli capture (e.g., update score, deactivate Ecoli)
+        GameCountManager.Instance.UpdateCounter("EcoliKilled", 1); // Update Ecoli counter
+        ScoreManager.Instance.UpdateScoreForObject(gameObject.tag); // Update score for given object
+        gameObject.SetActive(false); // Deactivate the Ecoli
+        // Re-enable the Ecoli's movement
+        EnableMovement();
+    }
+
 }

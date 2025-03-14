@@ -98,18 +98,10 @@ public class TentacleAI : MonoBehaviour
                 yield return null;
             }
 
-        // Handle Ecoli capture (e.g., update score, deactivate Ecoli)
-        if (other.CompareTag("Ecoli"))
-        {
-            GameCountManager.Instance.UpdateCounter("EcoliLeft", -1); // Update Ecoli counter
-        }
-        ScoreManager.Instance.UpdateScoreForObject(other.tag); // Update score for given object
-        other.gameObject.SetActive(false);
-
-        // Re-enable the Ecoli's movement 
+        // Call the Die function on the EcoliAI component
         if (ecoliAI != null)
         {
-            ecoliAI.EnableMovement();
+            ecoliAI.Die();
         }
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1048574572917550357
+--- !u!1 &3525190882193832180
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6187636999623157014}
-  - component: {fileID: 3835803855072192959}
-  - component: {fileID: 7984792110767970429}
-  - component: {fileID: 1437629325668263097}
+  - component: {fileID: 5915557917751347212}
+  - component: {fileID: 6928241666700543934}
+  - component: {fileID: 3887643853521535014}
+  - component: {fileID: 4299687169678117767}
   m_Layer: 0
-  m_Name: Neutrophil_AI
-  m_TagString: Ally
+  m_Name: EnzymePuddle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6187636999623157014
+--- !u!4 &5915557917751347212
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048574572917550357}
+  m_GameObject: {fileID: 3525190882193832180}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.63938, y: 0.63938, z: 0.63938}
+  m_LocalPosition: {x: 10.965046, y: 4.6849704, z: 0}
+  m_LocalScale: {x: 0.7145272, y: 0.7145272, z: 0.7145272}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3835803855072192959
+--- !u!212 &6928241666700543934
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048574572917550357}
+  m_GameObject: {fileID: 3525190882193832180}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,25 +77,38 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 354134327
   m_SortingLayer: 1
-  m_SortingOrder: 5
-  m_Sprite: {fileID: -1836330436245040283, guid: d6440a2b65617614a87b9559591144e3, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -528899649892017456, guid: 7f2ebaf226a9f9a458ecbea987c71046, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.63, y: 4.6}
+  m_Size: {x: 4.46, y: 4.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &7984792110767970429
+--- !u!114 &3887643853521535014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525190882193832180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753251b1929f58441a24d0cd5047adc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 20
+--- !u!70 &4299687169678117767
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048574572917550357}
+  m_GameObject: {fileID: 3525190882193832180}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -119,28 +132,10 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 4.63, y: 4.6}
+  m_Offset: {x: -0.0000006673464, y: -0.0000006673464}
+  m_Size: {x: 3.4119914, y: 3.6263564}
   m_Direction: 0
---- !u!114 &1437629325668263097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048574572917550357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22ee524b1359dfe4593c9e44f139e1d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  maxPuddles: 5
-  puddleLifetime: 15
-  finalPuddleLifetime: 20
-  enzymePuddlePrefab: {fileID: 3525190882193832180, guid: 9918952d76026404a9cc32e61250a50b, type: 3}
-  finalPuddlePrefab: {fileID: 3525190882193832180, guid: e4e8ee39683aab24384bc0e62ddee385, type: 3}
