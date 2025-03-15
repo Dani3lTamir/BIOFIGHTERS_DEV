@@ -21,7 +21,7 @@ public class DefenderButton : MonoBehaviour
         // Get the defender cost from the shop
         int defenderCost = Shop.Instance.GetDefenderPrice(this);
         // if the player can't afford the defender, return
-        if (GameCountManager.Instance.GetCounterValue("Coins") < defenderCost)
+        if (RewardSystem.Instance.GetCoins() < defenderCost)
         {
             Debug.Log("Not enough coins!");
             return;

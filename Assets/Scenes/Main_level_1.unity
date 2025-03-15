@@ -119,6 +119,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &39518751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 39518752}
+  - component: {fileID: 39518753}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &39518752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39518751}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 728631908}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &39518753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39518751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27b005a7fd6e7c40a8c0e77e9dda859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Antibody
+    prefab: {fileID: 5091388408756514701, guid: 0293548ee30f9d94da74ea9a3d3c100f, type: 3}
+    size: 50
 --- !u!1 &111717070
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +474,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.563829, y: -0.63933545}
+  m_Offset: {x: -0.563829, y: -1.83}
   m_Size: {x: 4.1299987, y: 3.4875543}
   m_Direction: 0
 --- !u!1 &158727799
@@ -2466,6 +2514,58 @@ Transform:
   m_Children:
   - {fileID: 1880900977}
   - {fileID: 1911041760}
+  - {fileID: 39518752}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &746741992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746741994}
+  - component: {fileID: 746741993}
+  m_Layer: 0
+  m_Name: RewardSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &746741993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746741992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc56ff0723daabc4caff769dc0b0c6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRewards:
+  - enemyType: Ecoli
+    killsRequired: 3
+    rewardAmount: 5
+  startingCoins: 20
+  periodicCoinAmount: 10
+  periodicInterval: 15
+--- !u!4 &746741994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746741992}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 430.62872, y: 118.61604, z: -0.004500015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &754899523
@@ -3354,8 +3454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialCounters:
-  - CounterName: Coins
-    InitialValue: 100
   - CounterName: Lives
     InitialValue: 100
   - CounterName: SalmonelaKilled
@@ -5063,7 +5161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acbed63dbf28444e913d9eca87bdddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 300
+  countdownTime: 420
 --- !u!4 &1812682642
 Transform:
   m_ObjectHideFlags: 0
@@ -5165,7 +5263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7834864787724264456, guid: 5e815a61b73051d44b038be8fa3a74cd, type: 3}
-  poolSize: 50
+  poolSize: 100
 --- !u!4 &1880900977
 Transform:
   m_ObjectHideFlags: 0
@@ -5970,4 +6068,5 @@ SceneRoots:
   - {fileID: 811401428}
   - {fileID: 825141840}
   - {fileID: 1812682642}
+  - {fileID: 746741994}
   - {fileID: 1415445464}

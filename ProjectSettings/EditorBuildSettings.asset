@@ -6,8 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Macrophag_level_1.unity
+    guid: 6956b990f8d2f9540a22ed3b99e89f57
+  - enabled: 1
+    path: Assets/Scenes/Dandritic_level_1.unity
+    guid: b4a0799c87c1f8d45a17f7fb857bb850
+  - enabled: 1
+    path: Assets/Scenes/Main_level_1.unity
+    guid: ed1c081f9ee5bbd459967fb93f83e69e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0

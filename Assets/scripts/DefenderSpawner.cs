@@ -73,6 +73,6 @@ public class DefenderSpawner : MonoBehaviour
         isDragging = false;
 
         // Deduct the defender's cost from the player's coins
-        GameCountManager.Instance.UpdateCounter("Coins", - selectedDefenderCost);
+        RewardSystem.Instance.DeductCoins(selectedDefenderCost);
     }
 }

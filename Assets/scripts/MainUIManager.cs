@@ -52,7 +52,7 @@ public class MainUIManager : MonoBehaviour
         // Update the timer text
         timerText.text = timer.FormatTime(timer.GetTimeRemaining());
         scoreText.text = "" + ScoreManager.Instance.GetScore();
-        coins.text = "" + GameCountManager.Instance.GetCounterValue("Coins");
+        coins.text = "" + RewardSystem.Instance.GetCoins();
 
         // Update the startUpNum text
         startUpNum.text = startUpTimer.GetTimeRemaining().ToString("F2");
