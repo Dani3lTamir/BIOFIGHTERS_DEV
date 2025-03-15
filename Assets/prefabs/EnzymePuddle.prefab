@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5915557917751347212}
   - component: {fileID: 6928241666700543934}
   - component: {fileID: 3887643853521535014}
-  - component: {fileID: 5894080310321499022}
+  - component: {fileID: 4299687169678117767}
   m_Layer: 0
-  m_Name: FinalPuddle
+  m_Name: EnzymePuddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.965046, y: 4.6849704, z: 0}
-  m_LocalScale: {x: 1.3814669, y: 1.3814669, z: 1.3814669}
+  m_LocalScale: {x: 0.7145272, y: 0.7145272, z: 0.7145272}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -528899649892017456, guid: 7f2ebaf226a9f9a458ecbea987c71046, type: 3}
-  m_Color: {r: 0.90188676, g: 0.23856111, b: 0.07997859, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,8 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753251b1929f58441a24d0cd5047adc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 30
---- !u!70 &5894080310321499022
+  lifetime: 15
+  maxCatches: 5
+--- !u!70 &4299687169678117767
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,6 +137,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.08931859, y: 0.07145549}
-  m_Size: {x: 3.5191758, y: 3.7454503}
+  m_Offset: {x: -0.0000006673464, y: -0.0000006673464}
+  m_Size: {x: 3.4119914, y: 3.6263564}
   m_Direction: 0

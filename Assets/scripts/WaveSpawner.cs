@@ -9,12 +9,13 @@ public class WaveSpawner : MonoBehaviour
     public float waveSizeMultiplier = 1.5f;  // Multiplier for the wave size
     public Vector3 spawnPosition;  // Position to spawn the wave
     public float spawnDelay = 0.5f;  // Delay between each enemy spawn
+    public float delayUntilFirstWave = 5f;  // Delay before the first wave
 
 
     private void Start()
     {
         // Start spawning enemies at regular intervals
-        InvokeRepeating("StartSpawningWave", 0f, spawnInterval);
+        InvokeRepeating("StartSpawningWave", delayUntilFirstWave, spawnInterval);
     }
 
     void StartSpawningWave()

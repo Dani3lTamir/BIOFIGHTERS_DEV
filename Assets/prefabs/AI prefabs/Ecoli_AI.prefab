@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   damageInterval: 1
-  damagePerTick: 1
+  damagePerTick: 0.5
 --- !u!70 &3457551476109218949
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

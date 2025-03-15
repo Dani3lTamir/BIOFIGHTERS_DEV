@@ -18,6 +18,8 @@ TagManager:
   - SalmonelaPool
   - BodyCell
   - Ecoli
+  - EcoliWaveSpawner
+  - LevelTimer
   layers:
   - Default
   - TransparentFX

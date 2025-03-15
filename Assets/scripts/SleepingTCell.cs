@@ -10,6 +10,7 @@ public class SleepingTCell : MonoBehaviour
     private bool playerInRange = false; // Flag to indicate if the player is in range
     public bool hideAntiBodyOnExit = false;
     public float timePenalty = -5f; // Time penalty for incorrect antibody
+    private Timer timer;
 
     public void Start()
     {
@@ -17,6 +18,13 @@ public class SleepingTCell : MonoBehaviour
         antibodySpriteRenderer = antibody.GetComponent<SpriteRenderer>();
         // Initially hide the antibody sprite
         antibodySpriteRenderer.enabled = false;
+        // Get the Timer component
+        GameObject levelTimer = GameObject.FindGameObjectWithTag("LevelTimer");
+        if (levelTimer != null)
+        {
+            timer = levelTimer.GetComponent<Timer>();
+        }
+
     }
 
     void Update()
@@ -40,7 +48,7 @@ public class SleepingTCell : MonoBehaviour
                 Debug.Log("Incorrect Antibody!");
                 // Incorrect choice penalty
                 GameCountManager.Instance.UpdateCounter("AttemptsLeft", -1);
-                Timer.Instance.AddTime(timePenalty);
+                timer.AddTime( timePenalty);
             }
         }
     }

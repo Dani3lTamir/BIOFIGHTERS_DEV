@@ -1,21 +1,30 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnzymePuddle : MonoBehaviour
 {
     public float lifetime = 5f; // Lifetime of the puddle
+    private List<GameObject> trappedEcoli = new List<GameObject>(); // List of trapped Enemies
+    public int maxCatches = 5; // Maximum number of Enemies that can be caught
 
     void Start()
     {
         // Destroy the puddle after its lifetime
-        Destroy(gameObject, lifetime + 1f);
+        StartCoroutine(DestroyPuddleAfterDelay(lifetime));
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Check if the puddle has reached its maximum capacity
+        if (trappedEcoli.Count >= maxCatches)
+        {
+            return;
+        }
+
         if (other.CompareTag("Ecoli"))
         {
-            // Trap and kill the Ecoli
+            // Trap and disable the Ecoli's movement
             TrapEcoli(other.gameObject);
         }
     }
@@ -29,26 +38,32 @@ public class EnzymePuddle : MonoBehaviour
             ecoliAI.DisableMovement();
         }
 
-        // Parent the Ecoli to the puddle so it stays trapped
-        ecoli.transform.SetParent(transform);
-
-        // Kill the Ecoli when the puddle is destroyed
-        StartCoroutine(KillEcoliAfterDelay(ecoli, lifetime));
+        // Add the Ecoli to the list of trapped Ecoli
+        trappedEcoli.Add(ecoli);
     }
 
-    IEnumerator KillEcoliAfterDelay(GameObject ecoli, float delay)
+    IEnumerator DestroyPuddleAfterDelay(float delay)
     {
+
         yield return new WaitForSeconds(delay);
 
-        // Unparent the Ecoli before destroying the puddle
-        if (ecoli != null)
+        // Kill all trapped Ecoli
+        foreach (var ecoli in trappedEcoli)
         {
-            ecoli.transform.SetParent(null); // Unparent the Ecoli
-            EcoliAI ecoliAI = ecoli.GetComponent<EcoliAI>();
-            if (ecoliAI != null)
+            if (ecoli != null)
             {
-                ecoliAI.Die(); // Kill the Ecoli
+                EcoliAI ecoliAI = ecoli.GetComponent<EcoliAI>();
+                if (ecoliAI != null)
+                {
+                    ecoliAI.Die(); // Kill the Ecoli
+                }
             }
         }
+
+        // Clear the list of trapped Ecoli
+        trappedEcoli.Clear();
+
+        // Destroy the puddle
+        Destroy(gameObject);
     }
 }

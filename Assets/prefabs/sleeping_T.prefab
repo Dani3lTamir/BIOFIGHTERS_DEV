@@ -142,3 +142,4 @@ MonoBehaviour:
   wakeKey: 99
   hasCorrectAntibody: 0
   hideAntiBodyOnExit: 0
+  timePenalty: -10

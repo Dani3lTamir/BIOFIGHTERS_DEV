@@ -7493,7 +7493,7 @@ GameObject:
   - component: {fileID: 463818917}
   m_Layer: 0
   m_Name: Timer
-  m_TagString: Untagged
+  m_TagString: LevelTimer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

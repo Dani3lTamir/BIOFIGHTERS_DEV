@@ -5,7 +5,7 @@ public class EcoliAI : MonoBehaviour
 {
     public float moveSpeed = 2f; // Speed at which the Ecoli moves
     public float damageInterval = 1f; // Time between damage ticks
-    public int damagePerTick = 1; // Damage caused per tick
+    public float damagePerTick = 1f; // Damage caused per tick
 
     private Transform targetCell; // The body cell the Ecoli is targeting
     private bool isAttacking = false;

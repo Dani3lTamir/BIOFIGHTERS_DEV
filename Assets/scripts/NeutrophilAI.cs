@@ -5,13 +5,10 @@ public class NeutrophilAI : MonoBehaviour
 {
     public float moveSpeed = 2f; // Speed at which the Neutrophil moves
     public int maxPuddles = 5; // Maximum number of puddles to spawn
-    public float puddleLifetime = 5f; // Lifetime of each puddle
-    public float finalPuddleLifetime = 10f; // Lifetime of the final larger puddle
     public GameObject enzymePuddlePrefab; // Prefab for the enzyme puddle
     public GameObject finalPuddlePrefab; // Prefab for the final larger puddle
 
     private int puddlesSpawned = 0; // Number of puddles spawned so far
-    private bool isMoving = true; // Whether the Neutrophil is moving
 
     void Start()
     {
@@ -32,7 +29,7 @@ public class NeutrophilAI : MonoBehaviour
             yield return StartCoroutine(MoveToPosition(randomPosition));
 
             // Spawn an enzyme puddle
-            SpawnPuddle(randomPosition, enzymePuddlePrefab, puddleLifetime);
+            SpawnPuddle(randomPosition, enzymePuddlePrefab);
             puddlesSpawned++;
         }
 
@@ -41,7 +38,7 @@ public class NeutrophilAI : MonoBehaviour
         yield return StartCoroutine(MoveToPosition(finalPosition));
 
         // Spawn the final larger puddle
-        SpawnPuddle(finalPosition, finalPuddlePrefab, finalPuddleLifetime);
+        SpawnPuddle(finalPosition, finalPuddlePrefab);
 
         // Die after spawning the final puddle
         Destroy(gameObject);
@@ -56,10 +53,9 @@ public class NeutrophilAI : MonoBehaviour
         }
     }
 
-    void SpawnPuddle(Vector2 position, GameObject puddlePrefab, float lifetime)
+    void SpawnPuddle(Vector2 position, GameObject puddlePrefab)
     {
         GameObject puddle = Instantiate(puddlePrefab, position, Quaternion.identity);
-        Destroy(puddle, lifetime); // Destroy the puddle after its lifetime
     }
 
     Vector2 GetRandomScreenPosition()
