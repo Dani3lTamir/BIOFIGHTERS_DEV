@@ -616,14 +616,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   detectionRange: 1
-  cooldownDuration: 2
+  eColiCooldownDuration: 2
+  damage: 5
+  cooldownDuration: 6
+  yOffset: -3
+  catchLimit: 10
+  deathDelay: 1
   tentacles:
   - {fileID: 2841962764618830870}
   - {fileID: 8653641261514839175}
   - {fileID: 7897568542149648477}
   - {fileID: 7774994742099981742}
   - {fileID: 737617004431116329}
-  yOffset: -3
 --- !u!1 &6381025758151886917
 GameObject:
   m_ObjectHideFlags: 0

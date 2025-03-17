@@ -86,7 +86,6 @@ public class TentacleAI : MonoBehaviour
 
     public IEnumerator VacuumMicrobe(Collider2D other)
     {
-        EcoliAI ecoliAI = other.GetComponent<EcoliAI>();
         // Move the Ecoli towards the Macrophage
         while (Vector2.Distance(other.transform.position, characterCenter.position) > 0.1f)
             {
@@ -97,11 +96,27 @@ public class TentacleAI : MonoBehaviour
                 );
                 yield return null;
             }
-
-        // Call the Die function on the EcoliAI component
-        if (ecoliAI != null)
+        if (other.CompareTag("Ecoli"))
         {
-            ecoliAI.Die();
+            EcoliAI ecoliAI = other.GetComponent<EcoliAI>();
+            // Call the Die function on the EcoliAI component
+            if (ecoliAI != null)
+            {
+                ecoliAI.Die();
+            }
+
         }
+
+        if (other.CompareTag("Salmonela"))
+        {
+            SalmonelaAI salmonelaAI = other.GetComponent<SalmonelaAI>();
+            if (salmonelaAI != null)
+            {
+                salmonelaAI.EnableMovement();
+            }
+
+        }
+
+
     }
 }

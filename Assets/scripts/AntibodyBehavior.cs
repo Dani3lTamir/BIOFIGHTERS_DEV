@@ -3,7 +3,9 @@ using UnityEngine;
 public class AntibodyBehavior : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed at which the antibody moves
+    public float damage = 7f; // Damage caused by the antibody
     private GameObject target; // The Enemy the antibody is targeting
+
 
     void Update()
     {
@@ -27,6 +29,13 @@ public class AntibodyBehavior : MonoBehaviour
                 {
                     target.GetComponent<EcoliAI>().Die();
                 }
+
+                // If its a Salmonela, damage it
+                if (target.CompareTag("Salmonela") && target.GetComponent<SalmonelaAI>().getMovmentStatus())
+                {
+                    target.GetComponent<HealthSystem>().TakeDamage(damage);
+                }
+
 
                 // return the antibody to the pool
                 ObjectPool.Instance.ReturnToPool("Antibody", gameObject);

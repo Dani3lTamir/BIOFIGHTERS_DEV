@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class EcoliAI : MonoBehaviour
+public class SalmonelaAI : MonoBehaviour
 {
     public float moveSpeed = 2f; // Speed at which the Ecoli moves
     public float damageInterval = 1f; // Time between damage ticks
@@ -11,15 +11,15 @@ public class EcoliAI : MonoBehaviour
     private bool isAttacking = false;
     private Vector3 randomTargetPosition; // Random position inside the cell collider
     private bool isMovementEnabled = true; // Whether movement is enabled
-    private readonly object movementLock = new object(); // Lock object for atomic operations
-    private readonly object deathLock = new object(); // Lock object for atomic operations
 
+    public HealthSystem healthSystem; // Reference to the HealthSystem component
+    private readonly object movementLock = new object(); // Lock object for atomic operations
 
 
 
     void OnEnable()
     {
-        // Initialize the Ecoli when it is activated
+        // Initialize the Salmonela when it is activated
         ChooseRandomTarget();
     }
 
@@ -149,18 +149,12 @@ public class EcoliAI : MonoBehaviour
         return targetCell;
     }
 
-    public void Die()
+     void OnDestroy()
     {
-        lock(deathLock)
-        {
-            // Handle Ecoli capture (e.g., update score, deactivate Ecoli)
-            GameCountManager.Instance.UpdateCounter("EcoliKilled", 1); // Update Ecoli counter
-            ScoreManager.Instance.UpdateScoreForObject(gameObject.tag); // Update score for given object
-            RewardSystem.Instance.RegisterEnemyKill(gameObject.tag); // Register the kill for reward purposes
-            gameObject.SetActive(false); // Deactivate the Ecoli
-            // Re-enable the Ecoli's movement
-            EnableMovement();
-        }
+        // Handle Salmonela death (e.g., update score, deactivate Salmonela)
+        GameCountManager.Instance.UpdateCounter("SalmonelaKilled", 1); // Update Salmonela counter
+        ScoreManager.Instance.UpdateScoreForObject("Salmonela"); // Update score for given object
+        RewardSystem.Instance.RegisterEnemyKill("Salmonela"); // Register the kill for reward purposes
     }
 
 }

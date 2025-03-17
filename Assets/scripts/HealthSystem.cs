@@ -75,7 +75,7 @@ public class HealthSystem : MonoBehaviour
 
     void Update()
     {
-        // Position the health bar above the body cell
+        // Position the health bar above the Object
         if (healthBarInstance != null && healthBarInstance.activeSelf)
         {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);

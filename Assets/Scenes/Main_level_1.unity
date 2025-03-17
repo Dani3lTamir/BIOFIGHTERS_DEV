@@ -392,91 +392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTime: 60
---- !u!1 &130709537
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 130709538}
-  - component: {fileID: 130709540}
-  - component: {fileID: 130709541}
-  m_Layer: 0
-  m_Name: BodyCell (1)
-  m_TagString: BodyCell
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &130709538
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130709537}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.32, y: 10.5, z: 0}
-  m_LocalScale: {x: 1.14, y: 1.35, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1415445464}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &130709540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130709537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f80eab10e527cf24280731a0f6e6f67d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  Yoffset: 100
-  healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
---- !u!70 &130709541
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130709537}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.563829, y: -1.83}
-  m_Size: {x: 4.1299987, y: 3.4875543}
-  m_Direction: 0
 --- !u!1 &158727799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,8 +1066,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 2.322571, y: -0.44260985}
-  m_Size: {x: 9.902799, y: 6.6018653}
+  m_Offset: {x: 0.072267964, y: -0.44260985}
+  m_Size: {x: 5.402192, y: 6.601866}
   m_Direction: 0
 --- !u!114 &250223183
 MonoBehaviour:
@@ -1236,8 +1151,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.41763747, y: -0.10208702}
-  m_Size: {x: 3.6747932, y: 6.4953423}
+  m_Offset: {x: -0.16083415, y: -0.10208702}
+  m_Size: {x: 3.1611867, y: 6.4953423}
   m_Direction: 0
 --- !u!114 &309664828
 MonoBehaviour:
@@ -2080,8 +1995,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 2.3476684, y: -0.37569642}
-  m_Size: {x: 7.6444335, y: 5.1966586}
+  m_Offset: {x: 1.7965696, y: -0.37569642}
+  m_Size: {x: 6.542236, y: 5.1966586}
   m_Direction: 0
 --- !u!114 &569560696
 MonoBehaviour:
@@ -2211,6 +2126,63 @@ Transform:
   - {fileID: 1690728094}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &694870735
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.8872633
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.225546
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834864787724264456, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+      propertyPath: m_Name
+      value: Salmonela_AI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
 --- !u!1 &709176026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,6 +2522,9 @@ MonoBehaviour:
   - enemyType: Ecoli
     killsRequired: 3
     rewardAmount: 5
+  - enemyType: Salmonela
+    killsRequired: 1
+    rewardAmount: 10
   startingCoins: 20
   periodicCoinAmount: 10
   periodicInterval: 15
@@ -3270,8 +3245,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.5933338, y: -0.12554945}
-  m_Size: {x: 8.4443245, y: 7.1307626}
+  m_Offset: {x: 0.39250138, y: -0.12554945}
+  m_Size: {x: 6.0426593, y: 7.1307626}
   m_Direction: 0
 --- !u!114 &947159671
 MonoBehaviour:
@@ -3917,8 +3892,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0037851788, y: -0.5904367}
-  m_Size: {x: 2.8470888, y: 3.8963418}
+  m_Offset: {x: 0.17042917, y: -0.5904367}
+  m_Size: {x: 2.49866, y: 3.8963418}
   m_Direction: 0
 --- !u!114 &1321658286
 MonoBehaviour:
@@ -4089,7 +4064,6 @@ Transform:
   - {fileID: 309664826}
   - {fileID: 1321658284}
   - {fileID: 1423671148}
-  - {fileID: 130709538}
   - {fileID: 947159669}
   - {fileID: 250223181}
   - {fileID: 569560694}
@@ -4162,8 +4136,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.1111182, y: -0.40375948}
-  m_Size: {x: 3.025827, y: 3.844715}
+  m_Offset: {x: 0.36501297, y: -0.40375948}
+  m_Size: {x: 2.5180383, y: 3.844715}
   m_Direction: 0
 --- !u!114 &1423671150
 MonoBehaviour:
@@ -5680,8 +5654,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.095751934, y: -0.10208702}
-  m_Size: {x: 4.9929905, y: 6.4953423}
+  m_Offset: {x: 0.52445275, y: -0.10208702}
+  m_Size: {x: 3.7525814, y: 6.4953423}
   m_Direction: 0
 --- !u!1 &1999950029
 GameObject:
@@ -6070,3 +6044,4 @@ SceneRoots:
   - {fileID: 1812682642}
   - {fileID: 746741994}
   - {fileID: 1415445464}
+  - {fileID: 694870735}

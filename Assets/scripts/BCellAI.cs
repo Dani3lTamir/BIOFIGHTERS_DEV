@@ -49,18 +49,47 @@ public class BCellAI : MonoBehaviour
         // Find all Objects within the collider radius
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, colliderRadius);
         List<GameObject> eColiList = new List<GameObject>();
+        List<GameObject> salmonelaList = new List<GameObject>();
 
-        // Filter out only the E. coli objects
+
         foreach (Collider2D collider in hitColliders)
         {
+            // Filter out only the E. coli objects
+
             if (collider.CompareTag("Ecoli") && (collider.GetComponent<EcoliAI>().getMovmentStatus())) // Ensure your E. coli objects have the tag "EColi" and its not caught by other defender
             {
                 eColiList.Add(collider.gameObject);
             }
+
+            // Filter out only the Salmonela objects
+            if (collider.CompareTag("Salmonela") && (collider.GetComponent<SalmonelaAI>().getMovmentStatus())) // Ensure your Salmonela objects have the tag "Salmonela" and its not caught by other defender
+            {
+                salmonelaList.Add(collider.gameObject);
+            }
+
         }
 
-        // If there are E. coli in range, shoot at a random one
-        if (eColiList.Count > 0)
+        // If there are Salmonemla in range, shoot at a random one
+        if (salmonelaList.Count > 0)
+        {
+            int randomIndex = Random.Range(0, salmonelaList.Count);
+            GameObject targetSalmonela = salmonelaList[randomIndex];
+
+            // Get the antibody from the pool
+            GameObject antibody = ObjectPool.Instance.SpawnFromPool("Antibody", transform.position, Quaternion.identity);
+
+            // Set the antibody's target to the Salmonela
+            if (antibody.TryGetComponent<AntibodyBehavior>(out AntibodyBehavior antibodyBehavior))
+            {
+                antibodyBehavior.SetTarget(targetSalmonela);
+            }
+
+            // Reduce ammo by 1
+            ammo--;
+        }
+
+        // Else If there are E. coli in range, shoot at a random one
+        else if (eColiList.Count > 0)
         {
             int randomIndex = Random.Range(0, eColiList.Count);
             GameObject targetEcoli = eColiList[randomIndex];

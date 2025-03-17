@@ -11,6 +11,7 @@ public class DCAI : MonoBehaviour
     public float screenExitDelay = 2f; // Time to wait before leaving the screen
     public Vector2 onScreenOffset = new Vector2(1, 0); // Offset to leave the screen's boundaries
     public int catchLimit = 5; // Maximum number of Ecoli that can be caught
+    public float damage = 8f; // Damage caused by the DC Defender
 
 
     private bool isMoving = false; // Whether the DC Defender is moving
@@ -77,6 +78,12 @@ public class DCAI : MonoBehaviour
         {
             // Catch the Ecoli
             CatchEcoli(other.gameObject);
+        }
+
+        if (other.CompareTag("Salmonela") && (other.GetComponent<SalmonelaAI>().getMovmentStatus()))
+        {
+            // Damage the Salmonela
+            other.GetComponent<HealthSystem>().TakeDamage(damage);
         }
     }
 

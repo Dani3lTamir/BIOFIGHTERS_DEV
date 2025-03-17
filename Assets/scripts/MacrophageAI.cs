@@ -5,11 +5,13 @@ public class MacrophageAI : MonoBehaviour
 {
     public float moveSpeed = 3f; // Speed at which the Macrophage moves
     public float detectionRange = 5f; // Range to detect enemies
-    public float cooldownDuration = 2f; // Cooldown after catching an enemy
-    public TentacleAI[] tentacles; // Array of tentacles
+    public float eColiCooldownDuration = 2f; // Cooldown after catching an ecoli
+    public float damage = 2f;        // Damage caused by the tentacle
+    public float cooldownDuration = 7f; // Cooldown after catching other enemies
     public float yOffset = 1f; // Y-axis offset when moving towards the enemy
     public int catchLimit = 10; // Maximum number of enemies that can be caught
     public float deathDelay = 1f; // Delay before dying after reaching the catch limit
+    public TentacleAI[] tentacles; // Array of tentacles
 
     private GameObject closestEnemy; // The closest enemy
     private bool isOnCooldown = false; // Cooldown state
@@ -45,14 +47,29 @@ public class MacrophageAI : MonoBehaviour
 
     GameObject FindClosestEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Ecoli");
+        GameObject[] ecoliEnemies = GameObject.FindGameObjectsWithTag("Ecoli");
+        GameObject[] salmonellaEnemies = GameObject.FindGameObjectsWithTag("Salmonela");
+
+
         GameObject closest = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach (var enemy in enemies)
+        foreach (var enemy in ecoliEnemies)
         {
             // only if the enemy is not already caught by another defender
             if (!(enemy.GetComponent<EcoliAI>().getMovmentStatus())) continue;
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = enemy;
+            }
+        }
+
+        foreach (var enemy in salmonellaEnemies)
+        {
+            // only if the enemy is not already caught by another defender
+            if (!(enemy.GetComponent<SalmonelaAI>().getMovmentStatus())) continue;
             float distance = Vector2.Distance(transform.position, enemy.transform.position);
             if (distance < closestDistance)
             {
@@ -83,33 +100,62 @@ public class MacrophageAI : MonoBehaviour
         tentacle.Stretch();
 
         // Avoid race condition with other macrophages
-        EcoliAI ecoliAI = closestEnemy.GetComponent<EcoliAI>();
-        if (ecoliAI.getMovmentStatus())
+        if (closestEnemy.CompareTag("Ecoli"))
         {
-            ecoliAI.DisableMovement();
-            // Catch the enemy
-            StartCoroutine(tentacle.VacuumMicrobe(closestEnemy.GetComponent<Collider2D>()));
-
-            // Wait for the tentacle to retract
-            yield return new WaitUntil(() => !tentacle.IsStretching());
-
-            // Increment the counter for caught enemies
-            caughtEnemiesCount++;
-
-            // Check if the catch limit is reached
-            if (caughtEnemiesCount >= catchLimit)
+            EcoliAI ecoliAI = closestEnemy.GetComponent<EcoliAI>();
+            if (ecoliAI.getMovmentStatus())
             {
-                // Add a short delay before dying
-                yield return new WaitForSeconds(deathDelay);
-                Die();
-                yield break; // Exit the coroutine
+                ecoliAI.DisableMovement();
+                // Catch the enemy
+                StartCoroutine(tentacle.VacuumMicrobe(closestEnemy.GetComponent<Collider2D>()));
+
+                // Wait for the tentacle to retract
+                yield return new WaitUntil(() => !tentacle.IsStretching());
+
+                // Increment the counter for caught enemies
+                caughtEnemiesCount++;
+            }
+        }
+
+        if (closestEnemy.CompareTag("Salmonela"))
+        {
+
+            SalmonelaAI salmonelaAI = closestEnemy.GetComponent<SalmonelaAI>();
+            if (salmonelaAI.getMovmentStatus())
+            {
+                salmonelaAI.DisableMovement();
+                // Catch the enemy
+                StartCoroutine(tentacle.VacuumMicrobe(closestEnemy.GetComponent<Collider2D>()));
+
+                // Wait for the tentacle to retract
+                yield return new WaitUntil(() => !tentacle.IsStretching());
+
+                // Give damage to Salmonela
+                closestEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
+
+                // Increment the counter for dead enemies
+                caughtEnemiesCount++;
             }
 
-            // Enter cooldown
-            isOnCooldown = true;
-            yield return new WaitForSeconds(cooldownDuration);
-            isOnCooldown = false;
         }
+
+        // Check if the catch limit is reached
+        if (caughtEnemiesCount >= catchLimit)
+        {
+            // Add a short delay before dying
+            yield return new WaitForSeconds(deathDelay);
+            Die();
+            yield break; // Exit the coroutine
+        }
+
+
+        // Enter cooldown
+        float coolDown = closestEnemy.CompareTag("Ecoli") ? eColiCooldownDuration : cooldownDuration;
+        isOnCooldown = true;
+        yield return new WaitForSeconds(coolDown);
+        isOnCooldown = false;
+
+
         // Resume movement
         isStretching = false;
     }
