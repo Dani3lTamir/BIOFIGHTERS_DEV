@@ -392,6 +392,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTime: 60
+--- !u!1 &131331211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131331212}
+  - component: {fileID: 131331213}
+  m_Layer: 0
+  m_Name: SalmonelaSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &131331212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131331211}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1999950030}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &131331213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131331211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e7abfe2fcca0d4d86a163d6f45ed30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7834864787724264456, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
+  spawnInterval: 180
+  waveSize: 1
+  waveSizeMultiplier: 2
+  spawnPosition: {x: 1.54, y: 15, z: 0}
+  spawnDelay: 0.5
+  delayUntilFirstWave: 185
 --- !u!1 &158727799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,63 +2177,6 @@ Transform:
   - {fileID: 1690728094}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &694870735
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.8872633
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.225546
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596966616083083873, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7834864787724264456, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-      propertyPath: m_Name
-      value: Salmonela_AI
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
 --- !u!1 &709176026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,7 +2479,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1880900977}
-  - {fileID: 1911041760}
   - {fileID: 39518752}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2525,7 +2518,7 @@ MonoBehaviour:
   - enemyType: Salmonela
     killsRequired: 1
     rewardAmount: 10
-  startingCoins: 20
+  startingCoins: 30
   periodicCoinAmount: 10
   periodicInterval: 15
 --- !u!4 &746741994
@@ -3089,6 +3082,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defenderPrefab: {fileID: 6194678883743992458, guid: ecf65131aa2101c4d90fe8e63e74eb3d, type: 3}
   commanderUI: {fileID: 945040661}
+--- !u!1001 &904649406
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376222526996379150, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111103998512434562, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
+      propertyPath: m_Name
+      value: LevelLoader
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3dba366f7390b2640ba203f5346781c9, type: 3}
 --- !u!1 &945040657
 GameObject:
   m_ObjectHideFlags: 0
@@ -4221,7 +4271,7 @@ MonoBehaviour:
     price: 20
     priceText: {fileID: 443565792}
   - defenderButton: {fileID: 114493611}
-    price: 8
+    price: 17
     priceText: {fileID: 754899525}
 --- !u!1 &1483050356
 GameObject:
@@ -5526,52 +5576,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902883303}
   m_CullTransparentMesh: 1
---- !u!1 &1911041758
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1911041760}
-  - component: {fileID: 1911041761}
-  m_Layer: 0
-  m_Name: SalmonelaPoolManager
-  m_TagString: SalmonelaPool
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1911041760
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911041758}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -429.95172, y: -117.51953, z: -0.049451016}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 728631908}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1911041761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911041758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 030941ff6ff5a8c4a94b2146fdeb6118, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 457333542468240075, guid: 0328804d4543dfa488d17d26d5b94cd5, type: 3}
-  poolSize: 2
 --- !u!1 &1969870557
 GameObject:
   m_ObjectHideFlags: 0
@@ -5688,6 +5692,7 @@ Transform:
   m_Children:
   - {fileID: 1812246193}
   - {fileID: 1256675373}
+  - {fileID: 131331212}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2008198645
@@ -6030,6 +6035,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 904649406}
   - {fileID: 519420032}
   - {fileID: 1760185588}
   - {fileID: 728631908}
@@ -6044,4 +6050,3 @@ SceneRoots:
   - {fileID: 1812682642}
   - {fileID: 746741994}
   - {fileID: 1415445464}
-  - {fileID: 694870735}

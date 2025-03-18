@@ -113,6 +113,8 @@ public class SalmonelaAI : MonoBehaviour
             // Wait for the next damage tick
             yield return new WaitForSeconds(damageInterval);
         }
+        // make sure to reset the target cell and stop attacking
+        targetCell = null;
 
         // If the target is destroyed, stop attacking
         isAttacking = false;

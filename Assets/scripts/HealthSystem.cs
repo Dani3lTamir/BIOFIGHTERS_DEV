@@ -12,10 +12,19 @@ public class HealthSystem : MonoBehaviour
     private HealthBarController healthBarController; // Reference to the health bar controller
 
     private Coroutine hideHealthBarCoroutine; // Coroutine to hide the health bar
+    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
+    private Color originalColor; // Store the original color of the sprite
 
     void Start()
     {
         currentHealth = maxHealth;
+
+        // Get the SpriteRenderer component
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color; // Store the original color
+        }
 
         // Instantiate the health bar
         if (healthBarPrefab != null)
@@ -52,6 +61,12 @@ public class HealthSystem : MonoBehaviour
         }
         hideHealthBarCoroutine = StartCoroutine(HideHealthBarAfterDelay(3f)); // Hide after 3 seconds
 
+        // Make the sprite blink red
+        if (spriteRenderer != null)
+        {
+            StartCoroutine(BlinkRed());
+        }
+
         // Check for death
         if (currentHealth <= 0)
         {
@@ -65,12 +80,24 @@ public class HealthSystem : MonoBehaviour
         healthBarInstance.SetActive(false);
     }
 
+    IEnumerator BlinkRed()
+    {
+        // Change the sprite color to red
+        spriteRenderer.color = Color.red;
+
+        // Wait for a short duration (e.g., 0.1 seconds)
+        yield return new WaitForSeconds(0.1f);
+
+        // Revert the sprite color back to the original color
+        spriteRenderer.color = originalColor;
+    }
+
     void Die()
     {
         // Handle death (e.g., play animation, destroy object, etc.)
         Debug.Log($"{gameObject.name} has died!");
         healthBarInstance.SetActive(false);
-        Destroy(gameObject); 
+        Destroy(gameObject);
     }
 
     void Update()

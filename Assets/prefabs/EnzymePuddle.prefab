@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 15
   maxCatches: 5
+  damage: 2
 --- !u!70 &4299687169678117767
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class EcoliAI : MonoBehaviour
 
     void OnEnable()
     {
+        EnableMovement();
         // Initialize the Ecoli when it is activated
         ChooseRandomTarget();
     }
@@ -102,7 +103,7 @@ public class EcoliAI : MonoBehaviour
     {
         isAttacking = true;
 
-        while (targetCell != null && (Vector3.Distance(transform.position, randomTargetPosition) < 0.1f))
+        while (targetCell != null && (Vector3.Distance(transform.position, randomTargetPosition) < 0.1f) && getMovmentStatus())
         {
             // Damage the target body cell
             if (targetCell.TryGetComponent<HealthSystem>(out HealthSystem cellHealth))

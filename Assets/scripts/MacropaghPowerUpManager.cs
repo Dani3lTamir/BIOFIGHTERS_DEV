@@ -151,12 +151,13 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         switch (randomPowerUp)
         {
             case 0:
-                ActivateTentaclesStretch();
-                Debug.Log("Stretch All Tentacles Activated!");
-                break;
-            case 1:
                 ActivateSlowEnemies();
                 Debug.Log("Slow Enemies Activated!");
+                break;
+
+            case 1:
+                ActivateTentaclesStretch();
+                Debug.Log("Stretch All Tentacles Activated!");
                 break;
             case 2:
                 ActivateDoublePoints();

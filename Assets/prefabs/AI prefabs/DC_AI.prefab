@@ -145,6 +145,8 @@ MonoBehaviour:
   zigzagCount: 5
   screenExitDelay: 0.5
   onScreenOffset: {x: -1.3, y: 5}
+  catchLimit: 10
+  damage: 8
 --- !u!50 &-2168953891833125482
 Rigidbody2D:
   serializedVersion: 5

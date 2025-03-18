@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.965046, y: 4.6849704, z: 0}
-  m_LocalScale: {x: 1.3814669, y: 1.3814669, z: 1.3814669}
+  m_LocalScale: {x: 1.2154007, y: 1.2154007, z: 1.2154007}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 30
   maxCatches: 8
+  damage: 5
 --- !u!70 &5894080310321499022
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

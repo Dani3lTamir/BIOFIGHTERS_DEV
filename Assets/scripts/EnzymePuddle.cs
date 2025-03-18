@@ -7,6 +7,7 @@ public class EnzymePuddle : MonoBehaviour
     public float lifetime = 5f; // Lifetime of the puddle
     private List<GameObject> trappedEcoli = new List<GameObject>(); // List of trapped Enemies
     public int maxCatches = 5; // Maximum number of Enemies that can be caught
+    public float damage = 1f; // Damage caused by the puddle
 
     void Start()
     {
@@ -16,6 +17,17 @@ public class EnzymePuddle : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        //only damge incase of salmonela
+        if (other.CompareTag("Salmonela"))
+        {
+            // Damage the Salmonela
+            HealthSystem healthSystem = other.GetComponent<HealthSystem>();
+            if (healthSystem != null)
+            {
+                healthSystem.TakeDamage(damage);
+            }
+        }
+
         // Check if the puddle has reached its maximum capacity
         if (trappedEcoli.Count >= maxCatches)
         {
