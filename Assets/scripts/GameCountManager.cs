@@ -22,7 +22,6 @@ public class GameCountManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: Keeps the manager across scenes
         }
         else
         {
@@ -43,10 +42,6 @@ public class GameCountManager : MonoBehaviour
         if (counters.ContainsKey(counterName))
         {
             counters[counterName] += amount;
-        }
-        else
-        {
-            counters[counterName] = amount;
         }
     }
 

@@ -166,10 +166,20 @@ public class Tentacle : MonoBehaviour
         if (target.CompareTag("Ally") || target.CompareTag("YellowAlly"))
         {
             GameCountManager.Instance.UpdateCounter("AlliesLeft", -1); // update ally counter
+            // Check lose condition
+            if (GameCountManager.Instance.GetCounterValue("AlliesLeft") == 0)
+            {
+                LevelManager.Instance.LoseLevel();
+            }
         }
         else if (target.CompareTag("Salmonela"))
         {
             GameCountManager.Instance.UpdateCounter("SalmonelaLeft", -1); // update influenza counter
+            // Check win condition
+            if (GameCountManager.Instance.GetCounterValue("SalmonelaLeft") == 0)
+            {
+                LevelManager.Instance.WinLevel();
+            }
         }
         ScoreManager.Instance.UpdateScoreForObject(target.tag);//update score for given object
         target.SetActive(false);

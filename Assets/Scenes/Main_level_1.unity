@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTime: 60
+  timerEndWin: 0
 --- !u!1 &131331211
 GameObject:
   m_ObjectHideFlags: 0
@@ -5186,6 +5187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTime: 420
+  timerEndWin: 1
 --- !u!4 &1812682642
 Transform:
   m_ObjectHideFlags: 0

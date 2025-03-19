@@ -42,13 +42,20 @@ public class SleepingTCell : MonoBehaviour
             if (hasCorrectAntibody)
             {
                 Debug.Log("Correct Antibody!");
+                // win the level
+                LevelManager.Instance.WinLevel();
             }
             else
             {
                 Debug.Log("Incorrect Antibody!");
                 // Incorrect choice penalty
                 GameCountManager.Instance.UpdateCounter("AttemptsLeft", -1);
-                timer.AddTime( timePenalty);
+                // Check lose condition
+                if (GameCountManager.Instance.GetCounterValue("AttemptsLeft") == 0)
+                {
+                    LevelManager.Instance.LoseLevel();
+                }
+                else timer.AddTime( timePenalty);
             }
         }
     }

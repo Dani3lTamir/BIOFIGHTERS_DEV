@@ -23,7 +23,6 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: Keeps the score manager across scenes
         }
         else
         {

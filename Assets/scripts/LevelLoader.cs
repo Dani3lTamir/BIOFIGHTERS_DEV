@@ -24,14 +24,6 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // Load the next level when the player presses the space bar
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LoadNextLevel();
-        }
-    }
 
     // Load a level by name
     public void LoadLevel(string levelName)

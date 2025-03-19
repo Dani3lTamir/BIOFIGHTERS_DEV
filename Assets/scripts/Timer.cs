@@ -5,7 +5,9 @@ public class Timer : MonoBehaviour
 {
     public float countdownTime = 60f; // Duration of the timer in seconds
     public bool isTimeUp { get; private set; } // Boolean to indicate if the time is up
+    public bool timerEndWin = false; // Boolean to indicate if the timer ending results in a win
     private float timeRemaining;
+
 
 
     private void Start()
@@ -33,9 +35,18 @@ public class Timer : MonoBehaviour
 
     private void OnTimerEnd()
     {
-        // Handle what happens when the timer reaches zero
-        
-        // Add any additional logic here
+        if (CompareTag("LevelTimer"))
+        {
+            if (timerEndWin)
+            {
+                LevelManager.Instance.WinLevel();
+            }
+            else
+            {
+                LevelManager.Instance.LoseLevel();
+            }
+
+        }
     }
 
     public string FormatTime(float time)
