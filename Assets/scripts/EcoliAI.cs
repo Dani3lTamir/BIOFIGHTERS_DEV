@@ -65,7 +65,7 @@ public class EcoliAI : MonoBehaviour
         }
         else
         {
-            Debug.Log("You Lost!");
+          //  What to do when the level is lost
         }
     }
 

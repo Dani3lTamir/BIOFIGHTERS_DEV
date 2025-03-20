@@ -34,7 +34,6 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

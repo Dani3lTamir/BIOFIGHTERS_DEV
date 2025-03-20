@@ -97,6 +97,17 @@ public class HealthSystem : MonoBehaviour
         // Handle death (e.g., play animation, destroy object, etc.)
         Debug.Log($"{gameObject.name} has died!");
         healthBarInstance.SetActive(false);
+        // If the game object has BodyCell tag check if it is the last one
+        if (gameObject.CompareTag("BodyCell"))
+        {
+            GameObject[] bodyCells = GameObject.FindGameObjectsWithTag("BodyCell");
+            if (bodyCells.Length == 1)
+            {
+                // If it is the last one, call the LoseLevel method
+                LevelManager.Instance.LoseLevel();
+            }
+            else Debug.Log("There are still BodyCells alive");
+        }
         Destroy(gameObject);
     }
 

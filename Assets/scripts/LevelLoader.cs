@@ -24,6 +24,21 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        // For debugging purposes, load the next level when pressing the 'N' key
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            LoadNextLevel();
+        }
+        // For debugging purposes, reload the level when pressing the 'R' key
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        }
+
+    }
+
 
     // Load a level by name
     public void LoadLevel(string levelName)
@@ -41,6 +56,12 @@ public class LevelLoader : MonoBehaviour
     {
         // Get the current scene index
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        // If next scene is null, return to the main menu
+        if (currentSceneIndex + 1 >= SceneManager.sceneCountInBuildSettings)
+        {
+            LoadLevel("MainMenu");
+            return;
+        }
         // Load the next scene
         StartCoroutine(LoadLevelCoroutine(currentSceneIndex + 1));
     }

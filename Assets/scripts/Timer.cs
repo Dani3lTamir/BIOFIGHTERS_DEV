@@ -24,12 +24,13 @@ public class Timer : MonoBehaviour
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
-            if (timeRemaining < 0)
-            {
-                timeRemaining = 0;
-                isTimeUp = true;
-                OnTimerEnd();
-            }
+        }
+
+        else
+        {
+            timeRemaining = 0;
+            isTimeUp = true;
+            OnTimerEnd();
         }
     }
 
@@ -69,11 +70,22 @@ public class Timer : MonoBehaviour
     public void SetTime(float time)
     {
         timeRemaining = time;
+
+        if (timeRemaining < 0)
+        {
+            timeRemaining = 0;
+        }
+
     }
 
     public void AddTime(float time)
     {
         timeRemaining += time;
+
+        if (timeRemaining < 0)
+        {
+            timeRemaining = 0;
+        }
     }
 }
 

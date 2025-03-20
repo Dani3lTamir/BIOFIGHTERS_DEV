@@ -55,7 +55,7 @@ public class SleepingTCell : MonoBehaviour
                 {
                     LevelManager.Instance.LoseLevel();
                 }
-                else timer.AddTime( timePenalty);
+                else timer.AddTime(timePenalty);
             }
         }
     }
