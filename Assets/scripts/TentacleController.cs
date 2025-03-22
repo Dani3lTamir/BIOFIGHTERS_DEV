@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections; // For IEnumerator and coroutines
 using System;
+using TMPro;
 
 public class Tentacle : MonoBehaviour
 {
@@ -9,16 +10,24 @@ public class Tentacle : MonoBehaviour
     public float retractSpeed = 7f;   // Speed of retraction
     public float maxStretch = 5f;     // Maximum stretch length
     public KeyCode key;               // Key to control this tentacle
+    public TextMeshProUGUI SalmonelaLeft; // Reference to the Salmonela counter text
+    public TextMeshProUGUI AlliesLeft; // Reference to the Allies counter text
     private Vector2 originalPosition; // Local position of the tentacle's base
     private bool isStretching = false;
     private bool isRetracting = false;
     private Vector3 originalScale;    // Original scale of the tentacle
     private bool keepStretching = false; // Flag to keep the tentacle stretched
+    private Animator mpAnimator; // Reference to the animator component of MP
+
 
     void Start()
     {
         originalScale = transform.localScale; // Store the original scale
         originalPosition = transform.localPosition;
+        mpAnimator = GetComponentInParent<Animator>();
+        SalmonelaLeft.text = "" + GameCountManager.Instance.GetCounterValue("SalmonelaLeft");
+        AlliesLeft.text = "" + GameCountManager.Instance.GetCounterValue("AlliesLeft");
+
     }
 
     void Update()
@@ -160,12 +169,24 @@ public class Tentacle : MonoBehaviour
             yield return null;
         }
 
+        // Trigger the eat animation
+        if (mpAnimator != null)
+        {
+            mpAnimator.SetTrigger("Eat");
+        }
+
+
         Renderer targetRenderer = target.GetComponent<Renderer>();
         Color targetColor = targetRenderer.material.color;
         // Check the tag and update the stats
         if (target.CompareTag("Ally") || target.CompareTag("YellowAlly"))
         {
             GameCountManager.Instance.UpdateCounter("AlliesLeft", -1); // update ally counter
+            RectTransform rectTransform = AlliesLeft.GetComponent<RectTransform>();
+            FloatingTextManager.Instance.ShowFloatingText("" + -1, rectTransform, Color.white);
+
+            AlliesLeft.text = "" + GameCountManager.Instance.GetCounterValue("AlliesLeft");
+
             // Check lose condition
             if (GameCountManager.Instance.GetCounterValue("AlliesLeft") == 0)
             {
@@ -174,7 +195,12 @@ public class Tentacle : MonoBehaviour
         }
         else if (target.CompareTag("Salmonela"))
         {
-            GameCountManager.Instance.UpdateCounter("SalmonelaLeft", -1); // update influenza counter
+            GameCountManager.Instance.UpdateCounter("SalmonelaLeft", -1); // update Salmonela counter
+            RectTransform rectTransform = SalmonelaLeft.GetComponent<RectTransform>();
+            FloatingTextManager.Instance.ShowFloatingText("" + 1, rectTransform, Color.green);
+
+            SalmonelaLeft.text = "" + GameCountManager.Instance.GetCounterValue("SalmonelaLeft");
+
             // Check win condition
             if (GameCountManager.Instance.GetCounterValue("SalmonelaLeft") == 0)
             {
@@ -185,4 +211,5 @@ public class Tentacle : MonoBehaviour
         target.SetActive(false);
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
+
 }

@@ -5,6 +5,7 @@ public class DefenderButton : MonoBehaviour
 {
     public GameObject defenderPrefab; // The defender prefab to spawn
     public CommanderUI commanderUI; // Reference to the commander UI
+    public int defnderLimit = 200; // The limit of this kind of defender
 
     private Button button;
 
@@ -23,9 +24,21 @@ public class DefenderButton : MonoBehaviour
         // if the player can't afford the defender, return
         if (RewardSystem.Instance.GetCoins() < defenderCost)
         {
-            Debug.Log("Not enough coins!");
+            RectTransform rectTransform = GetComponent<RectTransform>();
+            FloatingTextManager.Instance.ShowFloatingText("קיפסמ ןיא םיניקומיכ", rectTransform, Color.yellow);
             return;
         }
+
+        // if there are more than the limit of this kind of defender, throw message and dont spawn
+        GameObject[] gameObjectsWithTag = GameObject.FindGameObjectsWithTag(defenderPrefab.tag);
+        if (gameObjectsWithTag.Length >= defnderLimit)
+        {
+            RectTransform rectTransform = GetComponent<RectTransform>();
+            FloatingTextManager.Instance.ShowFloatingText("הלבגמל תעגה", rectTransform, Color.yellow);
+            return;
+        }
+
+
         // Pass the selected defender prefab and cost to the spawner
         DefenderSpawner.Instance.SetSelectedDefender(defenderPrefab, defenderCost);
     }

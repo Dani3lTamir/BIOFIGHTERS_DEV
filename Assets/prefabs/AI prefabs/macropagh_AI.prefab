@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3344628033649867404}
   - component: {fileID: 8396361147772335038}
-  - component: {fileID: 1785492353244469595}
   - component: {fileID: 207277348697974727}
   - component: {fileID: 7774994742099981742}
   m_Layer: 0
@@ -90,23 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1785492353244469595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523839856803194795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f76524ec883fd4c814a14fac3ca3ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterCenter: {fileID: 4016097489908103374}
-  stretchSpeed: 5
-  retractSpeed: 7
-  maxStretch: 5
-  key: 113
 --- !u!61 &207277348697974727
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -483,9 +465,10 @@ GameObject:
   - component: {fileID: 7462132440789249866}
   - component: {fileID: -4531617523853637438}
   - component: {fileID: -4712490863931708709}
+  - component: {fileID: -5568019572973345244}
   m_Layer: 0
   m_Name: macropagh_AI
-  m_TagString: Ally
+  m_TagString: MacrophageAI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -628,6 +611,28 @@ MonoBehaviour:
   - {fileID: 7897568542149648477}
   - {fileID: 7774994742099981742}
   - {fileID: 737617004431116329}
+--- !u!95 &-5568019572973345244
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194678883743992458}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98874d1db07366b4ca6b286d146158ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6381025758151886917
 GameObject:
   m_ObjectHideFlags: 0

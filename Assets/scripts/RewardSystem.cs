@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using TMPro;
 
 
 
@@ -28,6 +29,9 @@ public class RewardSystem : MonoBehaviour
 
     // Coins earned by the player
     private int coins;
+    // Text to display the current coin count
+    public TextMeshProUGUI coinsText;
+
 
     // Fields for periodic coin reward
     public int periodicCoinAmount = 10; // Amount of coins to add periodically
@@ -55,6 +59,12 @@ public class RewardSystem : MonoBehaviour
         StartCoroutine(AddCoinsPeriodically());
     }
 
+    private void Update()
+    {
+        // Update the coin text
+        coinsText.text = coins.ToString();
+    }
+
     // Coroutine to add coins periodically
     private IEnumerator AddCoinsPeriodically()
     {
@@ -62,6 +72,9 @@ public class RewardSystem : MonoBehaviour
         {
             yield return new WaitForSeconds(periodicInterval);
             AddCoins(periodicCoinAmount);
+            RectTransform rectTransform = coinsText.GetComponent<RectTransform>();
+            FloatingTextManager.Instance.ShowFloatingText("+"+ periodicCoinAmount, rectTransform, Color.green);
+
             Debug.Log("Periodic reward: " + periodicCoinAmount + " coins. Total coins: " + coins);
         }
     }
@@ -98,6 +111,9 @@ public class RewardSystem : MonoBehaviour
             {
                 // Reward the player
                 coins += reward.rewardAmount;
+                RectTransform rectTransform = coinsText.GetComponent<RectTransform>();
+                FloatingTextManager.Instance.ShowFloatingText("+" + reward.rewardAmount, rectTransform, Color.green);
+
                 Debug.Log("Reward earned: " + reward.rewardAmount + " coins for killing " + reward.killsRequired + " " + enemyType + "s. Total coins: " + coins);
             }
         }
@@ -112,10 +128,16 @@ public class RewardSystem : MonoBehaviour
     public void DeductCoins(int amount)
     {
         coins -= amount;
+        RectTransform rectTransform = coinsText.GetComponent<RectTransform>();
+        FloatingTextManager.Instance.ShowFloatingText("-" + amount, rectTransform, Color.white);
+
     }
 
     public void AddCoins(int amount)
     {
         coins += amount;
+        RectTransform rectTransform = coinsText.GetComponent<RectTransform>();
+        FloatingTextManager.Instance.ShowFloatingText("" + amount, rectTransform, Color.green);
+
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class ScoreManager : MonoBehaviour
     private Dictionary<string, int> objectScoreValues; //maps objects to their score value
     public int score = 0;
     public bool isDoublePoints = false;
+    public TextMeshProUGUI scoreText;
+
 
     [System.Serializable]
     public class ObjectScore //to make scores available for change in the inspector
@@ -37,15 +40,19 @@ public class ScoreManager : MonoBehaviour
 
     }
 
-    private void Start()
+    void Update()
     {
+        scoreText.text = score.ToString();
     }
+
 
     public int AddScore(int points)
     {
         if (points > 0 && isDoublePoints) points *= 2; //checks for double score power up
         if ((score + points) >= 0) score += points; //disable negative score
         else score = 0;
+        RectTransform rectTransform = scoreText.GetComponent<RectTransform>();
+        FloatingTextManager.Instance.ShowFloatingText("" + points, rectTransform, Color.white, false);
         return points;
     }
 

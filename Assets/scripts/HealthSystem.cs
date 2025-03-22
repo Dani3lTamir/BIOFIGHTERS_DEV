@@ -46,12 +46,14 @@ public class HealthSystem : MonoBehaviour
         if (healthBarInstance != null && !healthBarInstance.activeSelf)
         {
             healthBarInstance.SetActive(true);
+
         }
 
         // Update the health bar
         if (healthBarController != null)
         {
             healthBarController.UpdateHealthBar(currentHealth, maxHealth);
+
         }
 
         // Start/restart the coroutine to hide the health bar after a delay

@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class SleepingTCell : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class SleepingTCell : MonoBehaviour
     private bool playerInRange = false; // Flag to indicate if the player is in range
     public bool hideAntiBodyOnExit = false;
     public float timePenalty = -5f; // Time penalty for incorrect antibody
+    private TextMeshProUGUI AttemptsLeftText;
+
     private Timer timer;
 
     public void Start()
@@ -20,6 +23,8 @@ public class SleepingTCell : MonoBehaviour
         antibodySpriteRenderer.enabled = false;
         // Get the Timer component
         GameObject levelTimer = GameObject.FindGameObjectWithTag("LevelTimer");
+        // Get attempts left text
+        AttemptsLeftText = DCUIManager.Instance.AttemptsLeftText;
         if (levelTimer != null)
         {
             timer = levelTimer.GetComponent<Timer>();
@@ -50,6 +55,10 @@ public class SleepingTCell : MonoBehaviour
                 Debug.Log("Incorrect Antibody!");
                 // Incorrect choice penalty
                 GameCountManager.Instance.UpdateCounter("AttemptsLeft", -1);
+                AttemptsLeftText.text = "" + GameCountManager.Instance.GetCounterValue("AttemptsLeft");
+                RectTransform rectTransform = AttemptsLeftText.GetComponent<RectTransform>();
+                FloatingTextManager.Instance.ShowFloatingText("" + -1, rectTransform, Color.red);
+
                 // Check lose condition
                 if (GameCountManager.Instance.GetCounterValue("AttemptsLeft") == 0)
                 {

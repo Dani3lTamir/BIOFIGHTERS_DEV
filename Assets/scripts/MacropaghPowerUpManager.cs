@@ -26,8 +26,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     public Sprite slowEnemiesIcon;
     public Sprite doublePointsIcon;
 
-    // Reference to the UIManager
-    public MacrophagUIManager uiManager;
+    public SpriteRenderer powerUpIconImage; // Reference to the UI Image component for the power-up icon
 
     private void Awake()
     {
@@ -43,11 +42,14 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
 
     private void Start()
     {
+        // Initialize the random seed
+        UnityEngine.Random.InitState(DateTime.Now.Millisecond);
+
         allPools = FindObjectsByType<EnemyPool>(
             FindObjectsInactive.Exclude, // Only active objects
             FindObjectsSortMode.None     // No sorting
         ); // Get enemy pools
-        uiManager.UpdatePowerUpIcon(null); // Clear the Power Up UI initially
+        powerUpIconImage.sprite = null;  // Clear the Power Up UI initially
     }
 
     private void Update()
@@ -74,7 +76,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         {
             isTentaclesStretched = true;
             playerController.StretchAllTentacles(); // Call to the function to stretch all tentacles
-            uiManager.UpdatePowerUpIcon(tentaclesStretchIcon); // Update the UI
+            powerUpIconImage.sprite = tentaclesStretchIcon;
             StartCoroutine(DeactivateTentaclesStretch());
         }
     }
@@ -84,7 +86,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         yield return new WaitForSeconds(tentacleStretchDuration);
         isTentaclesStretched = false;
         playerController.RetractAllTentacles(); // Reset tentacles
-        uiManager.UpdatePowerUpIcon(null); // Clear the UI
+        powerUpIconImage.sprite = null;  // Clear the Power Up UI 
     }
 
     public void ActivateSlowEnemies()
@@ -96,7 +98,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
             {
                 enemyPool.ChangeEnemiesSpeed(slowedSpeed); // Slow enemies
             }
-            uiManager.UpdatePowerUpIcon(slowEnemiesIcon); // Update the UI
+            powerUpIconImage.sprite = slowEnemiesIcon;
             StartCoroutine(DeactivateSlowEnemies());
         }
     }
@@ -109,7 +111,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         {
             enemyPool.ResetEnemiesSpeed(); // Reset enemies speed
         }
-        uiManager.UpdatePowerUpIcon(null); // Clear the UI
+        powerUpIconImage.sprite = null;  // Clear the Power Up UI 
     }
 
     public void ActivateDoublePoints()
@@ -118,7 +120,8 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         {
             isDoublePointsActive = true;
             ScoreManager.Instance.ActivateDoublePoints(); // Call function to activate double points
-            uiManager.UpdatePowerUpIcon(doublePointsIcon); // Update the UI
+            powerUpIconImage.sprite = doublePointsIcon;  // Update the Power Up UI 
+
             StartCoroutine(DeactivateDoublePoints());
         }
     }
@@ -128,7 +131,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         yield return new WaitForSeconds(doublePointsDuration);
         isDoublePointsActive = false;
         ScoreManager.Instance.DeactivateDoublePoints(); // Reset player double points
-        uiManager.UpdatePowerUpIcon(null); // Clear the UI
+        powerUpIconImage.sprite = null;  // Clear the Power Up UI 
     }
 
     public void DeactivateAllPowerUps()
@@ -140,7 +143,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
         playerController.RetractAllTentacles();
         DeactivateSlowEnemies();
         ScoreManager.Instance.DeactivateDoublePoints();
-        uiManager.UpdatePowerUpIcon(null); // Clear the UI
+        powerUpIconImage.sprite = null;  // Clear the Power Up UI 
     }
 
     public void ActivateRandomPowerUp()

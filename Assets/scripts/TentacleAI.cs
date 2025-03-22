@@ -11,11 +11,15 @@ public class TentacleAI : MonoBehaviour
     private bool isStretching = false;
     private bool isRetracting = false;
     private Vector3 originalScale;    // Original scale of the tentacle
+    private Animator mpAnimator; // Reference to the animator component of MP
+
 
     void Start()
     {
         originalScale = transform.localScale; // Store the original scale
         originalPosition = transform.localPosition;
+        mpAnimator = GetComponentInParent<Animator>();
+
     }
 
     public void Stretch()
@@ -98,6 +102,12 @@ public class TentacleAI : MonoBehaviour
             }
         if (other.CompareTag("Ecoli"))
         {
+            // Trigger the eat animation
+            if (mpAnimator != null)
+            {
+                mpAnimator.SetTrigger("Eat");
+            }
+
             EcoliAI ecoliAI = other.GetComponent<EcoliAI>();
             // Call the Die function on the EcoliAI component
             if (ecoliAI != null)

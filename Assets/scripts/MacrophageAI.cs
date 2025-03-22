@@ -30,7 +30,6 @@ public class MacrophageAI : MonoBehaviour
         {
             // Move towards the closest enemy
             MoveTowardsEnemy();
-            Debug.Log("Moving towards enemy!");
 
             // Check if any tentacle is in range to catch the enemy
             foreach (var tentacle in tentacles)
@@ -132,6 +131,16 @@ public class MacrophageAI : MonoBehaviour
 
                 // Give damage to Salmonela
                 closestEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
+
+                // if the enemy is destroyed, activate Eat animation
+                if (closestEnemy == null)
+                {
+                    Animator mpAnimator = GetComponent<Animator>();
+                    if (mpAnimator != null)
+                    {
+                        mpAnimator.SetTrigger("Eat");
+                    }
+                }
 
                 // Increment the counter for dead enemies
                 caughtEnemiesCount++;

@@ -4,12 +4,8 @@ using UnityEngine.UI;
 
 public class MainUIManager : MonoBehaviour
 {
-    public Timer timer;
     public Timer startUpTimer;
 
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI timerText;
-    public TextMeshProUGUI coins;
     public Transform startUpPanel;
     public TextMeshProUGUI startUpNum;
 
@@ -49,10 +45,6 @@ public class MainUIManager : MonoBehaviour
 
     private void Update()
     {
-        // Update the timer text
-        timerText.text = timer.FormatTime(timer.GetTimeRemaining());
-        scoreText.text = "" + ScoreManager.Instance.GetScore();
-        coins.text = "" + RewardSystem.Instance.GetCoins();
 
         // Update the startUpNum text
         startUpNum.text = startUpTimer.GetTimeRemaining().ToString("F2");

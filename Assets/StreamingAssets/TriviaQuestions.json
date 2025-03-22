@@ -46,7 +46,7 @@
             "correctAnswerIndex": 1
         },
         {
-            "questionText": "מהו תפקידם של תאי T מסייעים (Helper T Cells)?",
+            "questionText": "מהו תפקידם של תאי T מסייעים?",
             "options": ["הם מפעילים תאי חיסון אחרים", "הם מבצעים פאגוציטוזה", "הם מייצרים נוגדנים", "הם תוקפים פתוגנים ישירות"],
             "correctAnswerIndex": 0
         },

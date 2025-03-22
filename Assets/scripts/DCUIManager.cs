@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class DCUIManager : MonoBehaviour
 {
-    public Timer timer;
-    public TextMeshProUGUI timerText;
     public TextMeshProUGUI AttemptsLeftText;
     public Image wake;
     public static DCUIManager Instance;
@@ -23,12 +21,11 @@ public class DCUIManager : MonoBehaviour
         }
     }
 
-
-    private void Update()
+    void Start()
     {
-        timerText.text = "" + timer.GetRoundedTimeRemaining();
         AttemptsLeftText.text = "" + GameCountManager.Instance.GetCounterValue("AttemptsLeft");
     }
+
 
     public void ShowWakeUI()
     {

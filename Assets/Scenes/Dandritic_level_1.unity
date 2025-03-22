@@ -7568,7 +7568,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTime: 180
+  isTimeUp: 0
   timerEndWin: 0
+  inSeconds: 0
+  timerText: {fileID: 1483050358}
 --- !u!4 &463818918
 Transform:
   m_ObjectHideFlags: 0
@@ -7869,11 +7872,11 @@ Transform:
   m_GameObject: {fileID: 515812821}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1372.4369, y: 987.84125, z: -1.9999658}
+  m_LocalPosition: {x: 1803.0369, y: 1106.6412, z: -1.9999658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 691977256}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &515812824
 MonoBehaviour:
@@ -7887,8 +7890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52876b70529eb9c44a2c1fda4b3bdb6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 463818917}
-  timerText: {fileID: 1483050358}
   AttemptsLeftText: {fileID: 515954382}
   wake: {fileID: 1405767334}
 --- !u!1 &515954380
@@ -8490,7 +8491,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1690728094}
-  - {fileID: 515812823}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &709176026
@@ -8766,7 +8766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1128210233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8781,6 +8781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   isDoublePoints: 0
+  scoreText: {fileID: 0}
   levelObjectScores:
   - Tag: Enemy
     scoreValue: 10
@@ -9113,7 +9114,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 28.08, y: 528.1}
-  m_SizeDelta: {x: 502.1, y: 109.3}
+  m_SizeDelta: {x: 621.1, y: 109.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1289286099
 MonoBehaviour:
@@ -9153,6 +9154,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289286097}
   m_CullTransparentMesh: 1
+--- !u!1 &1334229901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1334229903}
+  - component: {fileID: 1334229902}
+  m_Layer: 0
+  m_Name: FloatingTextManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1334229902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334229901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f466bc62d16bf804f8a97b981903ada5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingTextPrefab: {fileID: 4708199603684238254, guid: 0a0d9f1b5dd44944b99e87b50aa7e01c, type: 3}
+  canvasTransform: {fileID: 1690728094}
+--- !u!4 &1334229903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334229901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2403.0847, y: -127.753975, z: -6.0953665}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1366416144
 GameObject:
   m_ObjectHideFlags: 0
@@ -9552,8 +9599,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -155.9, y: -8.900085}
-  m_SizeDelta: {x: 200, y: 97.9695}
+  m_AnchoredPosition: {x: -182.2, y: -8.900085}
+  m_SizeDelta: {x: 297, y: 97.9695}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483050358
 MonoBehaviour:
@@ -9575,7 +9622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9999
+  m_text: 99999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -10981,3 +11028,5 @@ SceneRoots:
   - {fileID: 463818918}
   - {fileID: 403248492}
   - {fileID: 255272812}
+  - {fileID: 1334229903}
+  - {fileID: 515812823}
