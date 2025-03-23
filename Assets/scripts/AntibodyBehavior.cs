@@ -11,6 +11,12 @@ public class AntibodyBehavior : MonoBehaviour
     {
         if (target != null)
         {
+            // if its a caught Ecoli, return the antibody to the pool
+            if (target.CompareTag("Ecoli") && !target.GetComponent<EcoliAI>().getMovmentStatus())
+            {
+                ObjectPool.Instance.ReturnToPool("Antibody", gameObject);
+                return;
+            }
             // Calculate the direction to the target
             Vector2 direction = (target.transform.position - transform.position).normalized;
 

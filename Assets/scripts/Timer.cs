@@ -69,7 +69,14 @@ public class Timer : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
-        return string.Format("{0:00}:{1:00}", minutes, seconds);
+        if (time> 0)
+        {
+            return string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        else
+        {
+            return "00:00";
+        }
     }
 
     public float GetTimeRemaining()

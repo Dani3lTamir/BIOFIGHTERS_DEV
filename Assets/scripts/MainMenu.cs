@@ -6,4 +6,9 @@ public class MainMenu : MonoBehaviour
     {
         LevelLoader.Instance.LoadNextLevel();
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
