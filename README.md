@@ -33,6 +33,37 @@
 - **Unique Abilities**: Different immune cells have distinct skills, encouraging strategic gameplay.
 - **Educational Elements**: Players learn about immune system functions in an interactive way through the MicroPedia.
 
+
+## 1v1 Multiplayer Mode
+In **1v1 Multiplayer Mode**, two players battle for control over the body's immune defenses:
+
+- **Player 1 (T Helper Cell Player)**: Controls the **T helper cell**, summoning defender immune cells to protect the body.
+- **Player 2 (Pathogen Player)**: Summons **pathogens** to invade and destroy the immune defenses.
+
+### Pathogens
+The pathogen player can summon four types of pathogens, each with unique abilities:
+- **E. coli** – Spreads rapidly and weakens defenses.
+- **Salmonella** – Infects cells with severe damage.
+- **Tuberculosis (TB)** – Hides inside cells to resist attacks.
+- **COVID-19** – Disrupts immune coordination, spreads and multiplies unpredictably.
+
+### Defender Cells
+The T helper cell player can summon the following immune defenders:
+- **B cells** – Produce antibodies to neutralize pathogens.
+- **Macrophages** – Engulf and digest invading pathogens.
+- **Neutrophils** – Attack enemies with toxic enzymes.
+- **Dendritic Cells** – Sweep up and engulf pathogens.
+
+### Objective
+- **T Helper Cell Player** wins if they successfully defend the body until the timer runs out.
+- **Pathogen Player** wins if they manage to eliminate all defender cells before time runs out.
+
+### Energy System
+- Both players use an **energy system** to summon their respective units.
+- Stronger units require more energy, adding a layer of strategy to when and where units are deployed.
+
+
+
 ## Lets Play!
 **BIOFIGHTERS** is both an entertaining and educational experience, blending action with scientific accuracy. Are you ready to take control of the body's immune defenses and fight off the toughest pathogens?
 
