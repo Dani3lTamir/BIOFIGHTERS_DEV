@@ -143,4 +143,4 @@ MonoBehaviour:
   hasCorrectAntibody: 0
   hideAntiBodyOnExit: 0
   timePenalty: -10
-  AttemptsLeftText: {fileID: 0}
+  wokeSprite: {fileID: 21300000, guid: 8e1b3370dad2f5344a65cf1761735ee2, type: 3}

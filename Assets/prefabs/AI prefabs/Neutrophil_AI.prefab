@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3835803855072192959}
   - component: {fileID: 7984792110767970429}
   - component: {fileID: 1437629325668263097}
+  - component: {fileID: 1188111424153279322}
   m_Layer: 0
   m_Name: Neutrophil_AI
   m_TagString: Ally
@@ -140,7 +141,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   maxPuddles: 5
-  puddleLifetime: 15
-  finalPuddleLifetime: 20
   enzymePuddlePrefab: {fileID: 3525190882193832180, guid: 9918952d76026404a9cc32e61250a50b, type: 3}
   finalPuddlePrefab: {fileID: 3525190882193832180, guid: e4e8ee39683aab24384bc0e62ddee385, type: 3}
+  animator: {fileID: 1188111424153279322}
+--- !u!95 &1188111424153279322
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048574572917550357}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff23451df9175344398656fd19a8676b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -8,6 +8,8 @@ public class EnzymePuddle : MonoBehaviour
     private List<GameObject> trappedEcoli = new List<GameObject>(); // List of trapped Enemies
     public int maxCatches = 5; // Maximum number of Enemies that can be caught
     public float damage = 1f; // Damage caused by the puddle
+    public Animator animator; // Reference to the Animator component
+    public float dissolveDuration = 1f; // Duration of the dissolve animation
 
     void Start()
     {
@@ -74,7 +76,9 @@ public class EnzymePuddle : MonoBehaviour
 
         // Clear the list of trapped Ecoli
         trappedEcoli.Clear();
-
+        // Play the dissolve animation
+        animator.SetTrigger("Dissolve");
+        yield return new WaitForSeconds(dissolveDuration);
         // Destroy the puddle
         Destroy(gameObject);
     }

@@ -7,6 +7,7 @@ public class NeutrophilAI : MonoBehaviour
     public int maxPuddles = 5; // Maximum number of puddles to spawn
     public GameObject enzymePuddlePrefab; // Prefab for the enzyme puddle
     public GameObject finalPuddlePrefab; // Prefab for the final larger puddle
+    public Animator animator; // Reference to the Animator component
 
     private int puddlesSpawned = 0; // Number of puddles spawned so far
 
@@ -28,9 +29,14 @@ public class NeutrophilAI : MonoBehaviour
             Vector2 randomPosition = GetRandomScreenPosition();
             yield return StartCoroutine(MoveToPosition(randomPosition));
 
+            // Play the spawn animation
+            animator.SetTrigger("Puddle");
+
+            yield return new WaitForSeconds(0.5f);
             // Spawn an enzyme puddle
             SpawnPuddle(randomPosition, enzymePuddlePrefab);
             puddlesSpawned++;
+
         }
 
         // Move to a final random position

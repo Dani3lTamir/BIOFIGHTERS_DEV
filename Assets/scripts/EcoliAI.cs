@@ -6,16 +6,14 @@ public class EcoliAI : MonoBehaviour
     public float moveSpeed = 2f; // Speed at which the Ecoli moves
     public float damageInterval = 1f; // Time between damage ticks
     public float damagePerTick = 1f; // Damage caused per tick
-
+    public Animator animator; // Reference to the Animator component
+    public float deathDuration = 1f; // Duration of the death animation
     private Transform targetCell; // The body cell the Ecoli is targeting
     private bool isAttacking = false;
     private Vector3 randomTargetPosition; // Random position inside the cell collider
     private bool isMovementEnabled = true; // Whether movement is enabled
     private readonly object movementLock = new object(); // Lock object for atomic operations
     private readonly object deathLock = new object(); // Lock object for atomic operations
-
-
-
 
     void OnEnable()
     {
@@ -35,10 +33,16 @@ public class EcoliAI : MonoBehaviour
     void Update()
     {
         if (!isMovementEnabled) return; // Skip movement logic if movement is disabled
+
         if (targetCell == null)
         {
-            isAttacking = false;
-            // If the target is destroyed, choose a new one
+            // If the target is destroyed, stop attacking and return to Idle
+            if (isAttacking)
+            {
+                StopAttacking();
+            }
+
+            // Choose a new target
             ChooseRandomTarget();
             return;
         }
@@ -61,11 +65,10 @@ public class EcoliAI : MonoBehaviour
             targetCell = bodyCells[Random.Range(0, bodyCells.Length)].transform;
             // Generate a random position inside the cell collider
             GenerateRandomTargetPosition();
-
         }
         else
         {
-          //  What to do when the level is lost
+            // What to do when the level is lost
         }
     }
 
@@ -85,7 +88,6 @@ public class EcoliAI : MonoBehaviour
             Debug.LogWarning("Target cell does not have a Collider2D component!");
         }
     }
-
 
     void MoveTowardsTarget()
     {
@@ -109,20 +111,32 @@ public class EcoliAI : MonoBehaviour
             if (targetCell.TryGetComponent<HealthSystem>(out HealthSystem cellHealth))
             {
                 cellHealth.TakeDamage(damagePerTick);
+                // Show the attack animation
+                animator.SetTrigger("Attack");
             }
 
             // Wait for the next damage tick
             yield return new WaitForSeconds(damageInterval);
         }
 
-        // If the target is destroyed, stop attacking
+        // If the target is destroyed or the Ecoli stops attacking, return to Idle
+        StopAttacking();
+    }
+
+    void StopAttacking()
+    {
         isAttacking = false;
+        animator.ResetTrigger("Attack"); // Reset the Attack trigger
+        animator.SetTrigger("Idle"); // Set the Idle trigger
     }
 
     public void DisableMovement()
     {
         lock (movementLock)
         {
+            Debug.Log("Disabling movement");
+            animator.ResetTrigger("Attack"); // Reset the Attack trigger
+            animator.SetTrigger("Idle");
             isMovementEnabled = false;
         }
     }
@@ -140,28 +154,29 @@ public class EcoliAI : MonoBehaviour
         return isMovementEnabled;
     }
 
-
     public void setTargetCell(Transform newTarget)
     {
         targetCell = newTarget;
     }
+
     public Transform getTargetCell()
     {
         return targetCell;
     }
 
+
     public void Die()
     {
-        lock(deathLock)
+        lock (deathLock)
         {
             // Handle Ecoli capture (e.g., update score, deactivate Ecoli)
             GameCountManager.Instance.UpdateCounter("EcoliKilled", 1); // Update Ecoli counter
             ScoreManager.Instance.UpdateScoreForObject(gameObject.tag); // Update score for given object
             RewardSystem.Instance.RegisterEnemyKill(gameObject.tag); // Register the kill for reward purposes
-            gameObject.SetActive(false); // Deactivate the Ecoli
-            // Re-enable the Ecoli's movement
+            // Play the death animation
+            animator.SetTrigger("Die");
             EnableMovement();
+            gameObject.SetActive(false);
         }
     }
-
 }

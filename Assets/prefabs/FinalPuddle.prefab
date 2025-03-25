@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6928241666700543934}
   - component: {fileID: 3887643853521535014}
   - component: {fileID: 5894080310321499022}
+  - component: {fileID: 7663275430500615420}
   m_Layer: 0
   m_Name: FinalPuddle
   m_TagString: Untagged
@@ -101,9 +102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753251b1929f58441a24d0cd5047adc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 30
+  lifetime: 10
   maxCatches: 8
   damage: 5
+  animator: {fileID: 7663275430500615420}
+  dissolveDuration: 1
 --- !u!70 &5894080310321499022
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -141,3 +144,25 @@ CapsuleCollider2D:
   m_Offset: {x: -0.08931859, y: 0.07145549}
   m_Size: {x: 3.5191758, y: 3.7454503}
   m_Direction: 0
+--- !u!95 &7663275430500615420
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525190882193832180}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ee163798b54f3c499b7343a78d5c48b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

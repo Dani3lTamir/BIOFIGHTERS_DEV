@@ -7,6 +7,9 @@ public class EnemyPool : MonoBehaviour
     public int poolSize = 20;       // Number of enemies in the pool
     private List<GameObject> pool;
     private float originalSpeed;
+    private Vector3 initialScale;
+    private Color initialColor;
+
 
     void Start()
     {
@@ -18,6 +21,17 @@ public class EnemyPool : MonoBehaviour
             enemy.SetActive(false);
             pool.Add(enemy);
         }
+
+        // Instantiate a temporary enemy to get its initial properties
+        GameObject tempEnemy = Instantiate(enemyPrefab);
+        initialScale = tempEnemy.transform.localScale;
+        SpriteRenderer spriteRenderer = tempEnemy.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            initialColor = spriteRenderer.color;
+        }
+        Destroy(tempEnemy);
+
     }
 
     public GameObject GetEnemy()
@@ -26,6 +40,14 @@ public class EnemyPool : MonoBehaviour
         {
             if (!enemy.activeInHierarchy)
             {
+                // Reset the scale and color to their initial values
+                enemy.transform.localScale = initialScale;
+                SpriteRenderer spriteRenderer = enemy.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.color = initialColor;
+                }
+
                 enemy.SetActive(true);
                 return enemy;
             }
@@ -40,6 +62,8 @@ public class EnemyPool : MonoBehaviour
 
     public void ReturnEnemy(GameObject enemy)
     {
+        Debug.Log("Ecoli deactivated by EnemyPool");
+
         enemy.SetActive(false);
     }
 

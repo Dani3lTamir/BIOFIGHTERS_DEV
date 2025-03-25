@@ -11,6 +11,7 @@ public class SleepingTCell : MonoBehaviour
     private bool playerInRange = false; // Flag to indicate if the player is in range
     public bool hideAntiBodyOnExit = false;
     public float timePenalty = -5f; // Time penalty for incorrect antibody
+    public Sprite wokeSprite; // Sprite to show when the T cell is awake
     private TextMeshProUGUI AttemptsLeftText;
 
     private Timer timer;
@@ -58,7 +59,8 @@ public class SleepingTCell : MonoBehaviour
                 AttemptsLeftText.text = "" + GameCountManager.Instance.GetCounterValue("AttemptsLeft");
                 RectTransform rectTransform = AttemptsLeftText.GetComponent<RectTransform>();
                 FloatingTextManager.Instance.ShowFloatingText("" + -1, rectTransform, Color.red);
-
+                // change the sprite to the woke sprite
+                GetComponent<SpriteRenderer>().sprite = wokeSprite;
                 // Check lose condition
                 if (GameCountManager.Instance.GetCounterValue("AttemptsLeft") == 0)
                 {
