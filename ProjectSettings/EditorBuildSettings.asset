@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Macrophag_level_1.unity
     guid: 6956b990f8d2f9540a22ed3b99e89f57
   - enabled: 1
+    path: Assets/Scenes/Macrophage_outro_1.unity
+    guid: 9c49aedba9fc94d4898b1c6dfa4cf461
+  - enabled: 1
     path: Assets/Scenes/Dandritic_level_1.unity
     guid: b4a0799c87c1f8d45a17f7fb857bb850
   - enabled: 1

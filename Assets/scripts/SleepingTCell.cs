@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class SleepingTCell : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class SleepingTCell : MonoBehaviour
     public bool hideAntiBodyOnExit = false;
     public float timePenalty = -5f; // Time penalty for incorrect antibody
     public Sprite wokeSprite; // Sprite to show when the T cell is awake
+    public Sprite comTSprite; // Sprite to show when the T cell is awake
+    public float comTMoveSpeed = 3f; // Speed of the T cell moving up
     private TextMeshProUGUI AttemptsLeftText;
 
     private Timer timer;
@@ -49,7 +52,7 @@ public class SleepingTCell : MonoBehaviour
             {
                 Debug.Log("Correct Antibody!");
                 // win the level
-                LevelManager.Instance.WinLevel();
+                StartCoroutine(OnRightChoice());
             }
             else
             {
@@ -103,6 +106,27 @@ public class SleepingTCell : MonoBehaviour
     public void SetCorrectAntibody(bool isCorrect)
     {
         hasCorrectAntibody = isCorrect;
+    }
+
+    IEnumerator OnRightChoice()
+    {
+        //  Change sprite
+        GetComponent<SpriteRenderer>().sprite = comTSprite;
+        yield return new WaitForSeconds(2);
+
+        //  Calculate screen top in world units
+        float screenTop = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+        float moveSpeed = comTMoveSpeed; // units/second
+
+        //  Move until above screen
+        while (transform.position.y < screenTop + 1f) // +1f for margin
+        {
+            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // 4. Win level
+        LevelManager.Instance.WinLevel();
     }
 }
 

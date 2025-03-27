@@ -2,63 +2,54 @@ using UnityEngine;
 
 public class DCController : MonoBehaviour
 {
+    [Header("Movement")]
     public float moveSpeed = 5f;
-    public float jumpForce = 10f; // Public variable for jump force
-    private Rigidbody2D rb;
-    private Vector2 moveInput;
-    private bool isFrozen = false;
-    private KeyCode jumpKey = KeyCode.Space;
-    private bool isJumping = false;
+    public float jumpForce = 10f;
+    public KeyCode jumpKey = KeyCode.Space;
 
+    private Rigidbody2D rb;
+    private bool isFrozen = false;
+    private bool isJumping = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 2; // Enable gravity with a positive value
+        rb.gravityScale = 2;
     }
 
     void Update()
     {
-        // Get input in Update
+        // Movement input
         float moveX = Input.GetAxis("Horizontal");
-        moveInput = new Vector2(moveX, rb.linearVelocity.y) * moveSpeed;
+        Vector2 moveInput = new Vector2(moveX, rb.linearVelocity.y) * moveSpeed;
 
-        // Check for jump input
-        if (Input.GetKeyDown(jumpKey))
+        // Flip sprite based on movement direction (multiply scale by -1)
+        if (moveX != 0)
         {
-            isJumping = true;
+            Vector3 scale = transform.localScale;
+            if ((moveX > 0 && scale.x > 0) || (moveX < 0 && scale.x < 0))
+            {
+                transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+            }
         }
-        if (Input.GetKeyUp(jumpKey))
-        {
-            isJumping = false;
-        }
+
+        // Jump input
+        if (Input.GetKeyDown(jumpKey)) isJumping = true;
+        if (Input.GetKeyUp(jumpKey)) isJumping = false;
     }
 
     void FixedUpdate()
     {
-        // Apply movement in FixedUpdate
         if (!isFrozen)
         {
-            rb.linearVelocity = new Vector2(moveInput.x, rb.linearVelocity.y);
+            // Apply movement
+            rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rb.linearVelocity.y);
 
-            // Apply continuous upward force if jumping
-            if (isJumping)
-            {
-                rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Force);
-            }
+            // Apply jump
+            if (isJumping) rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
         }
     }
 
-
-    public void Freeze()
-    {
-        isFrozen = true;
-        rb.linearVelocity = Vector2.zero;
-    }
-
-    public void Unfreeze()
-    {
-        isFrozen = false;
-    }
+    public void Freeze() => isFrozen = true;
+    public void Unfreeze() => isFrozen = false;
 }
-

@@ -147,8 +147,8 @@ public class Tentacle : MonoBehaviour
     {
         if ((isStretching || keepStretching))
         {
-            if(!(keepStretching && (other.CompareTag("Ally") || other.CompareTag("YellowAlly")))) // no ally vaccuming with strech power up
-            StartCoroutine(VacuumMicrobe(other.gameObject));
+            if (!(keepStretching && (other.CompareTag("Ally") || other.CompareTag("YellowAlly")))) // no ally vaccuming with strech power up
+                StartCoroutine(VacuumMicrobe(other.gameObject));
         }
     }
 
@@ -181,7 +181,10 @@ public class Tentacle : MonoBehaviour
         // Check the tag and update the stats
         if (target.CompareTag("Ally") || target.CompareTag("YellowAlly"))
         {
-            GameCountManager.Instance.UpdateCounter("AlliesLeft", -1); // update ally counter
+            if (target.activeInHierarchy)
+            {
+                GameCountManager.Instance.UpdateCounter("AlliesLeft", -1); // update ally counter
+            }
             RectTransform rectTransform = AlliesLeft.GetComponent<RectTransform>();
             FloatingTextManager.Instance.ShowFloatingText("" + -1, rectTransform, Color.white);
 
@@ -195,7 +198,11 @@ public class Tentacle : MonoBehaviour
         }
         else if (target.CompareTag("Salmonela"))
         {
-            GameCountManager.Instance.UpdateCounter("SalmonelaLeft", -1); // update Salmonela counter
+            if (target.activeInHierarchy)
+            {
+                GameCountManager.Instance.UpdateCounter("SalmonelaLeft", -1); // update Salmonela counter
+            }
+
             RectTransform rectTransform = SalmonelaLeft.GetComponent<RectTransform>();
             FloatingTextManager.Instance.ShowFloatingText("" + 1, rectTransform, Color.green);
 
@@ -207,7 +214,10 @@ public class Tentacle : MonoBehaviour
                 LevelManager.Instance.WinLevel();
             }
         }
-        ScoreManager.Instance.UpdateScoreForObject(target.tag);//update score for given object
+        if (target.activeInHierarchy)
+        {
+            ScoreManager.Instance.UpdateScoreForObject(target.tag);//update score for given object
+        }
         target.SetActive(false);
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
