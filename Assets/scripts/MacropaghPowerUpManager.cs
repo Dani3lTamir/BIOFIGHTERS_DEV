@@ -27,6 +27,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     public Sprite doublePointsIcon;
 
     public SpriteRenderer powerUpIconImage; // Reference to the UI Image component for the power-up icon
+    private int lastPowerUpIndex = -1; // To prevent getting the same power-up twice in a row
 
     private void Awake()
     {
@@ -149,6 +150,10 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     public void ActivateRandomPowerUp()
     {
         int randomPowerUp = UnityEngine.Random.Range(0, 3);
+        while (randomPowerUp == lastPowerUpIndex) // Prevent getting the same power-up twice in a row
+        {
+            randomPowerUp = UnityEngine.Random.Range(0, 3);
+        }
 
         switch (randomPowerUp)
         {

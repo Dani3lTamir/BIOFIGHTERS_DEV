@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-03-28 21:13:35Z" end-time="2025-03-28 21:13:40Z" duration="5.2035948">
+  <test-suite type="TestSuite" id="1011" name="BIOFIGHTERS" fullname="BIOFIGHTERS" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2025-03-28 21:13:35Z" end-time="2025-03-28 21:13:40Z" duration="5.203595" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1007" name="PlayMode.dll" fullname="C:/Users/User/Unity Projects/BIOFIGHTERS_DEV/Library/ScriptAssemblies/PlayMode.dll" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2025-03-28 21:13:35Z" end-time="2025-03-28 21:13:40Z" duration="5.190779" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3028" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1001" name="TimerPlayModeTests" fullname="TimerPlayModeTests" classname="TimerPlayModeTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2025-03-28 21:13:35Z" end-time="2025-03-28 21:13:40Z" duration="5.184473" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1006" name="Timer_AddTime" fullname="TimerPlayModeTests.Timer_AddTime" methodname="Timer_AddTime" classname="TimerPlayModeTests" runstate="Runnable" seed="1711823720" result="Failed" label="Error" start-time="2025-03-28 21:13:35Z" end-time="2025-03-28 21:13:35Z" duration="0.070872" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+            <stack-trace><![CDATA[  at Timer.AddTime (System.Single time) [0x0001a] in C:\Users\User\Unity Projects\BIOFIGHTERS_DEV\Assets\scripts\Timer.cs:107 
+  at TimerPlayModeTests+<Timer_AddTime>d__5.MoveNext () [0x00047] in C:\Users\User\Unity Projects\BIOFIGHTERS_DEV\Assets\Tests\PlayMode\TimerPlayModeTests.cs:96 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44 ]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1003" name="Timer_CountsDownCorrectly" fullname="TimerPlayModeTests.Timer_CountsDownCorrectly" methodname="Timer_CountsDownCorrectly" classname="TimerPlayModeTests" runstate="Runnable" seed="1338253206" result="Failed" start-time="2025-03-28 21:13:35Z" end-time="2025-03-28 21:13:37Z" duration="2.036867" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  Timer should count down
+  Expected: less than 0.0f
+  But was:  2.99763536f
+]]></message>
+            <stack-trace><![CDATA[at TimerPlayModeTests+<Timer_CountsDownCorrectly>d__2.MoveNext () [0x00073] in C:\Users\User\Unity Projects\BIOFIGHTERS_DEV\Assets\Tests\PlayMode\TimerPlayModeTests.cs:53
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+          </failure>
+          <output><![CDATA[Timer initialized with timeRemaining: 5
+]]></output>
+        </test-case>
+        <test-case id="1005" name="Timer_FormatsTimeCorrectly" fullname="TimerPlayModeTests.Timer_FormatsTimeCorrectly" methodname="Timer_FormatsTimeCorrectly" classname="TimerPlayModeTests" runstate="Runnable" seed="1704250586" result="Passed" start-time="2025-03-28 21:13:37Z" end-time="2025-03-28 21:13:37Z" duration="0.020298" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Timer initialized with timeRemaining: 125
+]]></output>
+        </test-case>
+        <test-case id="1002" name="Timer_InitializesCorrectly" fullname="TimerPlayModeTests.Timer_InitializesCorrectly" methodname="Timer_InitializesCorrectly" classname="TimerPlayModeTests" runstate="Runnable" seed="395718226" result="Passed" start-time="2025-03-28 21:13:37Z" end-time="2025-03-28 21:13:37Z" duration="0.018072" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Timer initialized with timeRemaining: 10
+]]></output>
+        </test-case>
+        <test-case id="1004" name="Timer_ReachesZero" fullname="TimerPlayModeTests.Timer_ReachesZero" methodname="Timer_ReachesZero" classname="TimerPlayModeTests" runstate="Runnable" seed="1115417419" result="Passed" start-time="2025-03-28 21:13:37Z" end-time="2025-03-28 21:13:40Z" duration="3.015892" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Timer initialized with timeRemaining: 2
+Saving results to: C:/Users/User/AppData/LocalLow/Sword Of David/BIOFIGHTERS\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

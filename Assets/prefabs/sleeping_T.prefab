@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4384911607067254925}
   - component: {fileID: 2287448356571192444}
   - component: {fileID: 4710977284151983880}
+  - component: {fileID: 3828504885509109712}
   m_Layer: 0
   m_Name: sleeping_T
   m_TagString: Untagged
@@ -145,3 +146,26 @@ MonoBehaviour:
   timePenalty: -10
   wokeSprite: {fileID: 21300000, guid: 8e1b3370dad2f5344a65cf1761735ee2, type: 3}
   comTSprite: {fileID: 1509653872973164260, guid: c3b4b832da0362c4c8ac0372e20c850d, type: 3}
+  comTMoveSpeed: 3
+--- !u!95 &3828504885509109712
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566154818052319648}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ff74ec20c3790f46b0e42a5da5da2b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

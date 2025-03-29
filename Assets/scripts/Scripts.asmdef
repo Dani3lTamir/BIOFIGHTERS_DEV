@@ -1,0 +1,9 @@
+{
+    "name": "Scripts",
+    "references": [
+        "Unity.TextMeshPro",
+        "Unity.Cinemachine"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

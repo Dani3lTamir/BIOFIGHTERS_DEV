@@ -8787,6 +8787,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0071b3141adab08458ceb58ef6f106e9, type: 3}
+--- !u!114 &888474948 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8478854595455316217, guid: 0071b3141adab08458ceb58ef6f106e9, type: 3}
+  m_PrefabInstance: {fileID: 888474947}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &983154847
 GameObject:
   m_ObjectHideFlags: 0
@@ -8894,6 +8905,7 @@ MonoBehaviour:
   numberOfTCells: 5
   antibodyYOffset: 1.3
   antibodyScale: {x: 7, y: 2, z: 2}
+  isHideAntiBodyOnExit: 0
 --- !u!114 &1032493632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8924,7 +8936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1128210233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8938,25 +8950,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  scoreMultiplier: 1
   isDoublePoints: 0
   scoreText: {fileID: 0}
-  levelObjectScores:
-  - Tag: Enemy
-    scoreValue: 10
-  - Tag: WhiteEnemy
-    scoreValue: 15
-  - Tag: Ally
-    scoreValue: -10
-  - Tag: YellowAlly
-    scoreValue: -5
-  - Tag: EnemyEscape
-    scoreValue: -2
-  - Tag: SpecialEnemyEscape
-    scoreValue: -30
-  - Tag: Influenza
-    scoreValue: 50
-  - Tag: RightAnswer
-    scoreValue: 20
+  levelObjectScores: []
 --- !u!4 &1128210234
 Transform:
   m_ObjectHideFlags: 0
@@ -9049,6 +9046,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217359829}
   m_CullTransparentMesh: 1
+--- !u!1 &1218938880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218938882}
+  - component: {fileID: 1218938881}
+  m_Layer: 0
+  m_Name: DifficultyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1218938881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218938880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4525c8d01a730444b227861a128893a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficultyText: {fileID: 888474948}
+  easy:
+    triesLeft: 3
+    time: 210
+    scoreMulti: 0.8
+    hideAntiBodyOnExit: 0
+    numberOfTCells: 4
+  medium:
+    triesLeft: 3
+    time: 180
+    scoreMulti: 1
+    hideAntiBodyOnExit: 0
+    numberOfTCells: 5
+  hard:
+    triesLeft: 2
+    time: 150
+    scoreMulti: 1.5
+    hideAntiBodyOnExit: 1
+    numberOfTCells: 8
+--- !u!4 &1218938882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218938880}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1221009738
 GameObject:
   m_ObjectHideFlags: 0
@@ -11212,3 +11272,4 @@ SceneRoots:
   - {fileID: 255272812}
   - {fileID: 1334229903}
   - {fileID: 515812823}
+  - {fileID: 1218938882}

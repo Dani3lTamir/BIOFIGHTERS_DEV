@@ -45,6 +45,14 @@ public class GameCountManager : MonoBehaviour
         }
     }
 
+    // Set the value of a counter by name
+    public void SetCounterValue(string counterName, int value)
+    {
+        if (counters.ContainsKey(counterName))
+        {
+            counters[counterName] = value;
+        }
+    }
 
     // Get the value of a counter by name
     public int GetCounterValue(string counterName)

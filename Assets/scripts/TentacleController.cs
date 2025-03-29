@@ -82,8 +82,6 @@ public class Tentacle : MonoBehaviour
 
     public void Retract()
     {
-        keepStretching = false;
-
         // Calculate the direction for retraction
         Vector3 scaleChange = new Vector3(retractSpeed * Time.deltaTime, 0, 0);
         if (originalScale.x < 0) // If the tentacle's scale is inverted

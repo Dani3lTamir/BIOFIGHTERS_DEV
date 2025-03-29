@@ -8,7 +8,9 @@ public class SleepingTCellSpawner : MonoBehaviour
     public int numberOfTCells = 10; // Number of T cells to spawn
     public float antibodyYOffset = 1.0f; // Offset for the antibody's Y position
     public Vector3 antibodyScale = new Vector3(2.0f, 2.0f, 2.0f); // Scale for the antibody
+    public bool isHideAntiBodyOnExit = false; // Flag to hide the antibody on exit
     private Color[] antigenColors = { Color.red, new Color(1.0f, 0.75f, 0.8f), Color.green, new Color(0.5f, 0.0f, 0.5f) }; // Array of colors (red, pink, green, purple)
+
 
     private Dictionary<SleepingTCell, AntibodyGenerator> tCellAntibodyMap = new Dictionary<SleepingTCell, AntibodyGenerator>(); // Dictionary to store the mapping
 
@@ -35,7 +37,8 @@ public class SleepingTCellSpawner : MonoBehaviour
             GameObject tCell = Instantiate(tCellPrefab, spawnLocation.position, spawnLocation.rotation);
             // Tag the T cell for identification
             tCell.tag = "SleepingTCell";
-
+            // Set the hideAntiBodyOnExit flag
+            tCell.GetComponent<SleepingTCell>().hideAntiBodyOnExit = isHideAntiBodyOnExit;
             // Create the Antibody using the AntibodyGenerator
             GameObject antibody = new GameObject("Antibody");
             Vector3 antibodyPosition = spawnLocation.position;

@@ -45,6 +45,8 @@ public class SleepingTCell : MonoBehaviour
             isAwake = true;
             // Hide the antibody sprite
             antibodySpriteRenderer.enabled = false;
+            // Disable the animator
+            GetComponent<Animator>().enabled = false;
             // Hide the wake UI
             DCUIManager.Instance.HideWakeUI();
             // if the antibody is correct write to the console
@@ -110,6 +112,10 @@ public class SleepingTCell : MonoBehaviour
 
     IEnumerator OnRightChoice()
     {
+        // Freeze the player (DCController)
+        DCController dcController = FindObjectOfType<DCController>();
+        // Freeze the player
+        dcController.Freeze();
         //  Change sprite
         GetComponent<SpriteRenderer>().sprite = comTSprite;
         yield return new WaitForSeconds(2);

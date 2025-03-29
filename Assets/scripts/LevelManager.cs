@@ -1,19 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
 
-
     void Awake()
     {
-        // Singleton pattern
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Make persistent
-
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to the scene loaded event
         }
         else
         {
@@ -21,31 +20,47 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Get the first enabled MonoBehaviour that implements IDifficultyManager
+        var manager = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>().FirstOrDefault();
+        manager?.InitializeLevel();
+    }
 
-
-    // Handle winning the level
     public void WinLevel()
     {
-        Debug.Log("You Win!");
+        var manager = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>().FirstOrDefault();
+        manager?.RecordSuccess();
+        LoadNextLevel();
+    }
 
-        // Load the next level or return to the main menu
+    public void LoseLevel()
+    {
+        var manager = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>().FirstOrDefault();
+        manager?.RecordFailure();
+        ReloadLevel();
+    }
+
+    public void LoadNextLevel()
+    {
         int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
         {
-            LevelLoader.Instance.LoadLevel(nextLevelIndex); // Load the next level
+            LevelLoader.Instance.LoadLevel(nextLevelIndex);
         }
         else
         {
-            LevelLoader.Instance.LoadLevel("MainMenu"); // Return to main menu if no more levels
+            LevelLoader.Instance.LoadLevel("MainMenu");
         }
     }
 
-    // Handle losing the level
-    public void LoseLevel()
+    private void ReloadLevel()
     {
-        Debug.Log("You Lose!");
+        LevelLoader.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex);
+    }
 
-        // Reload the current level or return to the main menu
-        LevelLoader.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex); // Reload the current level
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

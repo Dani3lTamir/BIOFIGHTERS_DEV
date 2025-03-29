@@ -5,9 +5,9 @@ public class HealthSystem : MonoBehaviour
 {
     public float maxHealth = 100f;
     public float Yoffset = 50f; // Offset of the health bar above the object
-    private float currentHealth;
-
+    public float currentHealth; // Made internal for testing
     public GameObject healthBarPrefab; // Reference to the Health Bar prefab
+    public int deathScorePenalty = 100; // Penalty score for death
     private GameObject healthBarInstance; // Instance of the health bar
     private HealthBarController healthBarController; // Reference to the health bar controller
 
@@ -15,7 +15,7 @@ public class HealthSystem : MonoBehaviour
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
     private Color originalColor; // Store the original color of the sprite
 
-    void Start()
+     void Start()
     {
         currentHealth = maxHealth;
 
@@ -29,24 +29,25 @@ public class HealthSystem : MonoBehaviour
         // Instantiate the health bar
         if (healthBarPrefab != null)
         {
-            healthBarInstance = Instantiate(healthBarPrefab, FindFirstObjectByType<Canvas>().transform);
+
+            healthBarInstance = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform);
             healthBarController = healthBarInstance.GetComponent<HealthBarController>();
 
             // Hide the health bar initially
             healthBarInstance.SetActive(false);
         }
+
+       
     }
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
 
         // Show the health bar when damage is taken
         if (healthBarInstance != null && !healthBarInstance.activeSelf)
         {
             healthBarInstance.SetActive(true);
-
         }
 
         // Update the health bar
@@ -79,11 +80,13 @@ public class HealthSystem : MonoBehaviour
     IEnumerator HideHealthBarAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        healthBarInstance.SetActive(false);
+        if (healthBarInstance != null)
+            healthBarInstance.SetActive(false);
     }
 
     IEnumerator BlinkRed()
     {
+        if (spriteRenderer == null) yield break;
         // Change the sprite color to red
         spriteRenderer.color = Color.red;
 
@@ -98,19 +101,24 @@ public class HealthSystem : MonoBehaviour
     {
         // Handle death (e.g., play animation, destroy object, etc.)
         Debug.Log($"{gameObject.name} has died!");
-        healthBarInstance.SetActive(false);
+        if (healthBarInstance != null)
+            healthBarInstance.SetActive(false);
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddScore(-deathScorePenalty);
+        }
         // If the game object has BodyCell tag check if it is the last one
         if (gameObject.CompareTag("BodyCell"))
         {
             GameObject[] bodyCells = GameObject.FindGameObjectsWithTag("BodyCell");
-            if (bodyCells.Length == 1)
+            if (bodyCells.Length <= 1 && LevelManager.Instance != null)
             {
-                // If it is the last one, call the LoseLevel method
                 LevelManager.Instance.LoseLevel();
             }
             else Debug.Log("There are still BodyCells alive");
         }
-        Destroy(gameObject);
+        if (this != null && gameObject != null)
+            Destroy(gameObject);
     }
 
     void Update()
@@ -127,4 +135,7 @@ public class HealthSystem : MonoBehaviour
     {
         return currentHealth;
     }
+
+    public GameObject GetHealthBarInstance()
+    { return healthBarInstance; }
 }

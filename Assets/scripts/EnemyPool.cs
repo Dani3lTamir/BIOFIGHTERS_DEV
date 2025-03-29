@@ -5,13 +5,13 @@ public class EnemyPool : MonoBehaviour
 {
     public GameObject enemyPrefab;  // Prefab for the enemy
     public int poolSize = 20;       // Number of enemies in the pool
+    public float originalSpeed;
     private List<GameObject> pool;
-    private float originalSpeed;
     private Vector3 initialScale;
     private Color initialColor;
 
 
-    void Start()
+    void Awake()
     {
         // Initialize the pool
         pool = new List<GameObject>();

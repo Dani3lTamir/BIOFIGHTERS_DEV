@@ -104,7 +104,10 @@ public class Timer : MonoBehaviour
     {
         timeRemaining += time;
         RectTransform rectTransform = timerText.GetComponent<RectTransform>();
-        FloatingTextManager.Instance.ShowFloatingText("" + time, rectTransform, Color.red, false);
+        if (FloatingTextManager.Instance != null)
+        {
+            FloatingTextManager.Instance.ShowFloatingText("" + time, rectTransform, Color.red, false);
+        }
         if (timeRemaining < 0)
         {
             timeRemaining = 0;

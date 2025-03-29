@@ -21,6 +21,6 @@ public class CutsceneController : MonoBehaviour
     {
         Debug.Log("Cutscene finished!");
         // Enable player control, load next scene, etc.
-        LevelManager.Instance.WinLevel();
+        LevelManager.Instance.LoadNextLevel();
     }
 }

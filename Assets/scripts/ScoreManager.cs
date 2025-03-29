@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance; // Singleton instance
     private Dictionary<string, int> objectScoreValues; //maps objects to their score value
     public int score = 0;
+    public float scoreMultiplier = 1f;
     public bool isDoublePoints = false;
     public TextMeshProUGUI scoreText;
 
@@ -20,7 +21,7 @@ public class ScoreManager : MonoBehaviour
 
     public ObjectScore[] levelObjectScores;
 
-    private void Awake()
+     void Awake()
     {
         // Ensure there's only one instance of the ScoreManager
         if (Instance == null)
@@ -42,12 +43,14 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = score.ToString();
+        if (scoreText != null)
+            scoreText.text = score.ToString();
     }
 
 
     public int AddScore(int points)
     {
+        points = (int)(points * scoreMultiplier); //apply score multiplier
         if (points > 0 && isDoublePoints) points *= 2; //checks for double score power up
         if ((score + points) >= 0) score += points; //disable negative score
         else score = 0;

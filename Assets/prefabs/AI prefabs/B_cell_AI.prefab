@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1019114620286829044}
   - component: {fileID: 8257612794327151354}
   - component: {fileID: 8208596519947490109}
+  - component: {fileID: -554530996069247722}
   m_Layer: 0
   m_Name: B_cell_AI
   m_TagString: Ally
@@ -141,3 +142,25 @@ MonoBehaviour:
   shootCooldown: 4
   ammo: 20
   antibodyPrefab: {fileID: 5091388408756514701, guid: 0293548ee30f9d94da74ea9a3d3c100f, type: 3}
+--- !u!95 &-554530996069247722
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3520783666115149992}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f431bea2fc2ce2f47909ecf8afd3e09c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
