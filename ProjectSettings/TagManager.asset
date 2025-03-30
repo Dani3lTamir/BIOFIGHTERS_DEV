@@ -21,6 +21,10 @@ TagManager:
   - EcoliWaveSpawner
   - LevelTimer
   - MacrophageAI
+  - NeutrophilAI
+  - BcellAI
+  - DCAI
+  - BossSpawner
   layers:
   - Default
   - TransparentFX

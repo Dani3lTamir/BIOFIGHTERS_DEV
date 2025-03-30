@@ -2,22 +2,22 @@ using UnityEngine;
 using TMPro;
 
 
-public class DCDifficultyManager : MonoBehaviour, IDifficultyManager
+public class MainDifficultyManager : MonoBehaviour, IDifficultyManager
 {
-    public const string LEVEL_TYPE = "DC";
+    public const string LEVEL_TYPE = "Main";
     public TextMeshProUGUI difficultyText;
 
     [System.Serializable]
     public class DifficultySettings
     {
-        public int triesLeft;
         public float time;
         public float scoreMulti;
-        public bool hideAntiBodyOnExit;
-        public int numberOfTCells;
+        public float rewardMulti;
+        public float bossHealthMulti;
+        public float bossDamageMulti;
     }
 
-    [Header("DC Difficulty Presets")]
+    [Header("Main Difficulty Presets")]
     public DifficultySettings easy;
     public DifficultySettings medium;
     public DifficultySettings hard;
@@ -30,7 +30,9 @@ public class DCDifficultyManager : MonoBehaviour, IDifficultyManager
     {
         // Fallback initialization if scene loads before LevelManager
         if (!LevelManager.Instance)
+        {
             InitializeLevel();
+        }
         difficultyText.text = CurrentDifficulty.ToString();
 
     }
@@ -53,7 +55,7 @@ public class DCDifficultyManager : MonoBehaviour, IDifficultyManager
         // Difficulty adjustment rules
         switch (CurrentDifficulty)
         {
-            case Difficulty.Hard when _failures >= 2:
+            case Difficulty.Hard when _failures >= 1:
                 SetDifficulty(Difficulty.Medium);
                 break;
 
@@ -111,14 +113,19 @@ public class DCDifficultyManager : MonoBehaviour, IDifficultyManager
             _ => hard
         };
         // Apply ALL level-specific parameters
-
-        GameCountManager.Instance.SetCounterValue("AttemptsLeft", settings.triesLeft);
+        Debug.Log("Applying settings for " + CurrentDifficulty);
         Timer timer = GameObject.FindWithTag("LevelTimer").GetComponent<Timer>();
         timer.countdownTime = settings.time;
         ScoreManager.Instance.scoreMultiplier = settings.scoreMulti;
-        // Find SleepingTCellSpawner
-        SleepingTCellSpawner spawner = GameObject.FindFirstObjectByType<SleepingTCellSpawner>();
-        spawner.isHideAntiBodyOnExit = settings.hideAntiBodyOnExit;
-        spawner.numberOfTCells = settings.numberOfTCells;
+        RewardSystem.Instance.rewardMultiplier = settings.rewardMulti;
+        // Find Boss Spawner
+        BossSpawner bossSpawner = GameObject.FindWithTag("BossSpawner").GetComponent<BossSpawner>();
+        if (bossSpawner == null)
+        {
+            Debug.LogError("BossSpawner not found in scene!");
+            return;
+        }
+        bossSpawner.healthMultiplier = settings.bossHealthMulti;
+        bossSpawner.damageMultiplier = settings.bossDamageMulti;
     }
 }

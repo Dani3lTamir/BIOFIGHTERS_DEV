@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8738199503731596239}
   m_Layer: 0
   m_Name: DC_AI
-  m_TagString: Ally
+  m_TagString: DCAI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

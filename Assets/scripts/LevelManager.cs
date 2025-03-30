@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to the scene loaded event
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -22,21 +22,26 @@ public class LevelManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Get the first enabled MonoBehaviour that implements IDifficultyManager
-        var manager = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>().FirstOrDefault();
+        // Find all objects that might implement IDifficultyManager
+        var managers = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>();
+
+        // Get the first one (or null if none exist)
+        var manager = managers.FirstOrDefault();
         manager?.InitializeLevel();
     }
 
     public void WinLevel()
     {
-        var manager = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>().FirstOrDefault();
+        var managers = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>();
+        var manager = managers.FirstOrDefault();
         manager?.RecordSuccess();
         LoadNextLevel();
     }
 
     public void LoseLevel()
     {
-        var manager = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>().FirstOrDefault();
+        var managers = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>();
+        var manager = managers.FirstOrDefault();
         manager?.RecordFailure();
         ReloadLevel();
     }

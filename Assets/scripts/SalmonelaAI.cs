@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class SalmonelaAI : MonoBehaviour
+public class SalmonelaAI : MonoBehaviour, IBoss
 {
     public float moveSpeed = 2f; // Speed at which the Ecoli moves
-    public float damageInterval = 1f; // Time between damage ticks
-    public float damagePerTick = 1f; // Damage caused per tick
-
+    public float damageInterval  = 1f; // Time between damage ticks
+    public float damagePerTick { get; set; } = 1f; // Damage caused per tick
+    public float damagePerTickMultiplier { get; set; } = 1f; // Multiplier for damage per tick
     private Transform targetCell; // The body cell the Ecoli is targeting
     private bool isAttacking = false;
     private Vector3 randomTargetPosition; // Random position inside the cell collider
@@ -107,7 +107,7 @@ public class SalmonelaAI : MonoBehaviour
             // Damage the target body cell
             if (targetCell.TryGetComponent<HealthSystem>(out HealthSystem cellHealth))
             {
-                cellHealth.TakeDamage(damagePerTick);
+                cellHealth.TakeDamage(damagePerTick * damagePerTickMultiplier);
             }
 
             // Wait for the next damage tick

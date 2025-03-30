@@ -113,7 +113,7 @@ public class SleepingTCell : MonoBehaviour
     IEnumerator OnRightChoice()
     {
         // Freeze the player (DCController)
-        DCController dcController = FindObjectOfType<DCController>();
+        DCController dcController = FindFirstObjectByType<DCController>();
         // Freeze the player
         dcController.Freeze();
         //  Change sprite

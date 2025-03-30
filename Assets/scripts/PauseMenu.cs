@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         // Find the TriviaManager in the scene
-        triviaManager = FindObjectOfType<TriviaManager>();
+        triviaManager = FindFirstObjectByType<TriviaManager>();
     }
 
 

@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 131331213}
   m_Layer: 0
   m_Name: SalmonelaSpawner
-  m_TagString: Untagged
+  m_TagString: BossSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -439,16 +439,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 131331211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49e7abfe2fcca0d4d86a163d6f45ed30, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bc299dcf5eba4d468cc227af7fa9a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7834864787724264456, guid: e56b408da0ca2aa429ade8ae94f96efb, type: 3}
-  spawnInterval: 180
+  spawnInterval: 170
   waveSize: 1
   waveSizeMultiplier: 2
-  spawnPosition: {x: 1.54, y: 15, z: 0}
-  spawnDelay: 0.5
-  delayUntilFirstWave: 185
+  spawnPosition: {x: 0, y: 15, z: 0}
+  spawnDelay: 2
+  delayUntilFirstWave: 170
+  healthMultiplier: 1
+  damageMultiplier: 1
 --- !u!1 &158727799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,6 +1154,7 @@ MonoBehaviour:
   Yoffset: 100
   currentHealth: 0
   healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
+  deathScorePenalty: 100
 --- !u!1 &309664825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1241,70 @@ MonoBehaviour:
   Yoffset: 100
   currentHealth: 0
   healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
+  deathScorePenalty: 100
+--- !u!1 &317123391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 317123392}
+  - component: {fileID: 317123393}
+  m_Layer: 0
+  m_Name: DifficultyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &317123392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317123391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &317123393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317123391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6357015f841855d49a92da4566dafdf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficultyText: {fileID: 1661682771}
+  easy:
+    time: 390
+    scoreMulti: 0.7
+    rewardMulti: 1.3
+    bossHealthMulti: 0.7
+    bossDamageMulti: 0.7
+  medium:
+    time: 420
+    scoreMulti: 100
+    rewardMulti: 100
+    bossHealthMulti: 1
+    bossDamageMulti: 1
+  hard:
+    time: 450
+    scoreMulti: 1.5
+    rewardMulti: 0.8
+    bossHealthMulti: 1.3
+    bossDamageMulti: 1.5
 --- !u!1 &443565790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,6 +2150,7 @@ MonoBehaviour:
   Yoffset: 100
   currentHealth: 0
   healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
+  deathScorePenalty: 100
 --- !u!1 &607832651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,6 +2608,7 @@ MonoBehaviour:
     rewardAmount: 10
   startingCoins: 30
   coinsText: {fileID: 207840503}
+  rewardMultiplier: 1
   periodicCoinAmount: 10
   periodicInterval: 15
 --- !u!4 &746741994
@@ -3337,6 +3406,7 @@ MonoBehaviour:
   Yoffset: 100
   currentHealth: 0
   healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
+  deathScorePenalty: 100
 --- !u!1 &972675398
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,6 +3760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  scoreMultiplier: 1
   isDoublePoints: 0
   scoreText: {fileID: 1483050358}
   levelObjectScores:
@@ -3987,6 +4058,7 @@ MonoBehaviour:
   Yoffset: 50
   currentHealth: 0
   healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
+  deathScorePenalty: 100
 --- !u!1001 &1352394488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4288,6 +4360,7 @@ MonoBehaviour:
   Yoffset: 100
   currentHealth: 0
   healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
+  deathScorePenalty: 100
 --- !u!1 &1466130951
 GameObject:
   m_ObjectHideFlags: 0
@@ -4619,6 +4692,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4134953676949748618, guid: 2cbda54681fdab34c8d6ebf1683579d4, type: 3}
   m_PrefabInstance: {fileID: 7871104976371527957}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1661682771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8478854595455316217, guid: 0071b3141adab08458ceb58ef6f106e9, type: 3}
+  m_PrefabInstance: {fileID: 2867828233687444933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1690728090
 GameObject:
   m_ObjectHideFlags: 0
@@ -5332,7 +5416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acbed63dbf28444e913d9eca87bdddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 420
+  countdownTime: 2
   isTimeUp: 0
   timerEndWin: 1
   inSeconds: 0
@@ -5439,6 +5523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7834864787724264456, guid: 5e815a61b73051d44b038be8fa3a74cd, type: 3}
   poolSize: 100
+  originalSpeed: 0
 --- !u!4 &1880900977
 Transform:
   m_ObjectHideFlags: 0
@@ -5887,6 +5972,7 @@ MonoBehaviour:
   Yoffset: 50
   currentHealth: 0
   healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
+  deathScorePenalty: 100
 --- !u!70 &1969870561
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6364,7 +6450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8926578162842050999, guid: 0071b3141adab08458ceb58ef6f106e9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 59.999958
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8926578162842050999, guid: 0071b3141adab08458ceb58ef6f106e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6537,3 +6623,4 @@ SceneRoots:
   - {fileID: 746741994}
   - {fileID: 1415445464}
   - {fileID: 1694888481}
+  - {fileID: 317123392}

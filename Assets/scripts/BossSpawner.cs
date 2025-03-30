@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Spawner : MonoBehaviour
+public class BossSpawner : MonoBehaviour
 {
     public GameObject prefab; // prefab to spawn
     public float spawnInterval = 20f;  // Time between spawns
@@ -33,6 +33,18 @@ public class Spawner : MonoBehaviour
             GameObject obj = Instantiate(prefab);
             // Set the object's position
             obj.transform.position = spawnPosition;
+            // Find the objects HealthSystem component and multiply the health
+            HealthSystem healthSystem = obj.GetComponent<HealthSystem>();
+            if (healthSystem != null)
+            {
+                healthSystem.maxHealth *= healthMultiplier;
+                healthSystem.currentHealth = healthSystem.maxHealth;
+            }
+
+            // Find the objects IBoss implemnting component and multiply the damage
+            IBoss boss = obj.GetComponent<IBoss>();
+            if (boss != null)
+                boss.damagePerTickMultiplier = damageMultiplier;
 
             // Wait for the specified delay before spawning the next object
             yield return new WaitForSeconds(spawnDelay);

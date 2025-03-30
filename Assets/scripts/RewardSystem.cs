@@ -32,6 +32,8 @@ public class RewardSystem : MonoBehaviour
     // Text to display the current coin count
     public TextMeshProUGUI coinsText;
 
+    // Reward multiplier
+    public float rewardMultiplier = 1f; // Multiplier for the reward amount
 
     // Fields for periodic coin reward
     public int periodicCoinAmount = 10; // Amount of coins to add periodically
@@ -71,11 +73,12 @@ public class RewardSystem : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(periodicInterval);
-            AddCoins(periodicCoinAmount);
+            int amount = (int)(periodicCoinAmount * rewardMultiplier);
+            AddCoins(amount);
             RectTransform rectTransform = coinsText.GetComponent<RectTransform>();
-            FloatingTextManager.Instance.ShowFloatingText("+"+ periodicCoinAmount, rectTransform, Color.green);
+            FloatingTextManager.Instance.ShowFloatingText("+"+ amount, rectTransform, Color.green);
 
-            Debug.Log("Periodic reward: " + periodicCoinAmount + " coins. Total coins: " + coins);
+            Debug.Log("Periodic reward: " + amount + " coins. Total coins: " + coins);
         }
     }
 
@@ -110,11 +113,12 @@ public class RewardSystem : MonoBehaviour
             if (enemyKillCounts[enemyType] % reward.killsRequired == 0)
             {
                 // Reward the player
-                coins += reward.rewardAmount;
+                int rewardAmount = (int)(reward.rewardAmount * rewardMultiplier);
+                coins += rewardAmount;
                 RectTransform rectTransform = coinsText.GetComponent<RectTransform>();
-                FloatingTextManager.Instance.ShowFloatingText("+" + reward.rewardAmount, rectTransform, Color.green);
+                FloatingTextManager.Instance.ShowFloatingText("+" + rewardAmount, rectTransform, Color.green);
 
-                Debug.Log("Reward earned: " + reward.rewardAmount + " coins for killing " + reward.killsRequired + " " + enemyType + "s. Total coins: " + coins);
+                Debug.Log("Reward earned: " + rewardAmount + " coins for killing " + reward.killsRequired + " " + enemyType + "s. Total coins: " + coins);
             }
         }
     }

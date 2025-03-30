@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1188111424153279322}
   m_Layer: 0
   m_Name: Neutrophil_AI
-  m_TagString: Ally
+  m_TagString: NeutrophilAI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
