@@ -25,6 +25,7 @@ TagManager:
   - BcellAI
   - DCAI
   - BossSpawner
+  - Tuberculosis
   layers:
   - Default
   - TransparentFX

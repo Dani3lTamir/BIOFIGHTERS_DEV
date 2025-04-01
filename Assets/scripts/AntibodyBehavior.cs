@@ -42,6 +42,13 @@ public class AntibodyBehavior : MonoBehaviour
                     target.GetComponent<HealthSystem>().TakeDamage(damage);
                 }
 
+                if (target.CompareTag("Tuberculosis") && target.GetComponent<TBAI>().getMovmentStatus())
+                {
+                    target.GetComponent<HealthSystem>().TakeDamage(damage);
+                }
+
+
+
 
                 // return the antibody to the pool
                 ObjectPool.Instance.ReturnToPool("Antibody", gameObject);

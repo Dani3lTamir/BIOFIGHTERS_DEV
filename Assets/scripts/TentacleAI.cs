@@ -127,6 +127,17 @@ public class TentacleAI : MonoBehaviour
 
         }
 
+        if (other.CompareTag("Tuberculosis"))
+        {
+            TBAI tbAI = other.GetComponent<TBAI>();
+            if (tbAI != null)
+            {
+                tbAI.EnableMovement();
+            }
+
+        }
+
+
 
     }
 }

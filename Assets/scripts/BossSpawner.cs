@@ -13,7 +13,7 @@ public class BossSpawner : MonoBehaviour
     public float healthMultiplier = 1.0f;  // Multiplier for Object health
     public float damageMultiplier = 1.0f;  // Multiplier for Object damage
 
-    private void Start()
+    private void OnEnable()
     {
         // Start spawning objects at regular intervals
         InvokeRepeating("StartSpawningWave", delayUntilFirstWave, spawnInterval);

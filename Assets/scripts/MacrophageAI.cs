@@ -12,17 +12,21 @@ public class MacrophageAI : MonoBehaviour
     public int catchLimit = 10; // Maximum number of enemies that can be caught
     public float deathDelay = 1f; // Delay before dying after reaching the catch limit
     public TentacleAI[] tentacles; // Array of tentacles
-
+    public bool isInfected = false; // Whether the Macrophage is infected
     private GameObject closestEnemy; // The closest enemy
     private bool isOnCooldown = false; // Cooldown state
     private bool isStretching = false; // Whether the Macrophage is currently stretching a tentacle
     private int caughtEnemiesCount = 0; // Counter for caught enemies
+    private Transform infectionTarget; // The target to go to when infected
+    private Vector3 randomTargetPosition; // Random position inside the cell collider
+
+
 
     void Update()
     {
         Collider2D collider = GetComponent<Collider2D>();
-        if (isOnCooldown || isStretching || (collider != null && !collider.enabled)) return; // Skip logic if on cooldown, stretching, or collider is disabled
 
+        if (isOnCooldown || isStretching || isInfected || (collider != null && !collider.enabled)) return; // Skip logic if on cooldown, stretching, infected or collider is disabled
         // Find the closest enemy
         closestEnemy = FindClosestEnemy();
 
@@ -48,6 +52,8 @@ public class MacrophageAI : MonoBehaviour
     {
         GameObject[] ecoliEnemies = GameObject.FindGameObjectsWithTag("Ecoli");
         GameObject[] salmonellaEnemies = GameObject.FindGameObjectsWithTag("Salmonela");
+        GameObject[] tbEnemies = GameObject.FindGameObjectsWithTag("Tuberculosis");
+
 
 
         GameObject closest = null;
@@ -76,6 +82,19 @@ public class MacrophageAI : MonoBehaviour
                 closest = enemy;
             }
         }
+
+        foreach (var enemy in tbEnemies)
+        {
+            // only if the enemy is not already caught by another defender
+            if (!(enemy.GetComponent<TBAI>().getMovmentStatus())) continue;
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = enemy;
+            }
+        }
+
 
         return closest;
     }
@@ -148,6 +167,39 @@ public class MacrophageAI : MonoBehaviour
 
         }
 
+        if (closestEnemy.CompareTag("Tuberculosis"))
+        {
+
+            TBAI tbAI = closestEnemy.GetComponent<TBAI>();
+            if (tbAI.getMovmentStatus())
+            {
+                tbAI.DisableMovement();
+                // Catch the enemy
+                StartCoroutine(tentacle.VacuumMicrobe(closestEnemy.GetComponent<Collider2D>()));
+
+                // Wait for the tentacle to retract
+                yield return new WaitUntil(() => !tentacle.IsStretching());
+
+                // Give damage to TB
+                closestEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
+
+                // if the enemy is destroyed, activate Eat animation
+                if (closestEnemy == null)
+                {
+                    Animator mpAnimator = GetComponent<Animator>();
+                    if (mpAnimator != null)
+                    {
+                        mpAnimator.SetTrigger("Eat");
+                    }
+                }
+
+                // Increment the counter for dead enemies
+                caughtEnemiesCount++;
+            }
+
+        }
+
+
         // Check if the catch limit is reached
         if (caughtEnemiesCount >= catchLimit)
         {
@@ -167,6 +219,81 @@ public class MacrophageAI : MonoBehaviour
 
         // Resume movement
         isStretching = false;
+    }
+
+    void ChooseRandomTarget()
+    {
+        // Get all body cells in the scene
+        GameObject[] bodyCells = GameObject.FindGameObjectsWithTag("BodyCell");
+
+        if (bodyCells.Length > 0)
+        {
+            // Choose a random body cell from the list
+            infectionTarget = bodyCells[Random.Range(0, bodyCells.Length)].transform;
+            // Generate a random position inside the cell collider
+            GenerateRandomTargetPosition();
+        }
+    }
+
+    void GenerateRandomTargetPosition()
+    {
+        if (infectionTarget.TryGetComponent<Collider2D>(out Collider2D collider))
+        {
+            Bounds bounds = collider.bounds;
+            randomTargetPosition = new Vector3(
+                Random.Range(bounds.min.x, bounds.max.x),
+                Random.Range(bounds.min.y, bounds.max.y),
+                transform.position.z
+            );
+        }
+        else
+        {
+            Debug.LogWarning("Target cell does not have a Collider2D component!");
+        }
+    }
+
+
+    IEnumerator OnInfection()
+    {
+        // Handle the infection of the Macrophage
+        // Get Animator
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+            animator.SetTrigger("Infected");
+        ChooseRandomTarget();
+        // Move towards the random position inside the target body cell
+        while (Vector3.Distance(transform.position, randomTargetPosition) >= 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(
+            transform.position,
+            randomTargetPosition,
+            moveSpeed * Time.deltaTime );
+            yield return null;
+        }
+        // Find and enable the BossSpawner component
+        BossSpawner bossSpawner = FindObjectOfType<BossSpawner>(true);
+
+        if (bossSpawner != null)
+        {
+            // Set spawn position to the Macrophage's position
+            bossSpawner.spawnPosition = transform.position;
+            bossSpawner.gameObject.SetActive(true); // Enable it
+            Debug.Log("BossSpawner enabled!");
+            // wait for the boss wave to spawn and die
+            yield return new WaitForSeconds(bossSpawner.spawnDelay * bossSpawner.waveSize);
+            bossSpawner.gameObject.SetActive(false); 
+            Die();
+        }
+        else
+        {
+            Debug.LogError("BossSpawner not found in scene!");
+        }
+    }
+
+    public void Infect()
+    {
+        isInfected = true;
+        StartCoroutine(OnInfection());
     }
 
     void Die()

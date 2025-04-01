@@ -1,30 +1,32 @@
 using UnityEngine;
 using System.Collections;
 
-public class EcoliAI : MonoBehaviour
+public class TBAI : MonoBehaviour, IBoss
 {
     public float moveSpeed = 2f; // Speed at which the Ecoli moves
     public float damageInterval = 1f; // Time between damage ticks
-    public float damagePerTick = 1f; // Damage caused per tick
-    public Animator animator; // Reference to the Animator component
-    public float deathDuration = 1f; // Duration of the death animation
+    public float damagePerTick { get; set; } = 1f; // Damage caused per tick
+    public float damagePerTickMultiplier { get; set; } = 1f; // Multiplier for damage per tick
     private Transform targetCell; // The body cell the Ecoli is targeting
     private bool isAttacking = false;
     private Vector3 randomTargetPosition; // Random position inside the cell collider
     private bool isMovementEnabled = true; // Whether movement is enabled
+
+    public HealthSystem healthSystem; // Reference to the HealthSystem component
     private readonly object movementLock = new object(); // Lock object for atomic operations
-    private readonly object deathLock = new object(); // Lock object for atomic operations
+
+
 
     void OnEnable()
     {
-        EnableMovement();
-        // Initialize the Ecoli when it is activated
-        ChooseRandomTarget();
+        // Initialize the TB when it is activated
+        if (targetCell == null)
+            ChooseRandomTarget();
     }
 
     void OnDisable()
     {
-        // Clean up when the Ecoli is deactivated
+        // Clean up when the TB is deactivated
         StopAllCoroutines(); // Stop any running coroutines
         isAttacking = false;
         targetCell = null;
@@ -33,16 +35,10 @@ public class EcoliAI : MonoBehaviour
     void Update()
     {
         if (!isMovementEnabled) return; // Skip movement logic if movement is disabled
-
         if (targetCell == null)
         {
-            // If the target is destroyed, stop attacking and return to Idle
-            if (isAttacking)
-            {
-                StopAttacking();
-            }
-
-            // Choose a new target
+            isAttacking = false;
+            // If the target is destroyed, choose a new one
             ChooseRandomTarget();
             return;
         }
@@ -65,8 +61,15 @@ public class EcoliAI : MonoBehaviour
             targetCell = bodyCells[Random.Range(0, bodyCells.Length)].transform;
             // Generate a random position inside the cell collider
             GenerateRandomTargetPosition();
+
+        }
+        else
+        {
+            Debug.Log("You Lost!");
         }
     }
+
+
 
     void GenerateRandomTargetPosition()
     {
@@ -85,6 +88,7 @@ public class EcoliAI : MonoBehaviour
         }
     }
 
+
     void MoveTowardsTarget()
     {
         // Move towards the random position inside the target body cell
@@ -101,38 +105,28 @@ public class EcoliAI : MonoBehaviour
     {
         isAttacking = true;
 
-        while (targetCell != null && (Vector3.Distance(transform.position, randomTargetPosition) < 0.1f) && getMovmentStatus())
+        while (targetCell != null && (Vector3.Distance(transform.position, randomTargetPosition) < 0.1f))
         {
             // Damage the target body cell
             if (targetCell.TryGetComponent<HealthSystem>(out HealthSystem cellHealth))
             {
-                cellHealth.TakeDamage(damagePerTick);
-                // Show the attack animation
-                animator.SetTrigger("Attack");
+                cellHealth.TakeDamage(damagePerTick * damagePerTickMultiplier);
             }
 
             // Wait for the next damage tick
             yield return new WaitForSeconds(damageInterval);
         }
+        // make sure to reset the target cell and stop attacking
+        targetCell = null;
 
-        // If the target is destroyed or the Ecoli stops attacking, return to Idle
-        StopAttacking();
-    }
-
-    void StopAttacking()
-    {
+        // If the target is destroyed, stop attacking
         isAttacking = false;
-        animator.ResetTrigger("Attack"); // Reset the Attack trigger
-        animator.SetTrigger("Idle"); // Set the Idle trigger
     }
 
     public void DisableMovement()
     {
         lock (movementLock)
         {
-            Debug.Log("Disabling movement");
-            animator.ResetTrigger("Attack"); // Reset the Attack trigger
-            animator.SetTrigger("Idle");
             isMovementEnabled = false;
         }
     }
@@ -150,29 +144,22 @@ public class EcoliAI : MonoBehaviour
         return isMovementEnabled;
     }
 
+
     public void setTargetCell(Transform newTarget)
     {
         targetCell = newTarget;
     }
-
     public Transform getTargetCell()
     {
         return targetCell;
     }
 
-
-    public void Die()
+    void OnDestroy()
     {
-        lock (deathLock)
-        {
-            // Handle Ecoli capture (e.g., update score, deactivate Ecoli)
-            GameCountManager.Instance.UpdateCounter("EcoliKilled", 1); // Update Ecoli counter
-            ScoreManager.Instance.UpdateScoreForObject(gameObject.tag); // Update score for given object
-            RewardSystem.Instance.RegisterEnemyKill(gameObject.tag); // Register the kill for reward purposes
-            // Play the death animation
-            animator.SetTrigger("Die");
-            EnableMovement();
-            gameObject.SetActive(false);
-        }
+        // Handle TB death (e.g., update score, deactivate TB)
+        GameCountManager.Instance.UpdateCounter("TBKilled", 1); // Update TB counter
+        ScoreManager.Instance.UpdateScoreForObject("Tuberculosis"); // Update score for given object
+        RewardSystem.Instance.RegisterEnemyKill("Tuberculosis"); // Register the kill for reward purposes
     }
+
 }

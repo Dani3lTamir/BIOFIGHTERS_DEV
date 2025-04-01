@@ -85,6 +85,13 @@ public class DCAI : MonoBehaviour
             // Damage the Salmonela
             other.GetComponent<HealthSystem>().TakeDamage(damage);
         }
+
+        if (other.CompareTag("Tuberculosis") && (other.GetComponent<TBAI>().getMovmentStatus()))
+        {
+            // Damage the Salmonela
+            other.GetComponent<HealthSystem>().TakeDamage(damage);
+        }
+
     }
 
     void CatchEcoli(GameObject ecoli)

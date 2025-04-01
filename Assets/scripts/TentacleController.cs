@@ -11,6 +11,7 @@ public class Tentacle : MonoBehaviour
     public float maxStretch = 5f;     // Maximum stretch length
     public KeyCode key;               // Key to control this tentacle
     public TextMeshProUGUI SalmonelaLeft; // Reference to the Salmonela counter text
+    public TextMeshProUGUI TBLeft; // Reference to the TB counter text
     public TextMeshProUGUI AlliesLeft; // Reference to the Allies counter text
     private Vector2 originalPosition; // Local position of the tentacle's base
     private bool isStretching = false;
@@ -25,7 +26,14 @@ public class Tentacle : MonoBehaviour
         originalScale = transform.localScale; // Store the original scale
         originalPosition = transform.localPosition;
         mpAnimator = GetComponentInParent<Animator>();
-        SalmonelaLeft.text = "" + GameCountManager.Instance.GetCounterValue("SalmonelaLeft");
+        if (SalmonelaLeft != null)
+        {
+            SalmonelaLeft.text = "" + GameCountManager.Instance.GetCounterValue("SalmonelaLeft");
+        }
+        if (TBLeft != null)
+        {
+            TBLeft.text = "" + GameCountManager.Instance.GetCounterValue("TBLeft");
+        }
         AlliesLeft.text = "" + GameCountManager.Instance.GetCounterValue("AlliesLeft");
 
     }
@@ -212,6 +220,26 @@ public class Tentacle : MonoBehaviour
                 LevelManager.Instance.WinLevel();
             }
         }
+
+        else if (target.CompareTag("Tuberculosis"))
+        {
+            if (target.activeInHierarchy)
+            {
+                GameCountManager.Instance.UpdateCounter("TBLeft", -1); // update Salmonela counter
+            }
+
+            RectTransform rectTransform = TBLeft.GetComponent<RectTransform>();
+            FloatingTextManager.Instance.ShowFloatingText("" + 1, rectTransform, Color.green);
+
+            TBLeft.text = "" + GameCountManager.Instance.GetCounterValue("TBLeft");
+
+            // Check win condition
+            if (GameCountManager.Instance.GetCounterValue("TBLeft") == 0)
+            {
+                LevelManager.Instance.WinLevel();
+            }
+        }
+
         if (target.activeInHierarchy)
         {
             ScoreManager.Instance.UpdateScoreForObject(target.tag);//update score for given object

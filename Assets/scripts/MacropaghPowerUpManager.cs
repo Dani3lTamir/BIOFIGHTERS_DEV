@@ -9,7 +9,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     // References to the player and other necessary components
     public CharacterController playerController;
     private EnemyPool[] allPools;
-
+    private int randomPowerUp; // Random power-up index
     // Public bool flags for each power-up
     public bool isTentaclesStretched = false;
     public float tentacleStretchDuration = 5f; // Duration for tentacles stretch
@@ -27,7 +27,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     public Sprite doublePointsIcon;
 
     public SpriteRenderer powerUpIconImage; // Reference to the UI Image component for the power-up icon
-    private int lastPowerUpIndex = -1; // To prevent getting the same power-up twice in a row
+    
 
     private void Awake()
     {
@@ -45,7 +45,7 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
     {
         // Initialize the random seed
         UnityEngine.Random.InitState(DateTime.Now.Millisecond);
-
+        randomPowerUp = UnityEngine.Random.Range(0, 3); // Randomly select a power-up
         allPools = FindObjectsByType<EnemyPool>(
             FindObjectsInactive.Exclude, // Only active objects
             FindObjectsSortMode.None     // No sorting
@@ -149,12 +149,8 @@ public class MacropaghPowerUpManager : MonoBehaviour, IPowerUpManager
 
     public void ActivateRandomPowerUp()
     {
-        int randomPowerUp = UnityEngine.Random.Range(0, 3);
-        while (randomPowerUp == lastPowerUpIndex) // Prevent getting the same power-up twice in a row
-        {
-            randomPowerUp = UnityEngine.Random.Range(0, 3);
-        }
 
+        randomPowerUp = (randomPowerUp + 1) % 3; 
         switch (randomPowerUp)
         {
             case 0:

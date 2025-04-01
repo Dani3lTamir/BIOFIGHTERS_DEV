@@ -119,7 +119,7 @@ public class MainDifficultyManager : MonoBehaviour, IDifficultyManager
         ScoreManager.Instance.scoreMultiplier = settings.scoreMulti;
         RewardSystem.Instance.rewardMultiplier = settings.rewardMulti;
         // Find Boss Spawner
-        BossSpawner bossSpawner = GameObject.FindWithTag("BossSpawner").GetComponent<BossSpawner>();
+        BossSpawner bossSpawner = FindObjectOfType<BossSpawner>(true);
         if (bossSpawner == null)
         {
             Debug.LogError("BossSpawner not found in scene!");

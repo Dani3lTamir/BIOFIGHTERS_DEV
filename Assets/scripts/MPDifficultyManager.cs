@@ -48,11 +48,12 @@ public class MPDifficultyManager : MonoBehaviour, IDifficultyManager
     {
         _failures++;
         PlayerPrefs.SetInt($"Failures_{LEVEL_TYPE}", _failures);
+        Debug.Log($"Failures: {_failures}");
 
         // Difficulty adjustment rules
         switch (CurrentDifficulty)
         {
-            case Difficulty.Hard when _failures >= 3:
+            case Difficulty.Hard when _failures >= 2:
                 SetDifficulty(Difficulty.Medium);
                 break;
 

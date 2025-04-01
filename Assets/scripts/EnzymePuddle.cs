@@ -20,9 +20,9 @@ public class EnzymePuddle : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //only damge incase of salmonela
-        if (other.CompareTag("Salmonela"))
+        if (other.CompareTag("Salmonela") || other.CompareTag("Tuberculosis"))
         {
-            // Damage the Salmonela
+            // Damage the Boss
             HealthSystem healthSystem = other.GetComponent<HealthSystem>();
             if (healthSystem != null)
             {

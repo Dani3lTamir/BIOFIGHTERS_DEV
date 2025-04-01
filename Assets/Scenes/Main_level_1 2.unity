@@ -1302,7 +1302,7 @@ MonoBehaviour:
   hard:
     time: 450
     scoreMulti: 1.5
-    rewardMulti: 1.3
+    rewardMulti: 0.8
     bossHealthMulti: 1.3
     bossDamageMulti: 1.5
 --- !u!1 &443565790
