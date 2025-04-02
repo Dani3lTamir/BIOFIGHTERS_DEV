@@ -23,6 +23,13 @@ public class DCDifficultyManager : MonoBehaviour, IDifficultyManager
     public DifficultySettings hard;
 
     public Difficulty CurrentDifficulty { get; private set; } = Difficulty.Medium;
+    [Header("Difficulty Thresholds")]
+    public int easyToMedium = 1;
+    public int mediumToEasy = 1;
+    public int mediumToHard = 5;
+    public int hardToMedium = 1;
+
+
     private int _failures;
     private int _successes;
 
@@ -30,7 +37,9 @@ public class DCDifficultyManager : MonoBehaviour, IDifficultyManager
     {
         // Fallback initialization if scene loads before LevelManager
         if (!LevelManager.Instance)
+        {
             InitializeLevel();
+        }
         difficultyText.text = CurrentDifficulty.ToString();
 
     }
@@ -53,11 +62,11 @@ public class DCDifficultyManager : MonoBehaviour, IDifficultyManager
         // Difficulty adjustment rules
         switch (CurrentDifficulty)
         {
-            case Difficulty.Hard when _failures >= 2:
+            case Difficulty.Hard when _failures >= hardToMedium:
                 SetDifficulty(Difficulty.Medium);
                 break;
 
-            case Difficulty.Medium when _failures > 2:
+            case Difficulty.Medium when _failures >= mediumToEasy:
                 SetDifficulty(Difficulty.Easy);
                 break;
         }
@@ -73,11 +82,11 @@ public class DCDifficultyManager : MonoBehaviour, IDifficultyManager
         // Difficulty adjustment rules
         switch (CurrentDifficulty)
         {
-            case Difficulty.Easy when _failures < 2:
+            case Difficulty.Easy when _failures < easyToMedium:
                 SetDifficulty(Difficulty.Medium);
                 break;
 
-            case Difficulty.Medium when _failures <= 1:
+            case Difficulty.Medium when _failures <= mediumToHard:
                 SetDifficulty(Difficulty.Hard);
                 break;
         }

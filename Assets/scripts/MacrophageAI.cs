@@ -275,6 +275,9 @@ public class MacrophageAI : MonoBehaviour
 
         if (bossSpawner != null)
         {
+            // Set puke animation
+            if (animator != null)
+                animator.SetTrigger("Puke");
             // Set spawn position to the Macrophage's position
             bossSpawner.spawnPosition = transform.position;
             bossSpawner.gameObject.SetActive(true); // Enable it

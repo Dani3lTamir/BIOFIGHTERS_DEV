@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7834864787724264456, guid: 1ed27877a0070b343b483b58f6bf3e24, type: 3}
-  spawnInterval: 170
+  spawnInterval: 1700
   waveSize: 2
   waveSizeMultiplier: 0
   spawnPosition: {x: 0, y: 15, z: 0}
@@ -1302,9 +1302,13 @@ MonoBehaviour:
   hard:
     time: 450
     scoreMulti: 1.5
-    rewardMulti: 0.8
+    rewardMulti: 1.3
     bossHealthMulti: 1.3
     bossDamageMulti: 1.5
+  easyToMedium: 1
+  mediumToEasy: 1
+  mediumToHard: 5
+  hardToMedium: 1
 --- !u!1 &443565790
 GameObject:
   m_ObjectHideFlags: 0
@@ -6209,9 +6213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84861a570e82636498bb0d75d190200a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayUntilFirstInfected: 10
-  afterInfectionDelay: 10
+  delayUntilFirstInfected: 180
+  afterInfectionDelay: 120
   maxInfected: 2
+  UntilInfectionCheck: 330
+  mpPrefab: {fileID: 6194678883743992458, guid: ecf65131aa2101c4d90fe8e63e74eb3d, type: 3}
+  mpSpawnLocation: {x: 0, y: 15, z: 0}
 --- !u!4 &2067859378
 Transform:
   m_ObjectHideFlags: 0

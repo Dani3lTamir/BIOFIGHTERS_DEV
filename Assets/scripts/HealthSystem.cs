@@ -43,7 +43,6 @@ public class HealthSystem : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
-        Debug.Log($"{gameObject.name} took {damage} damage. Current Health: {currentHealth}");
         // Show the health bar when damage is taken
         if (healthBarInstance != null && !healthBarInstance.activeSelf)
         {

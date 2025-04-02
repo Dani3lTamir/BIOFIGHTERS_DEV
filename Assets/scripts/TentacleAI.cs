@@ -90,6 +90,8 @@ public class TentacleAI : MonoBehaviour
 
     public IEnumerator VacuumMicrobe(Collider2D other)
     {
+        if (other == null)
+            yield break;
         // Move the Ecoli towards the Macrophage
         while (Vector2.Distance(other.transform.position, characterCenter.position) > 0.1f)
             {

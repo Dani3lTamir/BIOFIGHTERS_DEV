@@ -61,6 +61,10 @@ public class EnzymePuddle : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
+        // Play the dissolve animation
+        animator.SetTrigger("Dissolve");
+        yield return new WaitForSeconds(dissolveDuration);
+        // Destroy the puddle and the trapped Ecoli
         // Kill all trapped Ecoli
         foreach (var ecoli in trappedEcoli)
         {
@@ -76,10 +80,7 @@ public class EnzymePuddle : MonoBehaviour
 
         // Clear the list of trapped Ecoli
         trappedEcoli.Clear();
-        // Play the dissolve animation
-        animator.SetTrigger("Dissolve");
-        yield return new WaitForSeconds(dissolveDuration);
-        // Destroy the puddle
+
         Destroy(gameObject);
     }
 }

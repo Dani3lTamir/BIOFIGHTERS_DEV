@@ -7,11 +7,10 @@ public class EcoliAI : MonoBehaviour
     public float damageInterval = 1f; // Time between damage ticks
     public float damagePerTick = 1f; // Damage caused per tick
     public Animator animator; // Reference to the Animator component
-    public float deathDuration = 1f; // Duration of the death animation
     private Transform targetCell; // The body cell the Ecoli is targeting
     private bool isAttacking = false;
     private Vector3 randomTargetPosition; // Random position inside the cell collider
-    private bool isMovementEnabled = true; // Whether movement is enabled
+    public bool isMovementEnabled = true; // Whether movement is enabled
     private readonly object movementLock = new object(); // Lock object for atomic operations
     private readonly object deathLock = new object(); // Lock object for atomic operations
 
@@ -169,8 +168,6 @@ public class EcoliAI : MonoBehaviour
             GameCountManager.Instance.UpdateCounter("EcoliKilled", 1); // Update Ecoli counter
             ScoreManager.Instance.UpdateScoreForObject(gameObject.tag); // Update score for given object
             RewardSystem.Instance.RegisterEnemyKill(gameObject.tag); // Register the kill for reward purposes
-            // Play the death animation
-            animator.SetTrigger("Die");
             EnableMovement();
             gameObject.SetActive(false);
         }
