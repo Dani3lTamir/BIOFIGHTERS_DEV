@@ -86,14 +86,17 @@ public class HealthSystem : MonoBehaviour
     IEnumerator BlinkRed()
     {
         if (spriteRenderer == null) yield break;
-        // Change the sprite color to red
-        spriteRenderer.color = Color.red;
 
-        // Wait for a short duration (e.g., 0.1 seconds)
+        // Store current color before blinking
+        Color currentColor = spriteRenderer.color;
+
+        // Change to red while preserving original alpha
+        spriteRenderer.color = new Color(1, 0, 0, currentColor.a); // Red with existing alpha
+
         yield return new WaitForSeconds(0.1f);
 
-        // Revert the sprite color back to the original color
-        spriteRenderer.color = originalColor;
+        // Restore original RGB values while preserving current alpha
+        spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, currentColor.a);
     }
 
     void Die()

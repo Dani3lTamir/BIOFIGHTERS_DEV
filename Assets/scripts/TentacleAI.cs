@@ -119,27 +119,13 @@ public class TentacleAI : MonoBehaviour
 
         }
 
-        if (other.CompareTag("Salmonela"))
+        else
         {
-            SalmonelaAI salmonelaAI = other.GetComponent<SalmonelaAI>();
-            if (salmonelaAI != null)
+            IBoss bossAI = other.GetComponent<IBoss>();
+            if (bossAI != null)
             {
-                salmonelaAI.EnableMovement();
+                bossAI.EnableMovement();
             }
-
         }
-
-        if (other.CompareTag("Tuberculosis"))
-        {
-            TBAI tbAI = other.GetComponent<TBAI>();
-            if (tbAI != null)
-            {
-                tbAI.EnableMovement();
-            }
-
-        }
-
-
-
     }
 }

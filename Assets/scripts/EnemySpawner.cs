@@ -6,11 +6,12 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 2f;  // Time between spawns
     public float minX = -5f;  // Minimum X position
     public float maxX = 5f;  // Maximum X position
+    public float startUpDelay = 5f; // Time before spwaning starts
 
     private void Start()
     {
         // Start spawning enemies at regular intervals
-        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+        InvokeRepeating("SpawnEnemy", startUpDelay, spawnInterval);
     }
 
     void SpawnEnemy()

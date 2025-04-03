@@ -6,11 +6,13 @@ public class AllySpawner : MonoBehaviour
     public float spawnInterval = 2f;  // Time between spawns
     public float minX = -5f;  // Minimum X position
     public float maxX = 5f;  // Maximum X position
+    public float startUpDelay = 5f; // Time before spwaning starts
+
 
     private void Start()
     {
         // Start spawning allies at regular intervals
-        InvokeRepeating("SpawnAlly", 0f, spawnInterval);
+        InvokeRepeating("SpawnAlly", startUpDelay, spawnInterval);
     }
 
     void SpawnAlly()

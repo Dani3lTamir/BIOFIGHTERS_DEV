@@ -50,51 +50,39 @@ public class MacrophageAI : MonoBehaviour
 
     GameObject FindClosestEnemy()
     {
-        GameObject[] ecoliEnemies = GameObject.FindGameObjectsWithTag("Ecoli");
-        GameObject[] salmonellaEnemies = GameObject.FindGameObjectsWithTag("Salmonela");
-        GameObject[] tbEnemies = GameObject.FindGameObjectsWithTag("Tuberculosis");
-
-
-
         GameObject closest = null;
-        float closestDistance = Mathf.Infinity;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector2 currentPos = transform.position;
 
-        foreach (var enemy in ecoliEnemies)
+        // Combine all enemy checks
+        string[] enemyTags = { "Ecoli", "Salmonela", "Tuberculosis", "Covid" };
+
+        foreach (string tag in enemyTags)
         {
-            // only if the enemy is not already caught by another defender
-            if (!(enemy.GetComponent<EcoliAI>().getMovmentStatus())) continue;
-            float distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance < closestDistance)
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag(tag);
+            foreach (var enemy in enemies)
             {
-                closestDistance = distance;
-                closest = enemy;
+                // Handle Ecoli (non-IBoss) separately
+                if (tag == "Ecoli")
+                {
+                    var ai = enemy.GetComponent<EcoliAI>();
+                    if (ai == null || !ai.getMovmentStatus()) continue;
+                }
+                else // Handle IBoss enemies (Salmonela, Tuberculosis, Covid)
+                {
+                    var boss = enemy.GetComponent<IBoss>();
+                    if (boss == null || !boss.getMovmentStatus()) continue;
+                }
+
+                // Fast distance comparison
+                float distanceSqr = (currentPos - (Vector2)enemy.transform.position).sqrMagnitude;
+                if (distanceSqr < closestDistanceSqr)
+                {
+                    closestDistanceSqr = distanceSqr;
+                    closest = enemy;
+                }
             }
         }
-
-        foreach (var enemy in salmonellaEnemies)
-        {
-            // only if the enemy is not already caught by another defender
-            if (!(enemy.GetComponent<SalmonelaAI>().getMovmentStatus())) continue;
-            float distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closest = enemy;
-            }
-        }
-
-        foreach (var enemy in tbEnemies)
-        {
-            // only if the enemy is not already caught by another defender
-            if (!(enemy.GetComponent<TBAI>().getMovmentStatus())) continue;
-            float distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closest = enemy;
-            }
-        }
-
 
         return closest;
     }
@@ -135,20 +123,19 @@ public class MacrophageAI : MonoBehaviour
             }
         }
 
-        if (closestEnemy.CompareTag("Salmonela"))
+        else
         {
-
-            SalmonelaAI salmonelaAI = closestEnemy.GetComponent<SalmonelaAI>();
-            if (salmonelaAI.getMovmentStatus())
+            IBoss bossAI = closestEnemy.GetComponent<IBoss>();
+            if (bossAI.getMovmentStatus())
             {
-                salmonelaAI.DisableMovement();
+                bossAI.DisableMovement();
                 // Catch the enemy
                 StartCoroutine(tentacle.VacuumMicrobe(closestEnemy.GetComponent<Collider2D>()));
 
                 // Wait for the tentacle to retract
                 yield return new WaitUntil(() => !tentacle.IsStretching());
 
-                // Give damage to Salmonela
+                // Give damage to the Boss
                 closestEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
 
                 // if the enemy is destroyed, activate Eat animation
@@ -164,42 +151,9 @@ public class MacrophageAI : MonoBehaviour
                 // Increment the counter for dead enemies
                 caughtEnemiesCount++;
             }
-
         }
 
-        if (closestEnemy.CompareTag("Tuberculosis"))
-        {
-
-            TBAI tbAI = closestEnemy.GetComponent<TBAI>();
-            if (tbAI.getMovmentStatus())
-            {
-                tbAI.DisableMovement();
-                // Catch the enemy
-                StartCoroutine(tentacle.VacuumMicrobe(closestEnemy.GetComponent<Collider2D>()));
-
-                // Wait for the tentacle to retract
-                yield return new WaitUntil(() => !tentacle.IsStretching());
-
-                // Give damage to TB
-                closestEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
-
-                // if the enemy is destroyed, activate Eat animation
-                if (closestEnemy == null)
-                {
-                    Animator mpAnimator = GetComponent<Animator>();
-                    if (mpAnimator != null)
-                    {
-                        mpAnimator.SetTrigger("Eat");
-                    }
-                }
-
-                // Increment the counter for dead enemies
-                caughtEnemiesCount++;
-            }
-
-        }
-
-
+ 
         // Check if the catch limit is reached
         if (caughtEnemiesCount >= catchLimit)
         {

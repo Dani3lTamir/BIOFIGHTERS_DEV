@@ -7014,7 +7014,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.98287183, g: 1, b: 0.5415094, a: 1}
   m_Origin: {x: -48, y: -20, z: 0}
   m_Size: {x: 72, y: 53, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -9094,6 +9094,10 @@ MonoBehaviour:
     scoreMulti: 1.5
     hideAntiBodyOnExit: 1
     numberOfTCells: 8
+  easyToMedium: 1
+  mediumToEasy: 1
+  mediumToHard: 5
+  hardToMedium: 1
 --- !u!4 &1218938882
 Transform:
   m_ObjectHideFlags: 0
@@ -11094,7 +11098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.94716984, g: 0.91798073, b: 0.19836955, a: 1}
+  m_Color: {r: 0.9490196, g: 0.6547904, b: 0.19999999, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

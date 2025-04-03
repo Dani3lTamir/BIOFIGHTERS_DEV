@@ -26,6 +26,8 @@ TagManager:
   - DCAI
   - BossSpawner
   - Tuberculosis
+  - Covid
+  - CamoCovid
   layers:
   - Default
   - TransparentFX

@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 515954383}
   - component: {fileID: 515954382}
   m_Layer: 5
-  m_Name: SalmonelaLeft
+  m_Name: CovidLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1270,6 +1270,7 @@ MonoBehaviour:
   spawnInterval: 8
   minX: -5
   maxX: 5
+  startUpDelay: 5
 --- !u!4 &829833498
 Transform:
   m_ObjectHideFlags: 0
@@ -1375,8 +1376,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialCounters:
-  - CounterName: SalmonelaLeft
-    InitialValue: 3
+  - CounterName: CovidLeft
+    InitialValue: 4
   - CounterName: AlliesLeft
     InitialValue: 5
 --- !u!4 &983154849
@@ -1440,7 +1441,7 @@ MonoBehaviour:
     scoreValue: -2
   - Tag: SpecialEnemyEscape
     scoreValue: -30
-  - Tag: Salmonela
+  - Tag: Covid
     scoreValue: 50
   - Tag: RightAnswer
     scoreValue: 20
@@ -1820,6 +1821,10 @@ MonoBehaviour:
     alliesLeft: 3
     time: 120
     scoreMulti: 1.5
+  easyToMedium: 1
+  mediumToEasy: 1
+  mediumToHard: 5
+  hardToMedium: 1
 --- !u!4 &1297951405
 Transform:
   m_ObjectHideFlags: 0
@@ -1861,8 +1866,8 @@ Transform:
   m_GameObject: {fileID: 1351078743}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -260.5, y: -301.3, z: 0}
-  m_LocalScale: {x: 0.8722067, y: 0.8722067, z: 0.8722067}
+  m_LocalPosition: {x: -260.5, y: -301.16, z: 0}
+  m_LocalScale: {x: 0.4096493, y: 0.4096493, z: 0.4096493}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 515954381}
@@ -1911,8 +1916,8 @@ SpriteRenderer:
   m_SortingLayerID: -1984458189
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -215938281379677897, guid: 101a49ac9239090488613f073cc7c9d9, type: 3}
-  m_Color: {r: 0.32929197, g: 0.93207544, b: 0.1881737, a: 1}
+  m_Sprite: {fileID: -7115176662952475992, guid: 5048e1a3120c70043af821ad88e23e92, type: 3}
+  m_Color: {r: 0.56467265, g: 0.98490566, b: 0.4664364, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2292,7 +2297,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -7443756053782179069, guid: 1080b5aba348d134a8513666c3c35dd4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9980352, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3815,7 +3820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030941ff6ff5a8c4a94b2146fdeb6118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 457333542468240075, guid: 956019fc47024b442882350688bc94da, type: 3}
+  enemyPrefab: {fileID: 457333542468240075, guid: 941ffa067b94469468e6f5fc5a6a35fe, type: 3}
   poolSize: 2
   originalSpeed: 1.5
 --- !u!1 &1999950029
@@ -4078,6 +4083,7 @@ MonoBehaviour:
   spawnInterval: 3
   minX: -20
   maxX: 20
+  startUpDelay: 5
 --- !u!4 &2091507807
 Transform:
   m_ObjectHideFlags: 0
@@ -4102,12 +4108,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 611661900184569935, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
+      propertyPath: CovidLeft
+      value: 
+      objectReference: {fileID: 515954382}
+    - target: {fileID: 611661900184569935, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: AlliesLeft
       value: 
       objectReference: {fileID: 207840503}
     - target: {fileID: 611661900184569935, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: SalmonelaLeft
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 724347433885429654, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
+      propertyPath: CovidLeft
+      value: 
       objectReference: {fileID: 515954382}
     - target: {fileID: 724347433885429654, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: AlliesLeft
@@ -4115,6 +4129,10 @@ PrefabInstance:
       objectReference: {fileID: 207840503}
     - target: {fileID: 724347433885429654, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: SalmonelaLeft
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785492353244469595, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
+      propertyPath: CovidLeft
       value: 
       objectReference: {fileID: 515954382}
     - target: {fileID: 1785492353244469595, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
@@ -4124,6 +4142,10 @@ PrefabInstance:
     - target: {fileID: 1785492353244469595, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: SalmonelaLeft
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778931663720019277, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
+      propertyPath: CovidLeft
+      value: 
       objectReference: {fileID: 515954382}
     - target: {fileID: 2778931663720019277, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: AlliesLeft
@@ -4132,7 +4154,7 @@ PrefabInstance:
     - target: {fileID: 2778931663720019277, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: SalmonelaLeft
       value: 
-      objectReference: {fileID: 515954382}
+      objectReference: {fileID: 0}
     - target: {fileID: 4016097489908103374, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.12
@@ -4178,13 +4200,17 @@ PrefabInstance:
       value: macropagh
       objectReference: {fileID: 0}
     - target: {fileID: 7202862944255770216, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
+      propertyPath: CovidLeft
+      value: 
+      objectReference: {fileID: 515954382}
+    - target: {fileID: 7202862944255770216, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: AlliesLeft
       value: 
       objectReference: {fileID: 207840503}
     - target: {fileID: 7202862944255770216, guid: ae7d00191be2a0f4bb29c8ddef5a5f73, type: 3}
       propertyPath: SalmonelaLeft
       value: 
-      objectReference: {fileID: 515954382}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

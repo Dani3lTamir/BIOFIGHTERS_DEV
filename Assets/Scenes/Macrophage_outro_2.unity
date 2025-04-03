@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba97aa3271ad1146987007fba5ba14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationClipName: MP_Give3Sal
+  animationClipName: MP_Give4TB
 --- !u!1 &1426419225
 GameObject:
   m_ObjectHideFlags: 0

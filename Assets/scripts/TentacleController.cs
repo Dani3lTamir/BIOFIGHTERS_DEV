@@ -12,6 +12,7 @@ public class Tentacle : MonoBehaviour
     public KeyCode key;               // Key to control this tentacle
     public TextMeshProUGUI SalmonelaLeft; // Reference to the Salmonela counter text
     public TextMeshProUGUI TBLeft; // Reference to the TB counter text
+    public TextMeshProUGUI CovidLeft; // Reference to the Covid counter text
     public TextMeshProUGUI AlliesLeft; // Reference to the Allies counter text
     private Vector2 originalPosition; // Local position of the tentacle's base
     private bool isStretching = false;
@@ -239,6 +240,26 @@ public class Tentacle : MonoBehaviour
                 LevelManager.Instance.WinLevel();
             }
         }
+
+        else if (target.CompareTag("Covid"))
+        {
+            if (target.activeInHierarchy)
+            {
+                GameCountManager.Instance.UpdateCounter("CovidLeft", -1); // update Salmonela counter
+            }
+
+            RectTransform rectTransform = CovidLeft.GetComponent<RectTransform>();
+            FloatingTextManager.Instance.ShowFloatingText("" + 1, rectTransform, Color.green);
+
+            CovidLeft.text = "" + GameCountManager.Instance.GetCounterValue("CovidLeft");
+
+            // Check win condition
+            if (GameCountManager.Instance.GetCounterValue("CovidLeft") == 0)
+            {
+                LevelManager.Instance.WinLevel();
+            }
+        }
+
 
         if (target.activeInHierarchy)
         {
