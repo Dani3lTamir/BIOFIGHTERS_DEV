@@ -1295,8 +1295,8 @@ MonoBehaviour:
     bossDamageMulti: 0.7
   medium:
     time: 420
-    scoreMulti: 100
-    rewardMulti: 100
+    scoreMulti: 1
+    rewardMulti: 1
     bossHealthMulti: 1
     bossDamageMulti: 1
   hard:
@@ -1305,6 +1305,10 @@ MonoBehaviour:
     rewardMulti: 1.3
     bossHealthMulti: 1.3
     bossDamageMulti: 1.5
+  easyToMedium: 1
+  mediumToEasy: 1
+  mediumToHard: 1
+  hardToMedium: 1
 --- !u!1 &443565790
 GameObject:
   m_ObjectHideFlags: 0

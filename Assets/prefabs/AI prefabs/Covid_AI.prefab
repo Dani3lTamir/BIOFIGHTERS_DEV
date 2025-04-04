@@ -185,8 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3.5
-  damageInterval: 0.2
+  damageInterval: 1
+  damagePerTick: 10
   healthSystem: {fileID: 2019525247500309674}
-  multiFactor: 1
+  multiFactor: 2
   isCamo: 1
   covidPrefab: {fileID: 7834864787724264456}

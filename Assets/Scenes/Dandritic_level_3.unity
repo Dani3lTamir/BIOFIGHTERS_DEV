@@ -9096,7 +9096,7 @@ MonoBehaviour:
     numberOfTCells: 8
   easyToMedium: 1
   mediumToEasy: 1
-  mediumToHard: 5
+  mediumToHard: 1
   hardToMedium: 1
 --- !u!4 &1218938882
 Transform:

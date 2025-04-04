@@ -5,7 +5,7 @@ public class CovidAI : MonoBehaviour, IBoss
 {
     public float moveSpeed = 2f; // Speed at which the Ecoli moves
     public float damageInterval = 1f; // Time between damage ticks
-    public float damagePerTick { get; set; } = 1f; // Damage caused per tick
+    public float damagePerTick = 1f; // Damage caused per tick
     public float damagePerTickMultiplier { get; set; } = 1f; // Multiplier for damage per tick
     public HealthSystem healthSystem; // Reference to the HealthSystem component
     public int multiFactor = 2; // To how many duplicates a Covid multiply
@@ -180,7 +180,7 @@ public class CovidAI : MonoBehaviour, IBoss
 
     IEnumerator Multiply()
     {
-        // Spawn more Covids with delay between each spawn
+        // Spawn more weaker Covids with delay between each spawn
         for (int i = 0; i < multiFactor; i++)
         {
             // Instantiate an object
@@ -193,14 +193,14 @@ public class CovidAI : MonoBehaviour, IBoss
             HealthSystem cloneHealth = obj.GetComponent<HealthSystem>();
             if (cloneHealth != null)
             {
-                cloneHealth.maxHealth = healthSystem.maxHealth;
+                cloneHealth.maxHealth = healthSystem.maxHealth / 3f;
                 cloneHealth.currentHealth = cloneHealth.maxHealth;
             }
 
             // Find the objects IBoss implemnting component and set the damage
             IBoss boss = obj.GetComponent<IBoss>();
             if (boss != null)
-                boss.damagePerTickMultiplier = this.damagePerTickMultiplier;
+                boss.damagePerTickMultiplier = this.damagePerTickMultiplier / 3f;
 
             // Wait for the specified delay before spawning the next object
             yield return new WaitForSeconds(1f);

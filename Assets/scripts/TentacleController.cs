@@ -35,6 +35,12 @@ public class Tentacle : MonoBehaviour
         {
             TBLeft.text = "" + GameCountManager.Instance.GetCounterValue("TBLeft");
         }
+
+        if (CovidLeft != null)
+        {
+            CovidLeft.text = "" + GameCountManager.Instance.GetCounterValue("CovidLeft");
+        }
+
         AlliesLeft.text = "" + GameCountManager.Instance.GetCounterValue("AlliesLeft");
 
     }

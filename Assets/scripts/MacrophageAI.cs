@@ -135,6 +135,11 @@ public class MacrophageAI : MonoBehaviour
                 // Wait for the tentacle to retract
                 yield return new WaitUntil(() => !tentacle.IsStretching());
 
+                if (closestEnemy == null)
+                {
+                    yield break; // Exit if the enemy is destroyed
+                }
+
                 // Give damage to the Boss
                 closestEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
 

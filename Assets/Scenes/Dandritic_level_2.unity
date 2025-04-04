@@ -9094,6 +9094,10 @@ MonoBehaviour:
     scoreMulti: 1.5
     hideAntiBodyOnExit: 1
     numberOfTCells: 8
+  easyToMedium: 1
+  mediumToEasy: 1
+  mediumToHard: 1
+  hardToMedium: 1
 --- !u!4 &1218938882
 Transform:
   m_ObjectHideFlags: 0

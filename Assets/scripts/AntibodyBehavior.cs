@@ -47,7 +47,7 @@ public class AntibodyBehavior : MonoBehaviour
                     target.GetComponent<HealthSystem>().TakeDamage(damage);
                 }
 
-                if (target.CompareTag("Covid") && target.GetComponent<TBAI>().getMovmentStatus())
+                if (target.CompareTag("Covid") && target.GetComponent<CovidAI>().getMovmentStatus())
                 {
                     target.GetComponent<HealthSystem>().TakeDamage(damage);
                 }
