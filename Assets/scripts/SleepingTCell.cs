@@ -61,6 +61,7 @@ public class SleepingTCell : MonoBehaviour
                 Debug.Log("Incorrect Antibody!");
                 // Incorrect choice penalty
                 GameCountManager.Instance.UpdateCounter("AttemptsLeft", -1);
+                ScoreManager.Instance.UpdateScoreForObject("WrongCell");
                 AttemptsLeftText.text = "" + GameCountManager.Instance.GetCounterValue("AttemptsLeft");
                 RectTransform rectTransform = AttemptsLeftText.GetComponent<RectTransform>();
                 FloatingTextManager.Instance.ShowFloatingText("" + -1, rectTransform, Color.red);
@@ -112,6 +113,18 @@ public class SleepingTCell : MonoBehaviour
 
     IEnumerator OnRightChoice()
     {
+        // Add Score 
+        ScoreManager.Instance.UpdateScoreForObject("RightCell");
+        // Check Timer for bonus
+        if (timer != null)
+        {
+            float timeLeft = timer.GetRoundedTimeRemaining();
+            if (timeLeft > 0)
+            {
+                ScoreManager.Instance.AddScore((int)(timeLeft));
+            }
+        }
+        Debug.Log("Final Score: " + ScoreManager.Instance.GetScore());
         // Freeze the player (DCController)
         DCController dcController = FindFirstObjectByType<DCController>();
         // Freeze the player

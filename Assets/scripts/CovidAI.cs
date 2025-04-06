@@ -9,6 +9,7 @@ public class CovidAI : MonoBehaviour, IBoss
     public float damagePerTickMultiplier { get; set; } = 1f; // Multiplier for damage per tick
     public HealthSystem healthSystem; // Reference to the HealthSystem component
     public int multiFactor = 2; // To how many duplicates a Covid multiply
+    public float duplicationWeakeningFactor = 3f; // Factor by which the damage and health is divised for each duplicate
     public bool isCamo = false; // Is the Covid camoflaged
     public GameObject covidPrefab;
     private Transform targetCell; // The body cell the Ecoli is targeting
@@ -193,14 +194,14 @@ public class CovidAI : MonoBehaviour, IBoss
             HealthSystem cloneHealth = obj.GetComponent<HealthSystem>();
             if (cloneHealth != null)
             {
-                cloneHealth.maxHealth = healthSystem.maxHealth / 3f;
+                cloneHealth.maxHealth = healthSystem.maxHealth / duplicationWeakeningFactor;
                 cloneHealth.currentHealth = cloneHealth.maxHealth;
             }
 
             // Find the objects IBoss implemnting component and set the damage
             IBoss boss = obj.GetComponent<IBoss>();
             if (boss != null)
-                boss.damagePerTickMultiplier = this.damagePerTickMultiplier / 3f;
+                boss.damagePerTickMultiplier = this.damagePerTickMultiplier / duplicationWeakeningFactor;
 
             // Wait for the specified delay before spawning the next object
             yield return new WaitForSeconds(1f);

@@ -1287,6 +1287,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyText: {fileID: 1661682771}
+  easyToMedium: 1
+  mediumToEasy: 1
+  mediumToHard: 1
+  hardToMedium: 1
   easy:
     time: 390
     scoreMulti: 0.7
@@ -1305,10 +1309,6 @@ MonoBehaviour:
     rewardMulti: 1.3
     bossHealthMulti: 1.3
     bossDamageMulti: 1.5
-  easyToMedium: 1
-  mediumToEasy: 1
-  mediumToHard: 1
-  hardToMedium: 1
 --- !u!1 &443565790
 GameObject:
   m_ObjectHideFlags: 0

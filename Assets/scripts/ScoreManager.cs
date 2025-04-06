@@ -54,8 +54,11 @@ public class ScoreManager : MonoBehaviour
         if (points > 0 && isDoublePoints) points *= 2; //checks for double score power up
         if ((score + points) >= 0) score += points; //disable negative score
         else score = 0;
-        RectTransform rectTransform = scoreText.GetComponent<RectTransform>();
-        FloatingTextManager.Instance.ShowFloatingText("" + points, rectTransform, Color.white, false);
+        if (scoreText != null)
+        {
+            RectTransform rectTransform = scoreText.GetComponent<RectTransform>();
+            FloatingTextManager.Instance.ShowFloatingText("" + points, rectTransform, Color.white, false);
+        }
         return points;
     }
 

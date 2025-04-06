@@ -11,7 +11,7 @@ public class Ally : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y < -15f) // Example condition: Ally falls off-screen
+        if (transform.position.y < -15f) 
         {
             pool.ReturnAlly(gameObject);
         }

@@ -38,7 +38,7 @@ public class EnemyPool : MonoBehaviour
     {
         foreach (GameObject enemy in pool)
         {
-            if (!enemy.activeInHierarchy)
+            if (!enemy.activeInHierarchy && enemy.transform.parent == null)
             {
                 // Reset the scale and color to their initial values
                 enemy.transform.localScale = initialScale;

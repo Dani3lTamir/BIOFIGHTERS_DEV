@@ -36,18 +36,8 @@ public class AntibodyBehavior : MonoBehaviour
                     target.GetComponent<EcoliAI>().Die();
                 }
 
-                // If its a Salmonela, damage it
-                if (target.CompareTag("Salmonela") && target.GetComponent<SalmonelaAI>().getMovmentStatus())
-                {
-                    target.GetComponent<HealthSystem>().TakeDamage(damage);
-                }
-
-                if (target.CompareTag("Tuberculosis") && target.GetComponent<TBAI>().getMovmentStatus())
-                {
-                    target.GetComponent<HealthSystem>().TakeDamage(damage);
-                }
-
-                if (target.CompareTag("Covid") && target.GetComponent<CovidAI>().getMovmentStatus())
+                // Otherwise if its a Boss, damage it
+                if ((target.GetComponent<IBoss>() != null) && (target.GetComponent<IBoss>().getMovmentStatus()))
                 {
                     target.GetComponent<HealthSystem>().TakeDamage(damage);
                 }

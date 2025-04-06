@@ -77,7 +77,7 @@ public class BCellAI : MonoBehaviour
             // Get the antibody from the pool
             GameObject antibody = ObjectPool.Instance.SpawnFromPool("Antibody", transform.position, Quaternion.identity);
 
-            // Set the antibody's target to the Salmonela
+            // Set the antibody's target to the Boss
             if (antibody.TryGetComponent<AntibodyBehavior>(out AntibodyBehavior antibodyBehavior))
             {
                 antibodyBehavior.SetTarget(targetBoss);
@@ -108,7 +108,7 @@ public class BCellAI : MonoBehaviour
         }
     }
 
-    // Optional: Visualize the collider radius in the editor
+    //  Visualize the collider radius in the editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;

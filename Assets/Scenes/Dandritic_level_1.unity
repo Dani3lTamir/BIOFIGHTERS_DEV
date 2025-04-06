@@ -8949,11 +8949,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9d02ed837b8234bb61cd337d4b6f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
+  score: 800
   scoreMultiplier: 1
   isDoublePoints: 0
   scoreText: {fileID: 0}
-  levelObjectScores: []
+  levelObjectScores:
+  - Tag: WrongCell
+    scoreValue: -100
+  - Tag: RightCell
+    scoreValue: 500
 --- !u!4 &1128210234
 Transform:
   m_ObjectHideFlags: 0
@@ -9076,6 +9080,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyText: {fileID: 888474948}
+  easyToMedium: 1
+  mediumToEasy: 1
+  mediumToHard: 1
+  hardToMedium: 1
   easy:
     triesLeft: 3
     time: 210
@@ -9094,10 +9102,6 @@ MonoBehaviour:
     scoreMulti: 1.5
     hideAntiBodyOnExit: 1
     numberOfTCells: 8
-  easyToMedium: 1
-  mediumToEasy: 1
-  mediumToHard: 1
-  hardToMedium: 1
 --- !u!4 &1218938882
 Transform:
   m_ObjectHideFlags: 0

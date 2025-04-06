@@ -40,6 +40,7 @@ public class InfectionManager : MonoBehaviour
         }
     }
 
+    // Coroutine to check the infection counter in case the player has not been infected (hasn't spawned any Macrophage)
     IEnumerator InfectionCheck()
     {
         // Infection check delay

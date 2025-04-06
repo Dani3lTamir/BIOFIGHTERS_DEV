@@ -5,6 +5,7 @@ using System.Linq;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
+    private int totalScore = 0; // Total score for the game
 
     void Awake()
     {
@@ -32,6 +33,8 @@ public class LevelManager : MonoBehaviour
 
     public void WinLevel()
     {
+        // Update the total score after a level is completed
+        UpdateScore();
         var managers = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>();
         var manager = managers.FirstOrDefault();
         manager?.RecordSuccess();
@@ -55,6 +58,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            // Reset Score and load the main menu if no more levels are available
+            totalScore = 0; // Reset total score
             LevelLoader.Instance.LoadLevel("MainMenu");
         }
     }
@@ -67,5 +72,20 @@ public class LevelManager : MonoBehaviour
     void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void UpdateScore()
+    {
+        // Update the total score after a level is completed if ScoreManager is not null
+        if (ScoreManager.Instance != null)
+        {
+            totalScore += ScoreManager.Instance.GetScore();
+            ScoreManager.Instance.score = 0; // Reset score after adding to total
+        }
+    }
+
+    public int GetTotalScore()
+    {
+        return totalScore;
     }
 }

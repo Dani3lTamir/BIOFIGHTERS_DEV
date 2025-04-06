@@ -73,22 +73,15 @@ public class DCAI : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collided with: " + other.name);
         if (other.CompareTag("Ecoli") && caughtEcoli.Count < catchLimit && (other.GetComponent<EcoliAI>().getMovmentStatus()))
         {
             // Catch the Ecoli
             CatchEcoli(other.gameObject);
         }
 
-        if (other.CompareTag("Salmonela") && (other.GetComponent<SalmonelaAI>().getMovmentStatus()))
+        else if ((other.GetComponent<IBoss>() != null) && (other.GetComponent<IBoss>().getMovmentStatus()))
         {
-            // Damage the Salmonela
-            other.GetComponent<HealthSystem>().TakeDamage(damage);
-        }
-
-        if (other.CompareTag("Tuberculosis") && (other.GetComponent<TBAI>().getMovmentStatus()))
-        {
-            // Damage the Salmonela
+            // Damage the Boss
             other.GetComponent<HealthSystem>().TakeDamage(damage);
         }
 
@@ -156,7 +149,7 @@ public class DCAI : MonoBehaviour
         // Check for vertical boundaries
         if (viewportPosition.y < 0 || viewportPosition.y > 1)
         {
-            // Reverse the vertical direction (optional, if you want vertical bouncing)
+            // Reverse the vertical direction 
             moveDirection.y *= -1;
         }
     }

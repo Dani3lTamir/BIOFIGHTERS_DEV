@@ -8920,55 +8920,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   antigenPrefab: {fileID: 2050125536894961321, guid: 3b7c76a8cda351047a96b51aba2fc538, type: 3}
   antigenUIImage: {fileID: 2105796363}
---- !u!1 &1128210232
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1128210234}
-  - component: {fileID: 1128210233}
-  m_Layer: 0
-  m_Name: ScoreManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1128210233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128210232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d02ed837b8234bb61cd337d4b6f2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  scoreMultiplier: 1
-  isDoublePoints: 0
-  scoreText: {fileID: 0}
-  levelObjectScores: []
---- !u!4 &1128210234
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128210232}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1803.0369, y: 1106.6412, z: -1.9999658}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1217359829
 GameObject:
   m_ObjectHideFlags: 0
@@ -9076,6 +9027,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyText: {fileID: 888474948}
+  easyToMedium: 1
+  mediumToEasy: 1
+  mediumToHard: 1
+  hardToMedium: 1
   easy:
     triesLeft: 3
     time: 210
@@ -9094,10 +9049,6 @@ MonoBehaviour:
     scoreMulti: 1.5
     hideAntiBodyOnExit: 1
     numberOfTCells: 8
-  easyToMedium: 1
-  mediumToEasy: 1
-  mediumToHard: 1
-  hardToMedium: 1
 --- !u!4 &1218938882
 Transform:
   m_ObjectHideFlags: 0
@@ -9297,6 +9248,59 @@ Transform:
   m_Children:
   - {fileID: 2071373435}
   - {fileID: 344681910}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1236237434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1236237436}
+  - component: {fileID: 1236237435}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1236237435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236237434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9d02ed837b8234bb61cd337d4b6f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 800
+  scoreMultiplier: 1
+  isDoublePoints: 0
+  scoreText: {fileID: 0}
+  levelObjectScores:
+  - Tag: WrongCell
+    scoreValue: -100
+  - Tag: RightCell
+    scoreValue: 500
+--- !u!4 &1236237436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236237434}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1803.0369, y: 1106.6412, z: -1.9999658}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1289286097
@@ -11267,7 +11271,6 @@ SceneRoots:
   - {fileID: 1760185588}
   - {fileID: 1999950030}
   - {fileID: 691977256}
-  - {fileID: 1128210234}
   - {fileID: 983154849}
   - {fileID: 264361596}
   - {fileID: 1227100836}
@@ -11277,3 +11280,4 @@ SceneRoots:
   - {fileID: 1334229903}
   - {fileID: 515812823}
   - {fileID: 1218938882}
+  - {fileID: 1236237436}
