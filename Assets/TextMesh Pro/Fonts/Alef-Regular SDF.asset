@@ -3293,6 +3293,134 @@ MonoBehaviour:
       m_MarkPositionAdjustment:
         m_XPositionAdjustment: 0
         m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 299
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 300
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 301
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 302
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 303
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 304
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 305
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 306
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 307
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 310
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 5.361328
+        m_YCoordinate: 0
+      m_MarkGlyphID: 317
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: 11.074219
+        m_YCoordinate: 9.228516
+      m_MarkGlyphID: 311
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: -10.415039
+        m_YCoordinate: 0
+      m_MarkGlyphID: 308
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: -10.415039
+        m_YCoordinate: 0
+      m_MarkGlyphID: 309
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: -10.415039
+        m_YCoordinate: 0
+      m_MarkGlyphID: 314
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
+    - m_BaseGlyphID: 339
+      m_BaseGlyphAnchorPoint:
+        m_XCoordinate: -10.415039
+        m_YCoordinate: 0
+      m_MarkGlyphID: 315
+      m_MarkPositionAdjustment:
+        m_XPositionAdjustment: 0
+        m_YPositionAdjustment: 0
     m_MarkToMarkAdjustmentRecords: []
   m_ShouldReimportFontFeatures: 0
   m_FallbackFontAssetTable: []
