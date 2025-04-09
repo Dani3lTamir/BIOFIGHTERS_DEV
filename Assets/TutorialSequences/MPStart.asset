@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d85a5ef6640824db9b6bcd7bab0e84, type: 3}
+  m_Name: MPStart
+  m_EditorClassIdentifier: 
+  steps:
+  - message: "\u05D1\u05E8\u05D5\u05DB\u05D9\u05DD \u05D4\u05D1\u05D0\u05D9\u05DD
+      \u05DCBIOFIGHTERS! "
+    image: {fileID: 1404028623067837608, guid: 664cdaf8b063dcc419f6b2d66c6990be, type: 3}
+    soundEffect: {fileID: 0}
+    autoAdvanceAfter: 0
+  - message: "\u05D9\u05D0\u05DC\u05DC\u05D4 \u05E9\u05D7\u05E7\u05D5 \u05D9\u05D6\u05D5\u05E0\u05D5\u05EA"
+    image: {fileID: -1836330436245040283, guid: d6440a2b65617614a87b9559591144e3, type: 3}
+    soundEffect: {fileID: 0}
+    autoAdvanceAfter: 0

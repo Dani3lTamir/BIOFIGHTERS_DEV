@@ -25,8 +25,8 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-            // if TriviaManager is present, pause the game only if the trivia UI is not active
-            else if (triviaManager == null || !triviaManager.triviaUI.activeSelf)
+            // if TriviaManager is present, pause the game only if the trivia UI is not active, same for tutorial
+            else if ((triviaManager == null || !triviaManager.triviaUI.activeSelf) && (TutorialManager.Instance == null || !TutorialManager.Instance.isTutorialActive))
             {
                 Pause();
             }

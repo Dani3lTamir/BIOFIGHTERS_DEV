@@ -1,22 +1,38 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;
 
     [Header("Tutorial UI")]
-    public GameObject tutorialPanel; // Panel to display tutorial messages
-    public Text tutorialText; // Text component to display the message
-    public Image tutorialImage; // Image component to display the image
+    public GameObject tutorialPanel;
+    public TMP_Text tutorialText;
+    public Image tutorialImage;
+    public Button continueButton;
+    public Button exitButton;
+    public TMP_Text continueButtonText;
+
+    [Header("Settings")]
+    public float typingSpeed = 0.05f;
+    public string defaultContinueText = "המשך";
+    public string finalContinueText = "קיבלתי!";
+    public bool isTutorialActive = false;
+    private List<TutorialStep> tutorialSequence = new List<TutorialStep>();
+    private int currentStepIndex = -1;
+    private bool isTyping = false;
+    private string fullMessage;
+    private Coroutine typingCoroutine;
+    private float previousTimeScale;
 
     void Awake()
     {
-        // Singleton pattern
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Persist across scenes
         }
         else
         {
@@ -24,30 +40,92 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    // Show a tutorial message with an image
-    public void ShowTutorial(string message, Sprite image)
+    void Start()
     {
-        if (tutorialPanel == null || tutorialText == null || tutorialImage == null)
+        continueButton.onClick.AddListener(ContinueTutorial);
+        exitButton.onClick.AddListener(HideTutorial);
+    }
+
+    public void StartTutorialSequence(List<TutorialStep> steps)
+    {
+        if (steps == null || steps.Count == 0)
         {
-            Debug.LogWarning("Tutorial UI is not set up!");
+            Debug.LogWarning("No tutorial steps provided!");
+            return;
+        }
+        isTutorialActive = true;
+        PauseGame();
+        tutorialSequence = steps;
+        currentStepIndex = -1;
+        ShowNextStep();
+    }
+
+    public void ShowNextStep()
+    {
+        currentStepIndex++;
+
+        if (currentStepIndex >= tutorialSequence.Count)
+        {
+            HideTutorial();
             return;
         }
 
-        // Set the tutorial message and image
-        tutorialText.text = message;
-        tutorialImage.sprite = image;
-
-        // Activate the tutorial panel
+        TutorialStep currentStep = tutorialSequence[currentStepIndex];
         tutorialPanel.SetActive(true);
+        tutorialImage.sprite = currentStep.image;
+        fullMessage = currentStep.message;
 
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        typingCoroutine = StartCoroutine(TypeText(currentStep.message));
+
+        bool isLastStep = currentStepIndex == tutorialSequence.Count - 1;
+        continueButtonText.text = isLastStep ? finalContinueText : defaultContinueText;
     }
 
-    // Hide the tutorial
-    void HideTutorial()
+    private IEnumerator TypeText(string text)
     {
-        if (tutorialPanel != null)
+        isTyping = true;
+        tutorialText.text = "";
+
+        foreach (char letter in text.ToCharArray())
         {
-            tutorialPanel.SetActive(false);
+            tutorialText.text += letter;
+            yield return new WaitForSecondsRealtime(typingSpeed);
         }
+
+        isTyping = false;
     }
+
+    public void ContinueTutorial()
+    {
+        if (isTyping)
+        {
+            StopCoroutine(typingCoroutine);
+            tutorialText.text = fullMessage;
+            isTyping = false;
+            return;
+        }
+        ShowNextStep();
+    }
+
+    private void PauseGame()
+    {
+        previousTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
+    }
+
+    private void ResumeGame()
+    {
+        Time.timeScale = previousTimeScale;
+    }
+
+    public void HideTutorial()
+    {
+        isTutorialActive = false;
+        tutorialPanel.SetActive(false);
+        currentStepIndex = -1;
+        ResumeGame();
+    }
+
+
 }
