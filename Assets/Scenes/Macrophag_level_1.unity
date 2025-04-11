@@ -489,6 +489,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialUI
       objectReference: {fileID: 0}
+    - target: {fileID: 149983320017808349, guid: b2b9aa893ea43c742bd12651165eec42, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5925565271298559139, guid: b2b9aa893ea43c742bd12651165eec42, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4132,6 +4136,7 @@ MonoBehaviour:
   typingSpeed: 0.05
   defaultContinueText: "\u05D4\u05DE\u05E9\u05DA"
   finalContinueText: "\u05E7\u05D9\u05D1\u05DC\u05EA\u05D9!"
+  isTutorialActive: 0
 --- !u!114 &1962435095
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -342,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defenderPrefab: {fileID: 8597217134187310654, guid: 03621fc5bddfbf94699312e9ae083f73, type: 3}
   commanderUI: {fileID: 945040661}
-  defnderLimit: 200
+  defnderLimit: 10
 --- !u!1 &122669267
 GameObject:
   m_ObjectHideFlags: 0
@@ -3120,7 +3120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defenderPrefab: {fileID: 3520783666115149992, guid: 44b2dc615232e4442a28704068072faa, type: 3}
   commanderUI: {fileID: 945040661}
-  defnderLimit: 200
+  defnderLimit: 50
 --- !u!1 &1128210232
 GameObject:
   m_ObjectHideFlags: 0
@@ -3221,7 +3221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPool: {fileID: 1880900976}
-  spawnInterval: 30
+  spawnInterval: 27
   waveSize: 10
   waveSizeMultiplier: 1.2
   spawnPosition: {x: 1.54, y: 15, z: 0}
@@ -4019,7 +4019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defenderPrefab: {fileID: 1048574572917550357, guid: 9f7a145cca15de54e86a82162d20b38d, type: 3}
   commanderUI: {fileID: 945040661}
-  defnderLimit: 200
+  defnderLimit: 50
 --- !u!1 &1760185585
 GameObject:
   m_ObjectHideFlags: 0

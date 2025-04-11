@@ -101,6 +101,7 @@ MonoBehaviour:
   typingSpeed: 0.05
   defaultContinueText: "\u05D4\u05DE\u05E9\u05DA"
   finalContinueText: "\u05E7\u05D9\u05D1\u05DC\u05EA\u05D9!"
+  isTutorialActive: 0
 --- !u!1 &895598610736560162
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4283585279
   m_fontColor: {r: 1, g: 0.3226415, b: 0.3226415, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -264,14 +265,14 @@ RectTransform:
   m_GameObject: {fileID: 2969118854081415461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8.516953, y: 8.516953, z: 8.516953}
+  m_LocalScale: {x: 14.691646, y: 6.359113, z: 10.624899}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5925565271298559139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 289}
+  m_AnchoredPosition: {x: 0, y: 190}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8651802709412374463
@@ -304,7 +305,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 1404028623067837608, guid: 664cdaf8b063dcc419f6b2d66c6990be, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -427,7 +428,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -458,7 +459,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -804.58575, y: 77.05896, z: -836.5542, w: -362.62994}
+  m_margin: {x: -804.58575, y: 159.62347, z: -836.5542, w: -362.62994}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -500,7 +501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -423}
+  m_AnchoredPosition: {x: 0, y: -474}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1227564168592047543
