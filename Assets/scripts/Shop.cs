@@ -34,11 +34,6 @@ public class Shop : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     // Method to get the price of a defender button
     public int GetDefenderPrice(DefenderButton defenderButton)

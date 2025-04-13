@@ -16,7 +16,7 @@ public class BackToMenuButton : MonoBehaviour
 
     private void ReturnToMainMenu()
     {
-        LevelManager.Instance.LoadNextLevel();
+        LevelLoader.Instance.LoadLevel("MainMenu");
     }
 
 }

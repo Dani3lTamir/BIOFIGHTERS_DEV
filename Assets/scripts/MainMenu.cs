@@ -22,6 +22,11 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void PlayMultiplayer()
+    {
+        LevelLoader.Instance.LoadLevel("1v1_multi");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

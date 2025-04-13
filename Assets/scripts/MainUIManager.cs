@@ -9,7 +9,6 @@ public class MainUIManager : MonoBehaviour
     public Transform startUpPanel;
     public TextMeshProUGUI startUpNum;
 
-    public Image powerUpIconImage; // Reference to the UI Image component for the power-up icon
     public static MainUIManager Instance;
 
     private void Awake()

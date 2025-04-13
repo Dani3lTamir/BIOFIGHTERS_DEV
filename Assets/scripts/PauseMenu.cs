@@ -5,6 +5,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    [SerializeField] private bool shouldPauseGame = true; // Set this to true if you want to pause the game when the menu is opened
     private TriviaManager triviaManager;
 
 
@@ -44,7 +45,16 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        if (shouldPauseGame)
+        {
+            // Pause the game
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            // Resume the game
+            Time.timeScale = 1f;
+        }
         GameIsPaused = true;
     }
 
