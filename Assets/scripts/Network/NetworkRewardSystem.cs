@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class NetworkRewardSystem : NetworkBehaviour
 {
+    public static NetworkRewardSystem Instance;
     [System.Serializable]
     public class EnemyReward
     {
@@ -22,17 +23,25 @@ public class NetworkRewardSystem : NetworkBehaviour
     public int periodicCoinAmount = 10;
     public float periodicInterval = 30f;
 
+    public int startingClientCoins = 50;
+    public int startingHostCoins = 30;
+
     [Header("UI")]
     public TextMeshProUGUI coinsText;
 
     private Dictionary<string, int> enemyKillCounts = new Dictionary<string, int>();
 
     // NetworkVariable for each player
-    private NetworkVariable<int> hostCoins = new NetworkVariable<int>(50, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    private NetworkVariable<int> clientCoins = new NetworkVariable<int>(50, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    private NetworkVariable<int> hostCoins = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    private NetworkVariable<int> clientCoins = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
         NetworkEventManager.OnBothPlayersConnected += ActivateRewardSystem;
         NetworkEventManager.OnPlayerDisconnected += DeactivateRewardSystem;
     }
@@ -51,9 +60,8 @@ public class NetworkRewardSystem : NetworkBehaviour
     {
         if (IsServer)
         {
-            // Always reset to 50 on server
-            hostCoins.Value = 50;
-            clientCoins.Value = 50;
+            hostCoins.Value = startingHostCoins;
+            clientCoins.Value = startingClientCoins; 
             Debug.Log("[RewardSystem] Coins initialized for both host and client.");
         }
 
@@ -132,11 +140,32 @@ public class NetworkRewardSystem : NetworkBehaviour
             else 
             {
                 hostCoins.Value += rewardAmount;
-                ShowFloatingTextClientRpc("+" + rewardAmount, Color.green, NetworkManager.ServerClientId);
+                ShowFloatingTextClientRpc("+" + rewardAmount, Color.green, NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
             }
 
 
             Debug.Log($"[RewardSystem] +{rewardAmount} coins from killing {reward.killsRequired} {enemyType}s.");
+        }
+    }
+
+    public void DeductCoins(int amount, bool isPathogen)
+    {
+        if (IsServer)
+        {
+            if (!isPathogen)
+            {
+                hostCoins.Value -= amount;
+                ShowFloatingTextClientRpc("-" + amount, Color.red, NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
+            }
+            else
+            {
+                clientCoins.Value -= amount;
+                ShowFloatingTextClientRpc("-" + amount, Color.red, NetworkManager.Singleton.ConnectedClientsList[1].ClientId);
+            }
+        }
+        else
+        {
+            Debug.LogError("[RewardSystem] DeductCoins called on client. This should only be called on the server.");
         }
     }
 
@@ -155,5 +184,13 @@ public class NetworkRewardSystem : NetworkBehaviour
     private void DeactivateRewardSystem()
     {
         StopAllCoroutines();
+    }
+
+    public int GetCoins(bool isPathogen)
+    {
+        if (isPathogen)
+            return clientCoins.Value;
+        else
+            return hostCoins.Value;
     }
 }

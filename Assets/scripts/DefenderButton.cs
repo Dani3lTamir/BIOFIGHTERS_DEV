@@ -25,7 +25,7 @@ public class DefenderButton : MonoBehaviour
         if (RewardSystem.Instance.GetCoins() < defenderCost)
         {
             RectTransform rectTransform = GetComponent<RectTransform>();
-            FloatingTextManager.Instance.ShowFloatingText("χιτρξ οιΰ νιπιχεξιλ", rectTransform, Color.yellow);
+            FloatingTextManager.Instance.ShowFloatingText("ΧΧ™Χ ΧΧ΅Χ¤Χ™Χ§ Χ›Χ™ΧΧ•Χ§Χ™Χ Χ™Χ", rectTransform, Color.yellow);
             return;
         }
 
@@ -34,7 +34,7 @@ public class DefenderButton : MonoBehaviour
         if (gameObjectsWithTag.Length >= defnderLimit)
         {
             RectTransform rectTransform = GetComponent<RectTransform>();
-            FloatingTextManager.Instance.ShowFloatingText("δμαβξμ ϊςβδ", rectTransform, Color.yellow);
+            FloatingTextManager.Instance.ShowFloatingText("!Χ”Χ’ΧΆΧª ΧΧΧ’Χ‘ΧΧ”", rectTransform, Color.yellow);
             return;
         }
 

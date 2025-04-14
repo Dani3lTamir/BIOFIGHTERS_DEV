@@ -12,7 +12,7 @@ public class NetworkTimer : NetworkBehaviour
     [SerializeField] private float _gameDuration = 180f;
     [SerializeField] private bool _autoStart = true;
     [SerializeField] private TextMeshProUGUI _timerText;
-    
+
 
     [Header("Events")]
     public UnityEvent OnTimerStarted;
@@ -59,6 +59,10 @@ public class NetworkTimer : NetworkBehaviour
 
     private void Update()
     {
+        // Don't update if we're not spawned or the NetworkManager is shutting down
+        if (!IsSpawned || !NetworkManager.Singleton || !NetworkManager.Singleton.IsListening)
+            return;
+
         // Server updates the actual time
         if (IsServer && _timerRunning.Value)
         {
@@ -67,7 +71,7 @@ public class NetworkTimer : NetworkBehaviour
         }
 
         // All clients (including host client) get smooth updates
-        if (!IsServer || IsHost) 
+        if (!IsServer || IsHost)
         {
             _displayedTime = Mathf.SmoothDamp(
                 _displayedTime,
@@ -138,5 +142,15 @@ public class NetworkTimer : NetworkBehaviour
     private void HandleTimerStateChange(bool oldState, bool newState)
     {
         if (newState) OnTimerStarted?.Invoke();
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsServer)
+        {
+            NetworkManager.OnClientConnectedCallback -= HandleNewConnection;
+        }
+        _remainingTime.OnValueChanged -= HandleTimeUpdate;
+        _timerRunning.OnValueChanged -= HandleTimerStateChange;
     }
 }

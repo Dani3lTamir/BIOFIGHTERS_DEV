@@ -134,7 +134,6 @@ public class RewardSystem : MonoBehaviour
         coins -= amount;
         RectTransform rectTransform = coinsText.GetComponent<RectTransform>();
         FloatingTextManager.Instance.ShowFloatingText("-" + amount, rectTransform, Color.white);
-
     }
 
     public void AddCoins(int amount)

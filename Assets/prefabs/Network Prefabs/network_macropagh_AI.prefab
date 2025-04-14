@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3344628033649867404}
   - component: {fileID: 8396361147772335038}
   - component: {fileID: 207277348697974727}
-  - component: {fileID: 7774994742099981742}
+  - component: {fileID: 2178758351770036502}
   m_Layer: 0
   m_Name: 'tentacle-top-left '
   m_TagString: Untagged
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1459246, y: 0.79661536}
   m_EdgeRadius: 0
---- !u!114 &7774994742099981742
+--- !u!114 &2178758351770036502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,9 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 523839856803194795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc00e133e0dafb643957d5a1c1294902, type: 3}
+  m_Script: {fileID: 11500000, guid: a493b7de264fe6641bb6729f9dbc6606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   characterCenter: {fileID: 4016097489908103374}
   stretchSpeed: 8
   retractSpeed: 7
@@ -162,7 +163,7 @@ GameObject:
   - component: {fileID: 8680118702503192494}
   - component: {fileID: 460183563134316781}
   - component: {fileID: 7455666111336223624}
-  - component: {fileID: 737617004431116329}
+  - component: {fileID: 4401230953410311212}
   m_Layer: 0
   m_Name: tentacle-top
   m_TagString: Untagged
@@ -286,7 +287,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1659963, y: 0.8266851}
   m_EdgeRadius: 0
---- !u!114 &737617004431116329
+--- !u!114 &4401230953410311212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,9 +296,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2412576494056996412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc00e133e0dafb643957d5a1c1294902, type: 3}
+  m_Script: {fileID: 11500000, guid: a493b7de264fe6641bb6729f9dbc6606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   characterCenter: {fileID: 4016097489908103374}
   stretchSpeed: 8
   retractSpeed: 7
@@ -313,7 +315,7 @@ GameObject:
   - component: {fileID: 5361114550178699786}
   - component: {fileID: 1297682002258063713}
   - component: {fileID: 8054915788622672602}
-  - component: {fileID: 7897568542149648477}
+  - component: {fileID: 2088807793150390195}
   m_Layer: 0
   m_Name: tentacle-top-right
   m_TagString: Untagged
@@ -437,7 +439,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1789445, y: 0.86359316}
   m_EdgeRadius: 0
---- !u!114 &7897568542149648477
+--- !u!114 &2088807793150390195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -446,9 +448,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4159103865114282917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc00e133e0dafb643957d5a1c1294902, type: 3}
+  m_Script: {fileID: 11500000, guid: a493b7de264fe6641bb6729f9dbc6606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   characterCenter: {fileID: 4016097489908103374}
   stretchSpeed: 8
   retractSpeed: 7
@@ -464,9 +467,11 @@ GameObject:
   - component: {fileID: 4016097489908103374}
   - component: {fileID: 7462132440789249866}
   - component: {fileID: -4531617523853637438}
-  - component: {fileID: -4712490863931708709}
   - component: {fileID: -5568019572973345244}
   - component: {fileID: 8578867803755574220}
+  - component: {fileID: -4195941144357616884}
+  - component: {fileID: 4502456805250972150}
+  - component: {fileID: 3504741478882679}
   m_Layer: 0
   m_Name: network_macropagh_AI
   m_TagString: MacrophageAI
@@ -586,33 +591,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 5.07, y: 4.3}
   m_Direction: 0
---- !u!114 &-4712490863931708709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6194678883743992458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0913714128193ad4cb0a990e30e5a686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  detectionRange: 1
-  eColiCooldownDuration: 2
-  damage: 5
-  cooldownDuration: 6
-  yOffset: -3
-  catchLimit: 10
-  deathDelay: 1
-  tentacles:
-  - {fileID: 2841962764618830870}
-  - {fileID: 8653641261514839175}
-  - {fileID: 7897568542149648477}
-  - {fileID: 7774994742099981742}
-  - {fileID: 737617004431116329}
-  isInfected: 0
 --- !u!95 &-5568019572973345244
 Animator:
   serializedVersion: 7
@@ -647,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 4174181512
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -660,6 +638,116 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &-4195941144357616884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194678883743992458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
+  AutoOwnerAuthorityTickOffset: 1
+  PositionInterpolationType: 0
+  RotationInterpolationType: 0
+  ScaleInterpolationType: 0
+  PositionLerpSmoothing: 1
+  PositionMaxInterpolationTime: 0.1
+  RotationLerpSmoothing: 1
+  RotationMaxInterpolationTime: 0.1
+  ScaleLerpSmoothing: 1
+  ScaleMaxInterpolationTime: 0.1
+  AuthorityMode: 0
+  TickSyncChildren: 0
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 0
+  SyncRotAngleX: 0
+  SyncRotAngleY: 0
+  SyncRotAngleZ: 0
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &4502456805250972150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194678883743992458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1395613213
+    DestinationState: -190396218
+    TransitionDuration: 0
+    TriggerNameHash: -1566672390
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1395613213
+    DestinationState: 683586861
+    TransitionDuration: 0
+    TriggerNameHash: 792233903
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 683586861
+    DestinationState: 748362120
+    TransitionDuration: 0
+    TriggerNameHash: 60972478
+    TransitionIndex: 0
+  m_Animator: {fileID: -5568019572973345244}
+--- !u!114 &3504741478882679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194678883743992458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d175f52a9eff7b54c946e49f4e63cd6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  moveSpeed: 3
+  detectionRange: 1
+  eColiCooldownDuration: 2
+  damage: 5
+  cooldownDuration: 6
+  yOffset: -3
+  catchLimit: 10
+  deathDelay: 1
+  tentacles:
+  - {fileID: 8772155463304021705}
+  - {fileID: 4482068659256443588}
+  - {fileID: 2088807793150390195}
+  - {fileID: 2178758351770036502}
+  - {fileID: 4401230953410311212}
+  isInfected: 0
 --- !u!1 &6381025758151886917
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +759,7 @@ GameObject:
   - component: {fileID: 5607756769107976473}
   - component: {fileID: 3957257993875945301}
   - component: {fileID: 3222444848014954521}
-  - component: {fileID: 2841962764618830870}
+  - component: {fileID: 8772155463304021705}
   m_Layer: 0
   m_Name: tentacle-right
   m_TagString: Untagged
@@ -795,7 +883,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1159403, y: 0.8372281}
   m_EdgeRadius: 0
---- !u!114 &2841962764618830870
+--- !u!114 &8772155463304021705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -804,9 +892,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6381025758151886917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc00e133e0dafb643957d5a1c1294902, type: 3}
+  m_Script: {fileID: 11500000, guid: a493b7de264fe6641bb6729f9dbc6606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   characterCenter: {fileID: 4016097489908103374}
   stretchSpeed: 8
   retractSpeed: 7
@@ -822,7 +911,7 @@ GameObject:
   - component: {fileID: 8177246662165070957}
   - component: {fileID: 8909585025330599663}
   - component: {fileID: 4138921854219784592}
-  - component: {fileID: 8653641261514839175}
+  - component: {fileID: 4482068659256443588}
   m_Layer: 0
   m_Name: tentacle-left
   m_TagString: Untagged
@@ -946,7 +1035,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1369944, y: 0.76628053}
   m_EdgeRadius: 0
---- !u!114 &8653641261514839175
+--- !u!114 &4482068659256443588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -955,9 +1044,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8927666249166027154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc00e133e0dafb643957d5a1c1294902, type: 3}
+  m_Script: {fileID: 11500000, guid: a493b7de264fe6641bb6729f9dbc6606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   characterCenter: {fileID: 4016097489908103374}
   stretchSpeed: 8
   retractSpeed: 7

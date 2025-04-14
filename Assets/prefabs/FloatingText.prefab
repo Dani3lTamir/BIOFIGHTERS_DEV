@@ -68,7 +68,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\u05E7\u05D9\u05E4\u05E1\u05DE \u05DF\u05D9\u05D0 \u05DD\u05D9\u05E0\u05D9\u05E7\u05D5\u05DE\u05D9\u05DB "
-  m_isRightToLeft: 0
+  m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: 2dd6772dbdc642d45b9cee24c019fd6f, type: 2}
   m_sharedMaterial: {fileID: 563918946862962998, guid: 2dd6772dbdc642d45b9cee24c019fd6f, type: 2}
   m_fontSharedMaterials: []

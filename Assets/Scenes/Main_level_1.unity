@@ -199,7 +199,7 @@ RectTransform:
   - {fileID: 724636893}
   - {fileID: 1483050357}
   - {fileID: 176163540}
-  m_Father: {fileID: 846238512}
+  m_Father: {fileID: 1690728094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -373,7 +373,7 @@ RectTransform:
   m_Children:
   - {fileID: 246755460}
   - {fileID: 972675399}
-  m_Father: {fileID: 846238512}
+  m_Father: {fileID: 1690728094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1115,7 +1115,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 846238512}
+    m_TransformParent: {fileID: 1690728094}
     m_Modifications:
     - target: {fileID: 6639270673132901197, guid: c7620bf852c280442adf3c56aa9fd9cf, type: 3}
       propertyPath: m_Name
@@ -2494,48 +2494,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &846238511
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 846238512}
-  m_Layer: 5
-  m_Name: Immune_UI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &846238512
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846238511}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 945040658}
-  - {fileID: 2105796365}
-  - {fileID: 111717071}
-  - {fileID: 1615210783}
-  - {fileID: 122669268}
-  - {fileID: 237779215}
-  - {fileID: 443033672}
-  m_Father: {fileID: 1690728094}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &846619283
 GameObject:
   m_ObjectHideFlags: 0
@@ -2932,7 +2890,7 @@ RectTransform:
   m_LocalScale: {x: 1.7674508, y: 1.7674508, z: 1.7674508}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 846238512}
+  m_Father: {fileID: 1690728094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4091,8 +4049,14 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 846238512}
+  - {fileID: 945040658}
+  - {fileID: 2105796365}
+  - {fileID: 111717071}
+  - {fileID: 1615210783}
+  - {fileID: 122669268}
   - {fileID: 921785036}
+  - {fileID: 237779215}
+  - {fileID: 443033672}
   m_Father: {fileID: 691977256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4113,6 +4077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 237779214}
+  shouldPauseGame: 1
 --- !u!1 &1694888479
 GameObject:
   m_ObjectHideFlags: 0
@@ -5192,7 +5157,7 @@ RectTransform:
   - {fileID: 1898270393}
   - {fileID: 772524155}
   - {fileID: 1466130952}
-  m_Father: {fileID: 846238512}
+  m_Father: {fileID: 1690728094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5205,7 +5170,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 846238512}
+    m_TransformParent: {fileID: 1690728094}
     m_Modifications:
     - target: {fileID: 1786733912769714372, guid: 0071b3141adab08458ceb58ef6f106e9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5277,11 +5242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8926578162842050999, guid: 0071b3141adab08458ceb58ef6f106e9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1820
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8926578162842050999, guid: 0071b3141adab08458ceb58ef6f106e9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1100.0001
+      value: 120.000244
       objectReference: {fileID: 0}
     - target: {fileID: 8926578162842050999, guid: 0071b3141adab08458ceb58ef6f106e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5342,7 +5307,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 846238512}
+    m_TransformParent: {fileID: 1690728094}
     m_Modifications:
     - target: {fileID: 2722683010157418104, guid: 2cbda54681fdab34c8d6ebf1683579d4, type: 3}
       propertyPath: m_AnchorMax.x
