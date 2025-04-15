@@ -15,8 +15,12 @@ public class NetworkEcoliAI : NetworkBehaviour
     private readonly object movementLock = new object(); // Lock object for atomic operations
     private readonly object deathLock = new object(); // Lock object for atomic operations
 
-    void OnEnable()
+
+
+    public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+        if (!IsServer) return;
         EnableMovement();
         // Initialize the Ecoli when it is activated
         ChooseRandomTarget();
@@ -24,6 +28,8 @@ public class NetworkEcoliAI : NetworkBehaviour
 
     void Update()
     {
+        if (!IsServer) return; // Only the server should control the Ecoli's behavior
+
         if (!isMovementEnabled) return; // Skip movement logic if movement is disabled
 
         if (targetCell == null)

@@ -48,6 +48,15 @@ public class NetworkHealthSystem : NetworkBehaviour
             }
         }
     }
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+        currentHealth.OnValueChanged -= HandleHealthChanged;
+        if (healthBarInstance != null)
+        {
+            Destroy(healthBarInstance);
+        }
+    }
 
     private void Update()
     {
@@ -101,7 +110,7 @@ public class NetworkHealthSystem : NetworkBehaviour
         Color currentColor = spriteRenderer.color;
         spriteRenderer.color = new Color(1, 0, 0, currentColor.a);
         yield return new WaitForSeconds(0.1f);
-        spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, currentColor.a);
+        spriteRenderer.color = Color.white;
     }
 
     private void Die()
@@ -117,6 +126,11 @@ public class NetworkHealthSystem : NetworkBehaviour
             {
                 Debug.Log("Last BodyCell died. Pathogen won!.");
             }
+            else
+            {
+                // Reward Pathogen for killing a BodyCell
+                NetworkRewardSystem.Instance.RegisterEnemyKillServerRpc("BodyCell");
+            }
         }
 
         if (IsServer)
@@ -126,4 +140,5 @@ public class NetworkHealthSystem : NetworkBehaviour
     }
 
     public float GetCurrentHealth() => currentHealth.Value;
+    public void SetCurrentHealth(float value) => currentHealth.Value = value;
 }

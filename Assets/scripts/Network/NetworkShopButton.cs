@@ -30,17 +30,32 @@ public class NetworkShopButton : MonoBehaviour
         if (NetworkRewardSystem.Instance.GetCoins(isPathogen) < prefabCost)
         {
             RectTransform rectTransform = GetComponent<RectTransform>();
-            FloatingTextManager.Instance.ShowFloatingText("אין מספיק משאבים", rectTransform, Color.yellow);
+            FloatingTextManager.Instance.ShowFloatingText("םיבאשמ ןיא", rectTransform, Color.yellow);
             return;
         }
-
-        // if there are more than the limit of this kind of prefab, throw message and dont spawn
-        GameObject[] gameObjectsWithTag = GameObject.FindGameObjectsWithTag(prefab.tag);
-        if (gameObjectsWithTag.Length >= spawnLimit)
+        
+        // Special case for Covid because it changes it's tag
+        if (prefab.tag == "Covid" || prefab.tag == "CamoCovid")
         {
-            RectTransform rectTransform = GetComponent<RectTransform>();
-            FloatingTextManager.Instance.ShowFloatingText("הגעת למגבלה", rectTransform, Color.yellow);
-            return;
+            NetworkCovidAI[] covidInstances = FindObjectsOfType<NetworkCovidAI>();
+            if (covidInstances.Length >= spawnLimit)
+            {
+                RectTransform rectTransform = GetComponent<RectTransform>();
+                FloatingTextManager.Instance.ShowFloatingText("הלבגמל תעגה", rectTransform, Color.yellow);
+                return;
+            }
+        }
+
+        else
+        {
+            // if there are more than the limit of this kind of prefab, throw message and dont spawn
+            GameObject[] gameObjectsWithTag = GameObject.FindGameObjectsWithTag(prefab.tag);
+            if (gameObjectsWithTag.Length >= spawnLimit)
+            {
+                RectTransform rectTransform = GetComponent<RectTransform>();
+                FloatingTextManager.Instance.ShowFloatingText("הלבגמל תעגה", rectTransform, Color.yellow);
+                return;
+            }
         }
 
         if (prefab == null)

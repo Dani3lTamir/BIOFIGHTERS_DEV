@@ -14,6 +14,10 @@ public class NetworkMacrophageAI : NetworkBehaviour
     public float deathDelay = 1f; // Delay before dying after reaching the catch limit
     public NetworkTentacleAI[] tentacles; // Array of tentacles
     public bool isInfected = false; // Whether the Macrophage is infected
+    [SerializeField] private int infectionAmount = 2; // Amount of TB spawns
+    [SerializeField] private float infectionInterval = 2f; // Interval between TB spawns
+    [SerializeField] private int infectionPrefabIndex = 8; // Index in the NetworkPrefabSpawner
+
     private GameObject closestEnemy; // The closest enemy
     private bool isOnCooldown = false; // Cooldown state
     private bool isStretching = false; // Whether the Macrophage is currently stretching a tentacle
@@ -21,10 +25,17 @@ public class NetworkMacrophageAI : NetworkBehaviour
     private Transform infectionTarget; // The target to go to when infected
     private Vector3 randomTargetPosition; // Random position inside the cell collider
 
-
+    void OnEnable()
+    {
+        if (isInfected)
+        {
+            StartCoroutine(OnInfection());
+        }
+    }
 
     void Update()
     {
+        if (!IsServer) return; // Only the server should control the Macrophage's behavior
         Collider2D collider = GetComponent<Collider2D>();
 
         if (isOnCooldown || isStretching || isInfected || (collider != null && !collider.enabled)) return; // Skip logic if on cooldown, stretching, infected or collider is disabled
@@ -230,34 +241,29 @@ public class NetworkMacrophageAI : NetworkBehaviour
             moveSpeed * Time.deltaTime);
             yield return null;
         }
-        // Find and enable the BossSpawner component
-        BossSpawner bossSpawner = FindObjectOfType<BossSpawner>(true);
 
-        if (bossSpawner != null)
+        if (NetworkPrefabSpawner.Instance != null)
         {
             // Set puke animation
             if (animator != null)
                 animator.SetTrigger("Puke");
-            // Set spawn position to the Macrophage's position
-            bossSpawner.spawnPosition = transform.position;
-            bossSpawner.gameObject.SetActive(true); // Enable it
-            Debug.Log("BossSpawner enabled!");
-            // wait for the boss wave to spawn and die
-            yield return new WaitForSeconds(bossSpawner.spawnDelay * bossSpawner.waveSize);
-            bossSpawner.gameObject.SetActive(false);
+
+            for (int i = 0; i < infectionAmount; i++)
+            {
+                // Spawn TB prefab to the Macrophage's position
+                NetworkPrefabSpawner.Instance.SpawnPrefabServerRpc(infectionPrefabIndex, new Vector2(transform.position.x, transform.position.y));
+                // Wait for the infection interval before spawning the next one
+                yield return new WaitForSeconds(infectionInterval);
+            }
+            // wait for the TB wave to spawn and then die
             Die();
         }
         else
         {
-            Debug.LogError("BossSpawner not found in scene!");
+            Debug.LogError("NetworkPrefabSpawner not found in scene!");
         }
     }
 
-    public void Infect()
-    {
-        isInfected = true;
-        StartCoroutine(OnInfection());
-    }
 
     void Die()
     {

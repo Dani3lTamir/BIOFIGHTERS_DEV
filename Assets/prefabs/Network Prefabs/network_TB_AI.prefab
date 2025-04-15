@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2826531087813992135}
   - component: {fileID: 3457551476109218949}
   - component: {fileID: -9032693745025823718}
-  - component: {fileID: 2019525247500309674}
-  - component: {fileID: 6182189704367319493}
   - component: {fileID: 5997834523674040144}
+  - component: {fileID: 5338688007833835676}
   - component: {fileID: -7490574085108361093}
+  - component: {fileID: -2352764474558795592}
   m_Layer: 0
   m_Name: network_TB_AI
   m_TagString: Tuberculosis
@@ -157,38 +157,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2019525247500309674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7834864787724264456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f80eab10e527cf24280731a0f6e6f67d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  Yoffset: 100
-  currentHealth: 0
-  healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
-  deathScorePenalty: 100
---- !u!114 &6182189704367319493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7834864787724264456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6179170a2dd12240b9e32f0f9152fc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  damageInterval: 1
-  healthSystem: {fileID: 0}
 --- !u!114 &5997834523674040144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +182,22 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &5338688007833835676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834864787724264456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4336ab522b6dac943aadbbf19efd4adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  maxHealth: 100
+  Yoffset: 100
+  healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
 --- !u!114 &-7490574085108361093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,3 +244,19 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &-2352764474558795592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834864787724264456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646e4a68250560c469c8d88ccf9efbf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  moveSpeed: 2
+  damageInterval: 1
+  healthSystem: {fileID: 5338688007833835676}

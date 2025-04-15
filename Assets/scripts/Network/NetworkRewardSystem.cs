@@ -61,7 +61,7 @@ public class NetworkRewardSystem : NetworkBehaviour
         if (IsServer)
         {
             hostCoins.Value = startingHostCoins;
-            clientCoins.Value = startingClientCoins; 
+            clientCoins.Value = startingClientCoins;
             Debug.Log("[RewardSystem] Coins initialized for both host and client.");
         }
 
@@ -135,12 +135,14 @@ public class NetworkRewardSystem : NetworkBehaviour
             if (enemyType == "BodyCell")
             {
                 clientCoins.Value += rewardAmount;
-                ShowFloatingTextClientRpc("+" + rewardAmount, Color.green, NetworkManager.Singleton.ConnectedClientsList[1].ClientId);
+                if (NetworkManager.Singleton.ConnectedClientsList.Count > 1)
+                    ShowFloatingTextClientRpc("+" + rewardAmount, Color.green, NetworkManager.Singleton.ConnectedClientsList[1].ClientId);
             }
-            else 
+            else
             {
                 hostCoins.Value += rewardAmount;
-                ShowFloatingTextClientRpc("+" + rewardAmount, Color.green, NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
+                if (NetworkManager.Singleton.ConnectedClientsList.Count > 0)
+                    ShowFloatingTextClientRpc("+" + rewardAmount, Color.green, NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
             }
 
 

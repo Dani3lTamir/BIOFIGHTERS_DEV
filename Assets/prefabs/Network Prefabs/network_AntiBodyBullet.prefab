@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2534303859917019260}
   - component: {fileID: 7789087303751252715}
-  - component: {fileID: 1653934602094431451}
   - component: {fileID: 3058012911756914536}
   - component: {fileID: 6941009457698693848}
+  - component: {fileID: -7841295821411601885}
   m_Layer: 0
   m_Name: network_AntiBodyBullet
   m_TagString: Untagged
@@ -90,20 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1653934602094431451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5091388408756514701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef62ed30b7c0ac4faaf29d7bb10ebd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  damage: 10
 --- !u!114 &3058012911756914536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +161,18 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &-7841295821411601885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091388408756514701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1aae8e1a8cfeb4e9da9ce1eb0b81a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  moveSpeed: 5
+  damage: 10

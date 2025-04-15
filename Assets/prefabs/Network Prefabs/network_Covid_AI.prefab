@@ -12,10 +12,12 @@ GameObject:
   - component: {fileID: 2826531087813992135}
   - component: {fileID: 3457551476109218949}
   - component: {fileID: -9032693745025823718}
-  - component: {fileID: 2019525247500309674}
-  - component: {fileID: 2451505165138293765}
   - component: {fileID: 8454215558503912287}
+  - component: {fileID: 8648847720084554573}
+  - component: {fileID: -4258574692353926323}
   - component: {fileID: -4996767751859880646}
+  - component: {fileID: 4661111186774657355}
+  - component: {fileID: 8054635645377922032}
   m_Layer: 0
   m_Name: network_Covid_AI
   m_TagString: CamoCovid
@@ -157,43 +159,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2019525247500309674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7834864787724264456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f80eab10e527cf24280731a0f6e6f67d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 40
-  Yoffset: 100
-  currentHealth: 0
-  healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
-  deathScorePenalty: 100
---- !u!114 &2451505165138293765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7834864787724264456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb61d882e6ace8b4dbe510a0d6756c47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3.5
-  damageInterval: 1
-  damagePerTick: 10
-  healthSystem: {fileID: 2019525247500309674}
-  multiFactor: 2
-  duplicationWeakeningFactor: 3
-  isCamo: 1
-  covidPrefab: {fileID: 7834864787724264456}
 --- !u!114 &8454215558503912287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +184,45 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &8648847720084554573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834864787724264456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4336ab522b6dac943aadbbf19efd4adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  maxHealth: 30
+  Yoffset: 100
+  healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
+--- !u!114 &-4258574692353926323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834864787724264456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 114ef88bfaa28a543b8ff866efd36375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  moveSpeed: 3.5
+  damageInterval: 1
+  damagePerTick: 10
+  healthSystem: {fileID: 8648847720084554573}
+  multiFactor: 2
+  duplicationWeakeningFactor: 3
+  multiLimit: 13
+  covidPrefabIndex: 3
+  animator: {fileID: 4661111186774657355}
+  isCamo: 0
 --- !u!114 &-4996767751859880646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,3 +269,61 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!95 &4661111186774657355
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834864787724264456}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e9a74cbb599f234e9b3a1d3625129cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8054635645377922032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834864787724264456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -2063589072
+    DestinationState: -1757716185
+    TransitionDuration: 0
+    TriggerNameHash: 179109433
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -1757716185
+    DestinationState: -2063589072
+    TransitionDuration: 0
+    TriggerNameHash: -324083461
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 2081823275
+    DestinationState: -2063589072
+    TransitionDuration: 0
+    TriggerNameHash: -324083461
+    TransitionIndex: 0
+  m_Animator: {fileID: 4661111186774657355}

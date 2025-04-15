@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 6187636999623157014}
   - component: {fileID: 3835803855072192959}
   - component: {fileID: 7984792110767970429}
-  - component: {fileID: 1437629325668263097}
-  - component: {fileID: 1188111424153279322}
   - component: {fileID: 64848940659304284}
+  - component: {fileID: 1439923156867347482}
+  - component: {fileID: 1188111424153279322}
   - component: {fileID: 1687942730425385422}
+  - component: {fileID: -7853451864537407784}
   m_Layer: 0
   m_Name: network_Neutrophil_AI
   m_TagString: NeutrophilAI
@@ -129,45 +130,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 4.63, y: 4.6}
   m_Direction: 0
---- !u!114 &1437629325668263097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048574572917550357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22ee524b1359dfe4593c9e44f139e1d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  maxPuddles: 5
-  enzymePuddlePrefab: {fileID: 3525190882193832180, guid: 9918952d76026404a9cc32e61250a50b, type: 3}
-  finalPuddlePrefab: {fileID: 3525190882193832180, guid: e4e8ee39683aab24384bc0e62ddee385, type: 3}
-  animator: {fileID: 1188111424153279322}
---- !u!95 &1188111424153279322
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048574572917550357}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff23451df9175344398656fd19a8676b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &64848940659304284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +155,46 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &1439923156867347482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048574572917550357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75247228764d002479749fab9512907c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  moveSpeed: 2
+  maxPuddles: 5
+  enzymePuddlePrefabIndex: 10
+  finalPuddlePrefabIndex: 11
+  animator: {fileID: 1188111424153279322}
+--- !u!95 &1188111424153279322
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048574572917550357}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff23451df9175344398656fd19a8676b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1687942730425385422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,3 +241,25 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &-7853451864537407784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048574572917550357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1657226368
+    DestinationState: 1112830783
+    TransitionDuration: 0
+    TriggerNameHash: -2089520065
+    TransitionIndex: 0
+  m_Animator: {fileID: 1188111424153279322}

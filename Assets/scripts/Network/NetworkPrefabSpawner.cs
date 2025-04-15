@@ -7,7 +7,7 @@ public class NetworkPrefabSpawner : NetworkBehaviour
 {
     public static NetworkPrefabSpawner Instance;
 
-    [SerializeField] private GameObject[] spawnablePrefabs; // Assign in Inspector
+    public GameObject[] spawnablePrefabs; // Assign in Inspector
 
     private int selectedPrefabIndex = -1;
     private int selectedCost;
@@ -99,7 +99,7 @@ public class NetworkPrefabSpawner : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    void SpawnPrefabServerRpc(int prefabIndex, Vector2 position)
+    public void SpawnPrefabServerRpc(int prefabIndex, Vector2 position)
     {
         if (prefabIndex < 0 || prefabIndex >= spawnablePrefabs.Length)
         {
@@ -119,5 +119,15 @@ public class NetworkPrefabSpawner : NetworkBehaviour
         {
             NetworkRewardSystem.Instance.DeductCoins(selectedCost, isPathogen);
         }
+    }
+
+    public GameObject GetPrefab(int prefabIndex)
+    {
+        if (prefabIndex < 0 || prefabIndex >= spawnablePrefabs.Length)
+        {
+            Debug.LogError("[NetworkPrefabSpawner] Invalid prefab index.");
+            return null;
+        }
+        return spawnablePrefabs[prefabIndex];
     }
 }

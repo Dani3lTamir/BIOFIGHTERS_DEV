@@ -4,11 +4,11 @@ using Unity.Netcode;
 
 public class NetworkSalmonelaAI : NetworkBehaviour, IBoss
 {
-    public float moveSpeed = 2f; // Speed at which the Ecoli moves
+    public float moveSpeed = 2f; // Speed at which the Object moves
     public float damageInterval = 1f; // Time between damage ticks
     public float damagePerTick { get; set; } = 1f; // Damage caused per tick
     public float damagePerTickMultiplier { get; set; } = 1f; // Multiplier for damage per tick
-    private Transform targetCell; // The body cell the Ecoli is targeting
+    private Transform targetCell; // The body cell the Object is targeting
     private bool isAttacking = false;
     private Vector3 randomTargetPosition; // Random position inside the cell collider
     private bool isMovementEnabled = true; // Whether movement is enabled
@@ -20,6 +20,7 @@ public class NetworkSalmonelaAI : NetworkBehaviour, IBoss
 
     void OnEnable()
     {
+        if (!IsServer) return; 
         // Initialize the Salmonela when it is activated
         ChooseRandomTarget();
     }
@@ -39,6 +40,7 @@ public class NetworkSalmonelaAI : NetworkBehaviour, IBoss
 
     void Update()
     {
+        if (!IsServer) return; // Only the server should control the Object's behavior
         if (!isMovementEnabled) return; // Skip movement logic if movement is disabled
         if (targetCell == null)
         {
@@ -97,7 +99,7 @@ public class NetworkSalmonelaAI : NetworkBehaviour, IBoss
         // Move towards the random position inside the target body cell
         transform.position = Vector3.MoveTowards(transform.position, randomTargetPosition, moveSpeed * Time.deltaTime);
 
-        // Check if the Ecoli has reached the random position inside the target body cell
+        // Check if the Object has reached the random position inside the target body cell
         if (Vector3.Distance(transform.position, randomTargetPosition) < 0.1f)
         {
             StartCoroutine(AttackCell());

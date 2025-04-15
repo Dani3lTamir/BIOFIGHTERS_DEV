@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   maxHealth: 150
-  Yoffset: 100
+  Yoffset: 50
   healthBarPrefab: {fileID: 7540753422596680800, guid: 2a7f759c95f4d6a4f955bfa38d26fcfe, type: 3}
 --- !u!114 &-994965868963581758
 MonoBehaviour:
@@ -258,5 +258,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   moveSpeed: 2
-  damageInterval: 0.3
+  damageInterval: 1.5
   healthSystem: {fileID: 2749973518252113304}
