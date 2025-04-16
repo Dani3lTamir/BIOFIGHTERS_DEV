@@ -20,7 +20,9 @@ public class NetworkRewardSystem : NetworkBehaviour
     public float rewardMultiplier = 1f;
 
     [Header("Periodic Reward")]
-    public int periodicCoinAmount = 10;
+
+    public int immunePeriodicCoinAmount = 10;
+    public int pathogenPeriodicCoinAmount = 20;
     public float periodicInterval = 30f;
 
     public int startingClientCoins = 50;
@@ -40,11 +42,30 @@ public class NetworkRewardSystem : NetworkBehaviour
         if (Instance == null)
             Instance = this;
         else
+        {
+            Debug.LogWarning("[RewardSystem] Another instance of NetworkRewardSystem was found. Destroying this one.");
             Destroy(gameObject);
+        }
 
         NetworkEventManager.OnBothPlayersConnected += ActivateRewardSystem;
-        NetworkEventManager.OnPlayerDisconnected += DeactivateRewardSystem;
     }
+
+    public override void OnNetworkSpawn()
+    {
+        if (IsHost)
+        {
+            hostCoins.OnValueChanged += OnCoinsChanged;
+            UpdateCoinText(hostCoins.Value);
+            Debug.Log("[RewardSystem] Host UI set up.");
+        }
+        else if (IsClient && !IsServer)
+        {
+            clientCoins.OnValueChanged += OnCoinsChanged;
+            UpdateCoinText(clientCoins.Value);
+            Debug.Log("[RewardSystem] Client UI set up.");
+        }
+    }
+
 
     private void ActivateRewardSystem()
     {
@@ -64,24 +85,11 @@ public class NetworkRewardSystem : NetworkBehaviour
             clientCoins.Value = startingClientCoins;
             Debug.Log("[RewardSystem] Coins initialized for both host and client.");
         }
-
-        // Register UI listener based on player type
-        if (IsHost)
-        {
-            hostCoins.OnValueChanged += OnCoinsChanged;
-            UpdateCoinText(hostCoins.Value);
-            Debug.Log("[RewardSystem] Host UI set up.");
-        }
-        else if (IsClient && !IsServer)
-        {
-            clientCoins.OnValueChanged += OnCoinsChanged;
-            UpdateCoinText(clientCoins.Value);
-            Debug.Log("[RewardSystem] Client UI set up.");
-        }
     }
 
     private void OnCoinsChanged(int oldVal, int newVal)
     {
+
         UpdateCoinText(newVal);
     }
 
@@ -102,15 +110,15 @@ public class NetworkRewardSystem : NetworkBehaviour
         while (true)
         {
             yield return new WaitForSeconds(periodicInterval);
-            int amount = Mathf.RoundToInt(periodicCoinAmount * rewardMultiplier);
+            int immuneAmount = Mathf.RoundToInt(immunePeriodicCoinAmount * rewardMultiplier);
+            int pathogenAmount = Mathf.RoundToInt(pathogenPeriodicCoinAmount * rewardMultiplier);
 
-            hostCoins.Value += amount;
-            clientCoins.Value += amount;
+            hostCoins.Value += immuneAmount;
+            clientCoins.Value += pathogenAmount;
 
-            Debug.Log($"[RewardSystem] +{amount} coins for BOTH players. Host: {hostCoins.Value}, Client: {clientCoins.Value}");
 
-            ShowFloatingTextClientRpc("+" + amount, Color.green, NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
-            ShowFloatingTextClientRpc("+" + amount, Color.green, NetworkManager.Singleton.ConnectedClientsList[1].ClientId); // assumes exactly 2 players
+            ShowFloatingTextClientRpc("+" + immuneAmount, Color.green, NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
+            ShowFloatingTextClientRpc("+" + pathogenAmount, Color.green, NetworkManager.Singleton.ConnectedClientsList[1].ClientId); // assumes exactly 2 players
         }
     }
 
@@ -156,11 +164,21 @@ public class NetworkRewardSystem : NetworkBehaviour
         {
             if (!isPathogen)
             {
+                if (hostCoins.Value < amount)
+                {
+                    Debug.Log("[RewardSystem] Not enough coins to deduct.");
+                    return;
+                }
                 hostCoins.Value -= amount;
                 ShowFloatingTextClientRpc("-" + amount, Color.red, NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
             }
             else
             {
+                if (clientCoins.Value < amount)
+                {
+                    Debug.Log("[RewardSystem] Not enough coins to deduct.");
+                    return;
+                }
                 clientCoins.Value -= amount;
                 ShowFloatingTextClientRpc("-" + amount, Color.red, NetworkManager.Singleton.ConnectedClientsList[1].ClientId);
             }
@@ -195,4 +213,12 @@ public class NetworkRewardSystem : NetworkBehaviour
         else
             return hostCoins.Value;
     }
+
+    private void OnDestroy()
+    {
+        NetworkEventManager.OnBothPlayersConnected -= ActivateRewardSystem;
+    }
+
+
+
 }

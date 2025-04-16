@@ -99,6 +99,7 @@ public class NetworkDCAI : NetworkBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (!IsServer) return; // Only the server should control the DC Defender's behavior
         if (other.CompareTag("Ecoli") && caughtEcoli.Count < catchLimit && (other.GetComponent<NetworkEcoliAI>().getMovmentStatus()))
         {
             // Catch the Ecoli

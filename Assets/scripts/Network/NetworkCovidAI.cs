@@ -15,7 +15,6 @@ public class NetworkCovidAI : NetworkBehaviour, IBoss
     public int multiLimit = 13; // Maximum number of covids that can be created
     [SerializeField] private int covidPrefabIndex;
     [SerializeField] private Animator animator;
-    private bool isCamo = false;
     private Transform targetCell;
     private bool isAttacking = false;
     private bool isMultiplying = false;
@@ -24,12 +23,10 @@ public class NetworkCovidAI : NetworkBehaviour, IBoss
 
     private readonly object movementLock = new object();
 
-    void OnNetworkSpawn()
+
+    void OnEnable()
     {
-        base.OnNetworkSpawn();
-        if (!IsServer) return; // Only the server should control the Covid's behavior
-        // Initialize the Covid when it is activated
-        ChooseWeakestTarget();
+        animator.SetTrigger("Camo");
     }
 
 
@@ -63,12 +60,6 @@ public class NetworkCovidAI : NetworkBehaviour, IBoss
 
     void ChooseWeakestTarget()
     {
-        if (!isCamo)
-        {
-            gameObject.tag = "CamoCovid";
-            animator.SetTrigger("Camo");
-            isCamo = true;
-        }
         GameObject[] bodyCells = GameObject.FindGameObjectsWithTag("BodyCell");
 
 
@@ -260,16 +251,9 @@ public class NetworkCovidAI : NetworkBehaviour, IBoss
 
     public void DisableCamo()
     {
-        RemoveCamoVisuals();
-    }
-
-
-    private void RemoveCamoVisuals()
-    {
         animator.SetTrigger("DisableCamo");
         Debug.Log("Removing camo visuals from Covid.");
         gameObject.tag = "Covid";
-        isCamo = false;
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
     }
 }

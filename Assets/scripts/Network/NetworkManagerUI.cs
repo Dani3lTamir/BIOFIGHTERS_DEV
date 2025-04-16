@@ -5,10 +5,17 @@ using Unity.Netcode;
 public class NetworkManagerUI : MonoBehaviour
 {
     public static NetworkManagerUI Instance; // Singleton instance
-    [SerializeField] private Button hostBtn;
-    [SerializeField] private Button clientBtn;
     [SerializeField] private GameObject immuneUI; // Assign in Inspector
     [SerializeField] private GameObject pathogenUI; // Assign in Inspector
+
+    [SerializeField] private GameObject immuneWinUI; // Assign in Inspector
+    [SerializeField] private GameObject immuneLoseUI; // Assign in Inspector
+    [SerializeField] private GameObject pathogenWinUI; // Assign in Inspector
+    [SerializeField] private GameObject pathogenLoseUI; // Assign in Inspector
+
+    [SerializeField] private GameObject playerDisconnectUI; // Assign in Inspector
+
+    [SerializeField] private GameObject lobbyUI; // Assign in Inspector
 
 
 
@@ -25,16 +32,6 @@ public class NetworkManagerUI : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Set up button listeners
-        hostBtn.onClick.AddListener(() =>
-        {
-            NetworkManager.Singleton.StartHost();
-        });
-
-        clientBtn.onClick.AddListener(() =>
-        {
-            NetworkManager.Singleton.StartClient();
-        });
     }
 
 
@@ -52,5 +49,32 @@ public class NetworkManagerUI : MonoBehaviour
         }
     }
 
+    public void SetImmuneWinUIActive()
+    {
+        immuneWinUI.SetActive(true);
+    }
+    public void SetImmuneLoseUIActive()
+    {
+        immuneLoseUI.SetActive(true);
+    }
 
+    public void SetPathogenLoseUIActive()
+    {
+        pathogenLoseUI.SetActive(true);
+    }
+
+    public void SetPathogenWinUIActive()
+    {
+        pathogenWinUI.SetActive(true);
+    }
+
+    public void SetPlayerDisconnectUIActive()
+    {
+        playerDisconnectUI.SetActive(true);
+    }
+
+    public void SetLobbyUIInactive()
+    {
+        lobbyUI.SetActive(false);
+    }
 }

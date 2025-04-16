@@ -2,6 +2,8 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using System;
+
 
 [RequireComponent(typeof(NetworkObject))]
 public class NetworkTimer : NetworkBehaviour
@@ -14,9 +16,8 @@ public class NetworkTimer : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI _timerText;
 
 
-    [Header("Events")]
-    public UnityEvent OnTimerStarted;
-    public UnityEvent OnTimerEnded;
+    public event Action OnTimerStarted;
+    public event Action OnTimerEnded;
 
     private NetworkVariable<float> _remainingTime = new NetworkVariable<float>(
         default,
@@ -36,6 +37,7 @@ public class NetworkTimer : NetworkBehaviour
     {
         if (Instance != null && Instance != this)
         {
+            Debug.LogWarning("[NetworkTimer] Another instance of NetworkTimer was found. Destroying this one.");
             Destroy(gameObject);
             return;
         }
@@ -144,12 +146,10 @@ public class NetworkTimer : NetworkBehaviour
         if (newState) OnTimerStarted?.Invoke();
     }
 
-    public override void OnNetworkDespawn()
+    private void OnDestroy()
     {
-        if (IsServer)
-        {
-            NetworkManager.OnClientConnectedCallback -= HandleNewConnection;
-        }
+
+        NetworkManager.OnClientConnectedCallback -= HandleNewConnection;
         _remainingTime.OnValueChanged -= HandleTimeUpdate;
         _timerRunning.OnValueChanged -= HandleTimerStateChange;
     }

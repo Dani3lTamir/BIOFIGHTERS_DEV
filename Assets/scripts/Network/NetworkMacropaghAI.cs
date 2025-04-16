@@ -25,13 +25,38 @@ public class NetworkMacrophageAI : NetworkBehaviour
     private Transform infectionTarget; // The target to go to when infected
     private Vector3 randomTargetPosition; // Random position inside the cell collider
 
-    void OnEnable()
+    public override void OnNetworkSpawn()
     {
+        StopAllCoroutines(); // Stop any ongoing coroutines
+        caughtEnemiesCount = 0; // Reset the counter for caught enemies
+        isOnCooldown = false; // Reset the cooldown state
+        infectionTarget = null; // Reset the infection target
+        closestEnemy = null; // Reset the closest enemy
+        isStretching = false; // Reset the stretching state
+
         if (isInfected)
         {
             StartCoroutine(OnInfection());
         }
     }
+
+    private void ResetState()
+    {
+        isOnCooldown = false;
+        isStretching = false;
+        caughtEnemiesCount = 0;
+        infectionTarget = null;
+        closestEnemy = null;
+
+
+        // Reactivate collider (if you disable it somewhere else)
+        var col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = true;
+
+        StopAllCoroutines(); // Just in case any are still dangling
+    }
+
 
     void Update()
     {
@@ -176,7 +201,7 @@ public class NetworkMacrophageAI : NetworkBehaviour
         {
             // Add a short delay before dying
             yield return new WaitForSeconds(deathDelay);
-            Die();
+            NetworkObject.Despawn(true);
             yield break; // Exit the coroutine
         }
 
@@ -256,7 +281,7 @@ public class NetworkMacrophageAI : NetworkBehaviour
                 yield return new WaitForSeconds(infectionInterval);
             }
             // wait for the TB wave to spawn and then die
-            Die();
+            NetworkObject.Despawn(true);
         }
         else
         {
@@ -265,10 +290,4 @@ public class NetworkMacrophageAI : NetworkBehaviour
     }
 
 
-    void Die()
-    {
-        // Handle the death of the Macrophage (e.g., play animation, destroy object, etc.)
-        Debug.Log("Macrophage has reached the catch limit and is dying.");
-        NetworkObject.Despawn(true);
-    }
 }

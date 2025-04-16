@@ -70,10 +70,7 @@ public class NetworkTBAI : NetworkBehaviour, IBoss
             GenerateRandomTargetPosition();
 
         }
-        else
-        {
-            Debug.Log("You Lost!");
-        }
+
     }
 
 

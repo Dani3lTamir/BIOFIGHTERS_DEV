@@ -45,7 +45,8 @@ public class NetworkPrefabSpawner : NetworkBehaviour
         }
     }
 
-    public void SetSelectedPrefab(int prefabIndex, int cost, bool pathogen)
+    [ServerRpc(RequireOwnership = false)]
+    public void TryBuyPrefabServerRpc(int prefabIndex, int cost, bool pathogen, int spawnLimit)
     {
         if (prefabIndex < 0 || prefabIndex >= spawnablePrefabs.Length)
         {
@@ -56,6 +57,30 @@ public class NetworkPrefabSpawner : NetworkBehaviour
         selectedPrefabIndex = prefabIndex;
         selectedCost = cost;
         isPathogen = pathogen;
+        ulong clientId = isPathogen ? 1ul : 0ul; // Hardcoded: Pathogen = client 1, Defender = client 0
+
+
+        // Check if player has enough coins
+        if (NetworkRewardSystem.Instance.GetCoins(pathogen) < cost)
+        {
+            ShowFloatingTextClientRpc("םיבאשמ ןיא", clientId); // "Not enough coins"
+            return;
+        }
+
+        // Check spawn limit
+        string tagToCheck = spawnablePrefabs[prefabIndex].tag;
+        int currentCount = 0;
+
+        if (tagToCheck == "Covid" || tagToCheck == "CamoCovid")
+            currentCount = GameObject.FindObjectsOfType<NetworkCovidAI>().Length;
+        else
+            currentCount = GameObject.FindGameObjectsWithTag(tagToCheck).Length;
+
+        if (currentCount >= spawnLimit)
+        {
+            ShowFloatingTextClientRpc("הלבגמל תעגה", clientId); // "Spawn limit reached"
+            return;
+        }
 
         if (!isPathogen)
         {
@@ -63,6 +88,7 @@ public class NetworkPrefabSpawner : NetworkBehaviour
             preview.GetComponent<Collider2D>().enabled = false;
             isDragging = true;
         }
+
         else
         {
             Vector2 spawnPosition = GetFixedSpawnPosition();
@@ -130,4 +156,17 @@ public class NetworkPrefabSpawner : NetworkBehaviour
         }
         return spawnablePrefabs[prefabIndex];
     }
+
+    [ClientRpc]
+    void ShowFloatingTextClientRpc(string message, ulong targetClientId)
+    {
+        if (NetworkManager.Singleton.LocalClientId != targetClientId) return;
+
+        if (NetworkShopButton.lastClickedButton != null)
+        {
+            RectTransform rectTransform = NetworkShopButton.lastClickedButton.GetComponent<RectTransform>();
+            FloatingTextManager.Instance.ShowFloatingText(message, rectTransform, Color.yellow);
+        }
+    }
+
 }

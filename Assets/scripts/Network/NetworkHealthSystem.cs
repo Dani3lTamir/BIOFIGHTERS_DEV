@@ -69,7 +69,7 @@ public class NetworkHealthSystem : NetworkBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (IsServer)
+        if (IsServer && NetworkEventManager.Instance != null && !NetworkEventManager.Instance.IsGameEnded())
         {
             currentHealth.Value = Mathf.Clamp(currentHealth.Value - amount, 0, maxHealth);
             if (currentHealth.Value <= 0)
@@ -124,7 +124,8 @@ public class NetworkHealthSystem : NetworkBehaviour
             GameObject[] bodyCells = GameObject.FindGameObjectsWithTag("BodyCell");
             if (bodyCells.Length <= 1)
             {
-                Debug.Log("Last BodyCell died. Pathogen won!.");
+                // Request pathogen win from server
+                NetworkEventManager.Instance.RequestPathogenWinServerRpc();
             }
             else
             {

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Unity.Netcode;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -26,13 +27,13 @@ public class LevelLoader : MonoBehaviour
 
     void Update()
     {
-        // For debugging purposes, load the next level when pressing the 'N' key
-        if (Input.GetKeyDown(KeyCode.N))
+        // For debugging purposes, load the next level when pressing the 'N' key except in the multiplayer lobby
+        if (Input.GetKeyDown(KeyCode.N) && SceneManager.GetActiveScene().name != "1v1_multi")
         {
             LoadNextLevel();
         }
-        // For debugging purposes, reload the level when pressing the 'R' key
-        if (Input.GetKeyDown(KeyCode.O))
+        // For debugging purposes, reload the level when pressing the 'O' key except in the multiplayer lobby
+        if (Input.GetKeyDown(KeyCode.O) && SceneManager.GetActiveScene().name != "1v1_multi")
         {
             LoadLevel(SceneManager.GetActiveScene().buildIndex);
         }

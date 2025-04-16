@@ -13,6 +13,8 @@ public class NetworkShopButton : MonoBehaviour
     [SerializeField] private int prefabCost = 0; // The cost of the prefab
     [SerializeField] private TextMeshProUGUI priceText; // Reference to the price text
 
+    public static NetworkShopButton lastClickedButton;
+
     private Button button;
 
     void Start()
@@ -24,46 +26,10 @@ public class NetworkShopButton : MonoBehaviour
 
     void SelectPrefab()
     {
+        lastClickedButton = this; // Store the last clicked button
         // Notify the commander UI to move to this button's position
         commanderUI.MoveToButton(transform.position.x);
-        // if the player can't afford the buy, return
-        if (NetworkRewardSystem.Instance.GetCoins(isPathogen) < prefabCost)
-        {
-            RectTransform rectTransform = GetComponent<RectTransform>();
-            FloatingTextManager.Instance.ShowFloatingText("םיבאשמ ןיא", rectTransform, Color.yellow);
-            return;
-        }
-        
-        // Special case for Covid because it changes it's tag
-        if (prefab.tag == "Covid" || prefab.tag == "CamoCovid")
-        {
-            NetworkCovidAI[] covidInstances = FindObjectsOfType<NetworkCovidAI>();
-            if (covidInstances.Length >= spawnLimit)
-            {
-                RectTransform rectTransform = GetComponent<RectTransform>();
-                FloatingTextManager.Instance.ShowFloatingText("הלבגמל תעגה", rectTransform, Color.yellow);
-                return;
-            }
-        }
-
-        else
-        {
-            // if there are more than the limit of this kind of prefab, throw message and dont spawn
-            GameObject[] gameObjectsWithTag = GameObject.FindGameObjectsWithTag(prefab.tag);
-            if (gameObjectsWithTag.Length >= spawnLimit)
-            {
-                RectTransform rectTransform = GetComponent<RectTransform>();
-                FloatingTextManager.Instance.ShowFloatingText("הלבגמל תעגה", rectTransform, Color.yellow);
-                return;
-            }
-        }
-
-        if (prefab == null)
-        {
-            Debug.LogError("[shop button]Prefab is not assigned in the inspector.");
-        }
-
         // Pass the selected prefab Index and cost to the spawner
-        NetworkPrefabSpawner.Instance.SetSelectedPrefab(prefabIndex, prefabCost, isPathogen);
+        NetworkPrefabSpawner.Instance.TryBuyPrefabServerRpc(prefabIndex, prefabCost, isPathogen, spawnLimit);
     }
 }
