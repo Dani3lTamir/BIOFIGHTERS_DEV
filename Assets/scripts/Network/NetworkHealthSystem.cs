@@ -60,6 +60,12 @@ public class NetworkHealthSystem : NetworkBehaviour
 
     private void Update()
     {
+        if (NetworkEventManager.Instance.IsGameEnded() && healthBarInstance != null)
+        {
+            healthBarInstance.SetActive(false);
+            return;
+        }
+
         if (healthBarInstance != null && healthBarInstance.activeSelf)
         {
             Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
@@ -69,6 +75,10 @@ public class NetworkHealthSystem : NetworkBehaviour
 
     public void TakeDamage(float amount)
     {
+        if (NetworkEventManager.Instance.IsGameEnded())
+        {
+            return;
+        }
         if (IsServer && NetworkEventManager.Instance != null && !NetworkEventManager.Instance.IsGameEnded())
         {
             currentHealth.Value = Mathf.Clamp(currentHealth.Value - amount, 0, maxHealth);
@@ -81,7 +91,7 @@ public class NetworkHealthSystem : NetworkBehaviour
     {
         if (IsClient && healthBarController != null)
         {
-            if (!healthBarInstance.activeSelf)
+            if (!healthBarInstance.activeSelf && NetworkEventManager.Instance.IsGameEnded() == false)
                 healthBarInstance.SetActive(true);
 
             healthBarController.UpdateHealthBar(newHealth, maxHealth);

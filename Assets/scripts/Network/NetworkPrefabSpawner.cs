@@ -168,5 +168,6 @@ public class NetworkPrefabSpawner : NetworkBehaviour
             FloatingTextManager.Instance.ShowFloatingText(message, rectTransform, Color.yellow);
         }
     }
+    
 
 }

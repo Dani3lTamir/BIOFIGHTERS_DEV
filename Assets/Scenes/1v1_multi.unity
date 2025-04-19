@@ -430,9 +430,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690728095}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: QuitToMenu
+      - m_Target: {fileID: 167502216}
+        m_TargetAssemblyTypeName: DisconnectionHandler, Assembly-CSharp
+        m_MethodName: OnClientLeave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4307,9 +4307,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690728095}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: QuitToMenu
+      - m_Target: {fileID: 167502216}
+        m_TargetAssemblyTypeName: DisconnectionHandler, Assembly-CSharp
+        m_MethodName: OnClientLeave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5001,9 +5001,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690728095}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: QuitToMenu
+      - m_Target: {fileID: 167502216}
+        m_TargetAssemblyTypeName: DisconnectionHandler, Assembly-CSharp
+        m_MethodName: OnClientLeave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5466,9 +5466,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690728095}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: QuitToMenu
+      - m_Target: {fileID: 167502216}
+        m_TargetAssemblyTypeName: DisconnectionHandler, Assembly-CSharp
+        m_MethodName: OnClientLeave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6004,16 +6004,16 @@ MonoBehaviour:
   PooledPrefabsList:
   - Prefab: {fileID: 7834864787724264456, guid: 10a3d366999c0f2448ca4ed9a0747e20, type: 3}
     PrewarmCount: 100
+  - Prefab: {fileID: 6194678883743992458, guid: 018a49136fafbaa47b8dc1a416fd2c6f, type: 3}
+    PrewarmCount: 3
   - Prefab: {fileID: 7834864787724264456, guid: cbcffaaaf7dcefb49b2990a0191cb382, type: 3}
     PrewarmCount: 4
   - Prefab: {fileID: 7834864787724264456, guid: f2f3dea46e359fa4bb7a6f06077b06b8, type: 3}
     PrewarmCount: 8
-  - Prefab: {fileID: 6194678883743992458, guid: 018a49136fafbaa47b8dc1a416fd2c6f, type: 3}
-    PrewarmCount: 4
   - Prefab: {fileID: 7834864787724264456, guid: 915c7302da62fdc4ab457a0c308366b4, type: 3}
     PrewarmCount: 13
   - Prefab: {fileID: 6194678883743992458, guid: b15bf1f88f3a5d9479404ed9cf8a207c, type: 3}
-    PrewarmCount: 2
+    PrewarmCount: 10
   - Prefab: {fileID: 5091388408756514701, guid: 74b77f20440ede64bbc89fd9589bb863, type: 3}
     PrewarmCount: 50
   - Prefab: {fileID: 3520783666115149992, guid: 8bee5a49e34a93047b13a91382beeea6, type: 3}
@@ -6112,7 +6112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  _gameDuration: 180
+  _gameDuration: 300
   _autoStart: 1
   _timerText: {fileID: 176163538}
 --- !u!1 &1825927136
@@ -6198,9 +6198,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690728095}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: QuitToMenu
+      - m_Target: {fileID: 167502216}
+        m_TargetAssemblyTypeName: DisconnectionHandler, Assembly-CSharp
+        m_MethodName: OnClientLeave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10573,7 +10573,7 @@ MonoBehaviour:
   prefab: {fileID: 7834864787724264456, guid: cbcffaaaf7dcefb49b2990a0191cb382, type: 3}
   prefabIndex: 1
   commanderUI: {fileID: 1424424999}
-  spawnLimit: 2
+  spawnLimit: 4
   isPathogen: 1
   prefabCost: 60
   priceText: {fileID: 1146244932535245791}
@@ -10964,9 +10964,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690728095}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: QuitToMenu
+      - m_Target: {fileID: 167502216}
+        m_TargetAssemblyTypeName: DisconnectionHandler, Assembly-CSharp
+        m_MethodName: OnClientLeave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11891,7 +11891,7 @@ MonoBehaviour:
   prefab: {fileID: 8597217134187310654, guid: 08dec30ea1aceb942b320337b6daf409, type: 3}
   prefabIndex: 6
   commanderUI: {fileID: 1712984179703909540}
-  spawnLimit: 5
+  spawnLimit: 4
   isPathogen: 0
   prefabCost: 17
   priceText: {fileID: 2935631787051993248}
@@ -12919,7 +12919,7 @@ MonoBehaviour:
   prefab: {fileID: 6194678883743992458, guid: 018a49136fafbaa47b8dc1a416fd2c6f, type: 3}
   prefabIndex: 2
   commanderUI: {fileID: 1424424999}
-  spawnLimit: 5
+  spawnLimit: 3
   isPathogen: 1
   prefabCost: 100
   priceText: {fileID: 3804187020045158178}

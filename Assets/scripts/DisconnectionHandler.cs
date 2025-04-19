@@ -1,5 +1,9 @@
 using UnityEngine;
 using Unity.Netcode;
+using Unity.BossRoom.Infrastructure;
+using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class DisconnectionHandler : NetworkBehaviour
 {
@@ -17,8 +21,6 @@ public class DisconnectionHandler : NetworkBehaviour
         {
             NetworkManager.Singleton.Shutdown();
         }
-
-        //   Destroy(NetworkManager.Singleton.gameObject); // Destroys the NetworkManager
     }
 
     private void OnClientDisconnect(ulong clientId)
@@ -29,23 +31,32 @@ public class DisconnectionHandler : NetworkBehaviour
             Debug.Log("Disconnected from server. Showing disconnect screen.");
             NetworkManagerUI.Instance.SetPlayerDisconnectUIActive();
         }
+    }
 
-        if (NetworkManager.Singleton.IsServer)
+    public void OnClientLeave()
+    {
+        StartCoroutine(LeaveGameGracefully());
+    }
+
+    private IEnumerator LeaveGameGracefully()
+    {
+        if (NetworkManager.Singleton != null)
         {
-            // Clean up objects owned by the disconnected client except for this object
-            // This is important to avoid destroying the object that is handling the disconnection
-            foreach (var obj in NetworkManager.Singleton.SpawnManager.SpawnedObjects)
+            if (NetworkManager.Singleton.IsClient)
             {
-                if (obj.Key != clientId && obj.Value.IsOwner)
-                {
-                    obj.Value.Despawn(true);
-                }
+                NetworkObjectPool.Singleton?.OnNetworkDespawn();
+                // Gracefully shutdown
+                NetworkManager.Singleton.Shutdown();
             }
-
-            Debug.Log($"[Network] Cleaned up objects for disconnected client {clientId}");
-
         }
 
+        // Give Unity a frame or two to clean up
+        yield return null;
+        yield return null;
+
+        // Load your main menu scene (or whatever)
+        SceneManager.LoadScene("MainMenu");
     }
+
 
 }

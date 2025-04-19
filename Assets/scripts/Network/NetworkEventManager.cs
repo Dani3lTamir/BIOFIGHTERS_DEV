@@ -9,6 +9,8 @@ public class NetworkEventManager : NetworkBehaviour
 
     public static event Action OnPathogenWin;
     public static event Action OnImmuneWin;
+
+    public static event Action OnGameEnded;
     public static event Action OnBothPlayersConnected;
 
     // Game state tracking
@@ -31,6 +33,8 @@ public class NetworkEventManager : NetworkBehaviour
         {
             NetworkManager.OnClientConnectedCallback += HandleClientConnected;
             NetworkTimer.Instance.OnTimerEnded += RequestImmuneWinServerRpc; // End game if timer ends
+            OnImmuneWin += () => OnGameEnded?.Invoke();
+            OnPathogenWin += () => OnGameEnded?.Invoke();
         }
     }
 

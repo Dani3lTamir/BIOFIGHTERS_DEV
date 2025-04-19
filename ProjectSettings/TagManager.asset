@@ -28,6 +28,7 @@ TagManager:
   - Tuberculosis
   - Covid
   - CamoCovid
+  - InfectedMacrophageAI
   layers:
   - Default
   - TransparentFX

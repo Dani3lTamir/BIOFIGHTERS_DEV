@@ -24,8 +24,15 @@ public class NetworkCovidAI : NetworkBehaviour, IBoss
     private readonly object movementLock = new object();
 
 
-    void OnEnable()
+    public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+        StopAllCoroutines();
+        isAttacking = false;
+        targetCell = null;
+        isMultiplying = false;
+        isMovementEnabled = true;
+        gameObject.tag = "CamoCovid";
         animator.SetTrigger("Camo");
     }
 
@@ -34,9 +41,6 @@ public class NetworkCovidAI : NetworkBehaviour, IBoss
     {
         base.OnNetworkDespawn();
         StopAllCoroutines();
-        isAttacking = false;
-        targetCell = null;
-        gameObject.tag = "CamoCovid";
         NetworkRewardSystem.Instance.RegisterEnemyKillServerRpc("Covid");
     }
 
