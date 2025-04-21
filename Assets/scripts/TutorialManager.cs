@@ -18,8 +18,8 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Settings")]
     public float typingSpeed = 0.05f;
-    public string defaultContinueText = "δξωκ";
-    public string finalContinueText = "χιαμϊι!";
+    public string defaultContinueText = "Χ”ΧΧ©Χ";
+    public string finalContinueText = "Χ”Χ‘Χ ΧªΧ™!";
     public bool isTutorialActive = false;
     private List<TutorialStep> tutorialSequence = new List<TutorialStep>();
     private int currentStepIndex = -1;
@@ -27,6 +27,8 @@ public class TutorialManager : MonoBehaviour
     private string fullMessage;
     private Coroutine typingCoroutine;
     private float previousTimeScale;
+
+    private AudioManager audioManager;
 
     void Awake()
     {
@@ -42,6 +44,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
+        audioManager = AudioManager.Instance; // Get the AudioManager instance
         continueButton.onClick.AddListener(ContinueTutorial);
         exitButton.onClick.AddListener(HideTutorial);
     }
@@ -62,6 +65,8 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowNextStep()
     {
+        audioManager.Play("ButtonPress"); // Play button press sound 
+
         currentStepIndex++;
 
         if (currentStepIndex >= tutorialSequence.Count)
@@ -110,12 +115,14 @@ public class TutorialManager : MonoBehaviour
 
     private void PauseGame()
     {
-        previousTimeScale = Time.timeScale;
+        audioManager.Play("BackButtonPress"); // Play back button press sound when pausing
+        previousTimeScale = 1f;
         Time.timeScale = 0f;
     }
 
     private void ResumeGame()
     {
+        audioManager.Play("ButtonPress"); // Play button press 
         Time.timeScale = previousTimeScale;
     }
 

@@ -10,7 +10,15 @@ public class CameraSwitcher : MonoBehaviour
     public KeyCode switchKey = KeyCode.Z; // Public field for the key to switch the camera
     public DCController controller; // Reference to the DCController script
 
+    private AudioManager audioManager; // Reference to the AudioManager script
+
     [SerializeField] private TextMeshProUGUI switchKeyText; // Reference to the UI text element
+
+    private void Start()
+    {
+        // Get the AudioManager instance
+        audioManager = AudioManager.Instance;
+    }
 
     private void Update()
     {
@@ -22,6 +30,8 @@ public class CameraSwitcher : MonoBehaviour
 
     private void SwitchCamera()
     {
+        // Play the sound effect for switching cameras
+        audioManager.Play("BigWhoosh");
         // Check which camera currently has higher priority and switch to the other
         if (followCamera.Priority > mazeViewCamera.Priority)
         {

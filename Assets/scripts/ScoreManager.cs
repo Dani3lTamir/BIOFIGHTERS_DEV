@@ -71,7 +71,7 @@ public class ScoreManager : MonoBehaviour
     {
         int value = GetObjectScore(obj);
         int points = AddScore(value);
-        Debug.Log( obj +": " + points);
+       // Debug.Log( obj +": " + points);
     }
 
     public int GetScore()

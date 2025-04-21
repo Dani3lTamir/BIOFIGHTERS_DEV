@@ -20,6 +20,7 @@ public class Tentacle : MonoBehaviour
     private Vector3 originalScale;    // Original scale of the tentacle
     private bool keepStretching = false; // Flag to keep the tentacle stretched
     private Animator mpAnimator; // Reference to the animator component of MP
+    
 
 
     void Start()
@@ -50,6 +51,7 @@ public class Tentacle : MonoBehaviour
         // Start stretching when the button is pressed
         if (Input.GetKeyDown(key) && !isStretching && !isRetracting && !keepStretching) // Prevent overlapping stretches
         {
+            AudioManager.Instance.PlayAt("TentacleWhip", transform); // Play the stretching sound
             isStretching = true;
             isRetracting = false;
         }
@@ -186,6 +188,7 @@ public class Tentacle : MonoBehaviour
         if (mpAnimator != null)
         {
             mpAnimator.SetTrigger("Eat");
+            AudioManager.Instance.PlayAt("Eat", characterCenter); // Play the eating sound
         }
 
 
@@ -197,6 +200,7 @@ public class Tentacle : MonoBehaviour
             if (target.activeInHierarchy)
             {
                 GameCountManager.Instance.UpdateCounter("AlliesLeft", -1); // update ally counter
+                AudioManager.Instance.Play("WrongAnswer"); // Play the ally sound
             }
             RectTransform rectTransform = AlliesLeft.GetComponent<RectTransform>();
             FloatingTextManager.Instance.ShowFloatingText("" + -1, rectTransform, Color.white);
@@ -214,6 +218,7 @@ public class Tentacle : MonoBehaviour
             if (target.activeInHierarchy)
             {
                 GameCountManager.Instance.UpdateCounter("SalmonelaLeft", -1); // update Salmonela counter
+                AudioManager.Instance.Play("CorrectAnswer"); // Play the Salmonela sound
             }
 
             RectTransform rectTransform = SalmonelaLeft.GetComponent<RectTransform>();
@@ -233,6 +238,7 @@ public class Tentacle : MonoBehaviour
             if (target.activeInHierarchy)
             {
                 GameCountManager.Instance.UpdateCounter("TBLeft", -1); // update Salmonela counter
+                AudioManager.Instance.Play("CorrectAnswer"); // Play the Salmonela sound
             }
 
             RectTransform rectTransform = TBLeft.GetComponent<RectTransform>();
@@ -252,6 +258,7 @@ public class Tentacle : MonoBehaviour
             if (target.activeInHierarchy)
             {
                 GameCountManager.Instance.UpdateCounter("CovidLeft", -1); // update Salmonela counter
+                AudioManager.Instance.Play("CorrectAnswer"); // Play the Salmonela sound
             }
 
             RectTransform rectTransform = CovidLeft.GetComponent<RectTransform>();

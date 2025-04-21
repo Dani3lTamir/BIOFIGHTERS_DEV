@@ -37,6 +37,8 @@ public class TriviaManager : MonoBehaviour
     private float currentAnswerTimeLeft;
     private Coroutine countdownCoroutine; // To store the countdown timer coroutine
 
+    private AudioManager audioManager; // Reference to the AudioManager
+
     private void Awake()
     {
         // Ensure the assigned MonoBehaviour implements the IPowerUpManager interface
@@ -52,6 +54,7 @@ public class TriviaManager : MonoBehaviour
 
     private void Start()
     {
+        audioManager = AudioManager.Instance; // Get the AudioManager instance
         triviaUI.SetActive(false); // Hide trivia UI at start
         LoadTriviaQuestions();
         InvokeRepeating("ShowRandomTrivia", triviaInterval, triviaInterval); // Show trivia every 'triviaInterval' seconds
@@ -80,6 +83,7 @@ public class TriviaManager : MonoBehaviour
     {
         Time.timeScale = 0; // Pause the game
         triviaUI.SetActive(true); // Show the trivia UI
+        audioManager.Play("Clock"); 
 
         currentQuestion = triviaQuestions[Random.Range(0, triviaQuestions.Length)];
         questionText.text = currentQuestion.questionText;
@@ -132,13 +136,17 @@ public class TriviaManager : MonoBehaviour
         if (selectedIndex == currentQuestion.correctAnswerIndex)
         {
             Debug.Log("Correct Answer!");
+            // Play correct answer sound
+            audioManager.Play("CorrectAnswer"); // Play correct answer sound
             ScoreManager.Instance.UpdateScoreForObject("RightAnswer");//add points for right answer
             powerUpManager.ActivateRandomPowerUp(); // Activate a random power-up
         }
         else
         {
+            audioManager.Play("WrongAnswer"); // Play wrong answer sound
             Debug.Log("Wrong Answer!");
         }
+        audioManager.Stop("Clock"); // Stop the clock sound
 
         // Hide trivia UI and resume the game
         Time.timeScale = 1; // Resume the game

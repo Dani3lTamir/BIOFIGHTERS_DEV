@@ -569,7 +569,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 471804edd0f1bbd44b0613302995d1b8, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -4112,6 +4112,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192210776}
   m_CullTransparentMesh: 1
+--- !u!1001 &1220657180
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7790912454553780151, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 313.21317
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 382.4206
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.72761047
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842399851244589662, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 53e739faabecf0c4d9fe57fdb37bc78f, type: 3}
 --- !u!1 &1321658283
 GameObject:
   m_ObjectHideFlags: 0
@@ -12961,6 +13018,7 @@ SceneRoots:
   - {fileID: 63164519}
   - {fileID: 167502215}
   - {fileID: 1082089472}
+  - {fileID: 1220657180}
   - {fileID: 1786440494}
   - {fileID: 323974634}
   - {fileID: 691977256}

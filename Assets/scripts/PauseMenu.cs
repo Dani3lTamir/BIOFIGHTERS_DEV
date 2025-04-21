@@ -8,11 +8,14 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private bool shouldPauseGame = true; // Set this to true if you want to pause the game when the menu is opened
     private TriviaManager triviaManager;
 
+    private AudioManager audioManager;
+
 
     private void Start()
     {
         // Find the TriviaManager in the scene
         triviaManager = FindFirstObjectByType<TriviaManager>();
+        audioManager = AudioManager.Instance; // Get the AudioManager instance
     }
 
 
@@ -37,6 +40,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        audioManager.Play("ButtonPress"); // Play button press sound when resuming
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -44,6 +48,8 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        audioManager.Play("BackButtonPress"); // Play back button press sound when pausing
+
         pauseMenuUI.SetActive(true);
         if (shouldPauseGame)
         {
@@ -60,6 +66,8 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenMicropedia()
     {
+        // Play button feedback sound
+        audioManager.Play("ButtonPress");
         // This will find both active and inactive objects
         MicroPediaUI micropediaUI = FindObjectOfType<MicroPediaUI>(true);
 
@@ -76,6 +84,8 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitToMenu()
     {
+        // Play button feedback sound
+        audioManager.Play("BackButtonPress");
         LevelLoader.Instance.LoadLevel(0);
         Time.timeScale = 1f;
         GameIsPaused = false;

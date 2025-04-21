@@ -29,10 +29,15 @@ public class LevelManager : MonoBehaviour
         // Get the first one (or null if none exist)
         var manager = managers.FirstOrDefault();
         manager?.InitializeLevel();
+        // Get level name from the scene name
+        string levelName = scene.name;
+        // Play background music based on the level name
+        AudioManager.Instance.PlayBackgroundMusic(levelName); // Play background music for the level
     }
 
     public void WinLevel()
     {
+        AudioManager.Instance.Play("LevelWin"); // Play level complete sound
         // Update the total score after a level is completed
         UpdateScore();
         var managers = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>();
@@ -43,6 +48,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoseLevel()
     {
+        AudioManager.Instance.Play("LevelLose"); // Play level failed sound
         var managers = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>();
         var manager = managers.FirstOrDefault();
         manager?.RecordFailure();
@@ -51,6 +57,9 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        // Stop the background music
+        Scene scene = SceneManager.GetActiveScene();
+        AudioManager.Instance.StopBackgroundMusic(scene.name);
         int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
         {

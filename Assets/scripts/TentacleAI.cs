@@ -24,6 +24,7 @@ public class TentacleAI : MonoBehaviour
 
     public void Stretch()
     {
+        AudioManager.Instance.PlayAt("TentacleWhip", transform); // Play the stretching sound
         isStretching = true;
         isRetracting = false;
     }
@@ -110,6 +111,7 @@ public class TentacleAI : MonoBehaviour
             // Trigger the eat animation
             if (mpAnimator != null)
             {
+                AudioManager.Instance.PlayAt("Eat", characterCenter); // Play the eating sound
                 mpAnimator.SetTrigger("Eat");
             }
 

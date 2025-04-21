@@ -11,8 +11,12 @@ public class DCController : MonoBehaviour
     private bool isFrozen = false;
     private bool isJumping = false;
 
+    private AudioManager audioManager;
+
     void Start()
     {
+        // Initialize the AudioManager
+        audioManager = AudioManager.Instance;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 2;
     }
@@ -33,8 +37,13 @@ public class DCController : MonoBehaviour
             }
         }
 
+
         // Jump input
-        if (Input.GetKeyDown(jumpKey)) isJumping = true;
+        if (Input.GetKeyDown(jumpKey)) {
+            isJumping = true;
+            // Play jump sound
+            audioManager.PlayAt("JumpUp", transform);
+        } 
         if (Input.GetKeyUp(jumpKey)) isJumping = false;
     }
 

@@ -6,6 +6,8 @@ public class OverallHealth : MonoBehaviour
     private float maxHealth;
     private float currentHealth;
 
+    private bool dying = false; 
+
     private HealthBarController healthBarController; // Reference to the health bar controller
 
     void Start()
@@ -58,6 +60,13 @@ public class OverallHealth : MonoBehaviour
         if (healthBarController != null)
         {
             healthBarController.UpdateHealthBar(currentHealth, maxHealth);
+        }
+
+        // Check if the overall health is below a certain threshold
+        if (currentHealth <= (maxHealth / 4f) && !dying)
+        {
+            dying = true; 
+            AudioManager.Instance.Play("LowHealth"); // Play the Heart sound
         }
     }
 }

@@ -57,6 +57,7 @@ public class DefenderSpawner : MonoBehaviour
 
     void StartDragging()
     {
+        AudioManager.Instance.Play("BackButtonPress"); // Play button press sound when starting to drag
         // Instantiate a preview of the defender
         defenderPreview = Instantiate(selectedDefender);
         defenderPreview.GetComponent<Collider2D>().enabled = false; // Disable collisions for the preview
@@ -65,6 +66,7 @@ public class DefenderSpawner : MonoBehaviour
 
     void PlaceDefender(Vector2 position)
     {
+        AudioManager.Instance.Play("Drop"); // Play button press sound when placing the defender
         // Instantiate the actual defender at the placement position
         GameObject placedDefender = Instantiate(selectedDefender, position, Quaternion.identity);
 

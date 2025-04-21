@@ -39,6 +39,8 @@ public class RewardSystem : MonoBehaviour
     public int periodicCoinAmount = 10; // Amount of coins to add periodically
     public float periodicInterval = 30f; // Interval in seconds to add coins
 
+    AudioManager audioManager; // Reference to the AudioManager
+
 
     private void Awake()
     {
@@ -57,6 +59,7 @@ public class RewardSystem : MonoBehaviour
 
     private void Start()
     {
+        audioManager = AudioManager.Instance; // Get the AudioManager instance
         // Start the coroutine to add coins periodically
         StartCoroutine(AddCoinsPeriodically());
     }
@@ -141,6 +144,6 @@ public class RewardSystem : MonoBehaviour
         coins += amount;
         RectTransform rectTransform = coinsText.GetComponent<RectTransform>();
         FloatingTextManager.Instance.ShowFloatingText("" + amount, rectTransform, Color.green);
-
+        audioManager.Play("Coins"); // Play coin pickup sound
     }
 }

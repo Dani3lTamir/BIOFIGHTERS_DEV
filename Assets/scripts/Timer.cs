@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
     public bool isTimeUp = false; // Boolean to indicate if the time is up
     public bool timerEndWin = false; // Boolean to indicate if the timer ending results in a win
     public bool inSeconds = false; // Boolean to indicate if the timer is in seconds
+    private bool last10Seconds = false; // Boolean to indicate if the last 10 seconds are reached
     public TextMeshProUGUI timerText;
 
     private float timeRemaining;
@@ -39,6 +40,12 @@ public class Timer : MonoBehaviour
             {
                 timerText.text = timeRemaining.ToString("F0");
             }
+
+            if (timeRemaining <= 10 && !last10Seconds && CompareTag("LevelTimer"))
+            {
+                last10Seconds = true;
+                AudioManager.Instance.Play("Clock"); // Play the last 10 seconds sound
+            }
         }
 
         else if (!isTimeUp)
@@ -53,6 +60,7 @@ public class Timer : MonoBehaviour
     {
         if (CompareTag("LevelTimer"))
         {
+            AudioManager.Instance.Stop("Clock"); // Stop the clock sound
             if (timerEndWin)
             {
                 LevelManager.Instance.WinLevel();
@@ -61,7 +69,6 @@ public class Timer : MonoBehaviour
             {
                 LevelManager.Instance.LoseLevel();
             }
-
         }
     }
 
@@ -69,7 +76,7 @@ public class Timer : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
-        if (time> 0)
+        if (time > 0)
         {
             return string.Format("{0:00}:{1:00}", minutes, seconds);
         }

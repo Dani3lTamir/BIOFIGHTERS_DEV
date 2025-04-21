@@ -115,6 +115,7 @@ public class HealthSystem : MonoBehaviour
             GameObject[] bodyCells = GameObject.FindGameObjectsWithTag("BodyCell");
             if (bodyCells.Length <= 1 && LevelManager.Instance != null)
             {
+                AudioManager.Instance.Stop("LowHealth"); // Stop the Heart sound
                 LevelManager.Instance.LoseLevel();
             }
             else Debug.Log("There are still BodyCells alive");

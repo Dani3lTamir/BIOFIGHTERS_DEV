@@ -34,6 +34,8 @@ public class SleepingTCell : MonoBehaviour
             timer = levelTimer.GetComponent<Timer>();
         }
 
+        AudioManager.Instance.PlayAt("Snore", transform); // Play the sound effect for the T cell
+
     }
 
     void Update()
@@ -65,6 +67,9 @@ public class SleepingTCell : MonoBehaviour
                 AttemptsLeftText.text = "" + GameCountManager.Instance.GetCounterValue("AttemptsLeft");
                 RectTransform rectTransform = AttemptsLeftText.GetComponent<RectTransform>();
                 FloatingTextManager.Instance.ShowFloatingText("" + -1, rectTransform, Color.red);
+                // Play the sound effect for the incorrect choice
+                GetComponent<AudioSource>().Stop();
+                AudioManager.Instance.Play("Grunt");
                 // change the sprite to the woke sprite
                 GetComponent<SpriteRenderer>().sprite = wokeSprite;
                 // Check lose condition
@@ -125,6 +130,8 @@ public class SleepingTCell : MonoBehaviour
             }
         }
         Debug.Log("Final Score: " + ScoreManager.Instance.GetScore());
+        // Play the sound effect for the correct choice
+        AudioManager.Instance.Play("CorrectAnswer");
         // Freeze the player (DCController)
         DCController dcController = FindFirstObjectByType<DCController>();
         // Freeze the player

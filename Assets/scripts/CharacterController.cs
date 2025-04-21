@@ -5,6 +5,7 @@ public class CharacterController : MonoBehaviour
     public float speed = 5f;
     public Tentacle[] tetacleControllers;
 
+
     void Update()
     {
         float moveX = Input.GetAxis("Horizontal");

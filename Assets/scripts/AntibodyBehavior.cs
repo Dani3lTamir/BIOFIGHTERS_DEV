@@ -7,6 +7,11 @@ public class AntibodyBehavior : MonoBehaviour
     private GameObject target; // The Enemy the antibody is targeting
 
 
+    private void OnEnable()
+    {
+        AudioManager.Instance.PlayAt("Arrow", transform); // Play the sound effect for the antibody
+    }
+
     void Update()
     {
         if (target != null)
@@ -33,6 +38,8 @@ public class AntibodyBehavior : MonoBehaviour
                 // If its an uncaught E. coli, kill it
                 if (target.CompareTag("Ecoli") && target.GetComponent<EcoliAI>().getMovmentStatus())
                 {
+                    // Play the sound effect for killing the E. coli
+                    AudioManager.Instance.Play("Squish");
                     target.GetComponent<EcoliAI>().Die();
                 }
 

@@ -22,6 +22,9 @@ public class LevelLoader : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        //Change the time scale to 1 when the game starts
+        Time.timeScale = 1f;
     }
 
     void Update()
@@ -54,6 +57,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        Debug.Log("Loading next level...");
         // Get the current scene index
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         // If next scene is null, return to the main menu
@@ -85,16 +89,24 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevelCoroutine(int levelIndex)
     {
+        Debug.Log("Loading next level...1");
+
         // Play the transition animation (if available)
         if (transitionAnimator != null)
         {
             transitionAnimator.SetTrigger("Start"); // Trigger the transition animation
+            Debug.Log("Loading next level...2");
+
         }
+        Debug.Log("Loading next level...3");
 
         // Wait for the transition to complete
-        yield return new WaitForSeconds(transitionTime);
+        yield return new WaitForSeconds(transitionTime); ;
+        Debug.Log("Loading next level...4");
 
         // Load the new scene
         SceneManager.LoadScene(levelIndex);
     }
+
+
 }

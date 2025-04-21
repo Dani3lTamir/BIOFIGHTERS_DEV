@@ -4,11 +4,14 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
+        Debug.Log("Play Game button clicked.");
+        PlayClickSound();
         LevelLoader.Instance.LoadNextLevel();
     }
 
     public void OpenMicropedia()
     {
+        PlayClickSound();
         // This will find both active and inactive objects
         MicroPediaUI micropediaUI = FindObjectOfType<MicroPediaUI>(true);
 
@@ -24,11 +27,25 @@ public class MainMenu : MonoBehaviour
 
     public void PlayMultiplayer()
     {
+        PlayClickSound();
         LevelLoader.Instance.LoadLevel("1v1_multi");
     }
 
     public void QuitGame()
     {
+        PlayClickSound();
         Application.Quit();
+    }
+
+    private void PlayClickSound()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.Play("ButtonPress");
+        }
+        else
+        {
+            Debug.LogError("AudioManager instance not found in the scene.");
+        }
     }
 }

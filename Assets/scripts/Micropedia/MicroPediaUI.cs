@@ -39,7 +39,7 @@ public class MicroPediaUI : MonoBehaviour
         {
             Instantiate(Resources.Load<GameObject>("MicroPedia/MicroPediaDatabase"));
         }
-      //  MicroPediaDatabase.Instance.LoadUnlockedStates();
+        //  MicroPediaDatabase.Instance.LoadUnlockedStates();
     }
 
     private void InitializeUI()
@@ -56,26 +56,29 @@ public class MicroPediaUI : MonoBehaviour
         backToEntriesButton.onClick.AddListener(ReturnToEntries);
         exitButton.onClick.AddListener(DisableSelf);
 
-        // Optional: Add button sound effects
-        AddButtonFeedback(backToCategoriesButton);
-        AddButtonFeedback(backToEntriesButton);
+        // button sound effects
+        AddBackButtonFeedback(backToCategoriesButton);
+        AddBackButtonFeedback(backToEntriesButton);
+        AddBackButtonFeedback(exitButton);
     }
 
     private void InitializeCategoryButtons()
     {
-        CreateCategoryButton("τϊεβπιν", EntryCategory.Pathogens, pathogensIcon);
-        CreateCategoryButton("ϊΰι ηιρεο", EntryCategory.ImmuneCells, immuneCellsIcon);
-        CreateCategoryButton("ξεωβιν εϊδμιλιν", EntryCategory.Processes, processesIcon);
+        CreateCategoryButton("Χ¤ΧªΧ•Χ’Χ Χ™Χ", EntryCategory.Pathogens, pathogensIcon);
+        CreateCategoryButton("ΧªΧΧ™ Χ—Χ™Χ΅Χ•Χ", EntryCategory.ImmuneCells, immuneCellsIcon);
+        CreateCategoryButton("ΧªΧ”ΧΧ™Χ›Χ™Χ Χ•ΧΧ•Χ©Χ’Χ™Χ", EntryCategory.Processes, processesIcon);
     }
 
     private void CreateCategoryButton(string label, EntryCategory category, Sprite icon)
     {
         GameObject button = Instantiate(categoryButtonPrefab, categoryButtonsParent);
         button.GetComponent<CategoryButton>().Initialize(label, icon, () => ShowCategory(category));
+
     }
-        
+
     public void ShowCategory(EntryCategory category)
     {
+        PlayButtonFeedback();
         categoryButtonsParent.gameObject.SetActive(false);
         entriesView.SetActive(true);
         ClearEntriesGrid();
@@ -90,8 +93,9 @@ public class MicroPediaUI : MonoBehaviour
 
     public void ShowEntryDetails(MicroPediaEntry entry)
     {
+        PlayButtonFeedback();
         entryDetailPanel.SetActive(true);
-        
+
         entryIconDisplay.sprite = entry.iconSprite;
         entryNameText.text = entry.displayName;
         entryDescriptionText.text = entry.description;
@@ -117,16 +121,43 @@ public class MicroPediaUI : MonoBehaviour
         }
     }
 
-    private void AddButtonFeedback(Button button)
+    private void PlayButtonFeedback()
     {
-        button.onClick.AddListener(() => {
-            if (button.TryGetComponent(out AudioSource audio))
-                audio.Play();
-        });
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.Play("ButtonPress");
+        }
+        else
+        {
+            Debug.LogError("AudioManager instance not found in the scene.");
+        }
+
+
     }
+
+
+    private void AddBackButtonFeedback(Button button)
+    {
+        button.onClick.AddListener(() =>
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.Play("BackButtonPress");
+            }
+            else
+            {
+                Debug.LogError("AudioManager instance not found in the scene.");
+            }
+        }
+);
+    }
+
+
 
     void DisableSelf()
     {
+
         // This disables the entire GameObject the script is attached to
         gameObject.SetActive(false);
 

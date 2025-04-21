@@ -10,7 +10,11 @@ public class NetworkPrefabSpawner : NetworkBehaviour
     public GameObject[] spawnablePrefabs; // Assign in Inspector
 
     private int selectedPrefabIndex = -1;
+
+    private int onDraggingPrefabIndex = -1;
     private int selectedCost;
+
+    private int onDraggingCost;
     private GameObject preview;
     private bool isDragging = false;
     private bool isPathogen = false;
@@ -36,7 +40,7 @@ public class NetworkPrefabSpawner : NetworkBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                SpawnPrefab(mousePosition);
+                SpawnDraggablePrefab(mousePosition);
             }
             else if (Input.GetMouseButtonDown(1))
             {
@@ -57,7 +61,7 @@ public class NetworkPrefabSpawner : NetworkBehaviour
         selectedPrefabIndex = prefabIndex;
         selectedCost = cost;
         isPathogen = pathogen;
-        ulong clientId = isPathogen ? 1ul : 0ul; // Hardcoded: Pathogen = client 1, Defender = client 0
+        ulong clientId = pathogen ? 1ul : 0ul; // Hardcoded: Pathogen = client 1, Defender = client 0
 
 
         // Check if player has enough coins
@@ -82,18 +86,20 @@ public class NetworkPrefabSpawner : NetworkBehaviour
             return;
         }
 
-        if (!isPathogen)
+        if (!pathogen)
         {
             preview = Instantiate(spawnablePrefabs[prefabIndex]);
             preview.GetComponent<Collider2D>().enabled = false;
             isDragging = true;
+            onDraggingPrefabIndex = prefabIndex;
+            onDraggingCost = cost;
         }
 
         else
         {
             Vector2 spawnPosition = GetFixedSpawnPosition();
             SpawnPrefabServerRpc(prefabIndex, spawnPosition);
-            DeductCoinsServerRpc(selectedCost, isPathogen);
+            DeductCoinsServerRpc(selectedCost, pathogen);
         }
     }
 
@@ -108,20 +114,20 @@ public class NetworkPrefabSpawner : NetworkBehaviour
         return fixedSpawnPosition;
     }
 
-    void SpawnPrefab(Vector2 position)
+    void SpawnDraggablePrefab(Vector2 position)
     {
-        if (selectedPrefabIndex < 0 || selectedPrefabIndex >= spawnablePrefabs.Length)
+        if (onDraggingPrefabIndex < 0 || onDraggingPrefabIndex >= spawnablePrefabs.Length)
         {
             Debug.LogError("[NetworkPrefabSpawner] Invalid prefab index at spawn.");
             return;
         }
 
-        SpawnPrefabServerRpc(selectedPrefabIndex, position);
+        SpawnPrefabServerRpc(onDraggingPrefabIndex, position);
 
         if (preview) Destroy(preview);
         isDragging = false;
 
-        NetworkRewardSystem.Instance.DeductCoins(selectedCost, isPathogen);
+        NetworkRewardSystem.Instance.DeductCoins(onDraggingCost, false);
     }
 
     [ServerRpc(RequireOwnership = false)]

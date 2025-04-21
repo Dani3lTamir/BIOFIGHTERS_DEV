@@ -13,6 +13,7 @@ public class EnzymePuddle : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.PlayAt("PuddleSpawn", transform); // Play the sound effect for the puddle
         // Destroy the puddle after its lifetime
         StartCoroutine(DestroyPuddleAfterDelay(lifetime));
     }
