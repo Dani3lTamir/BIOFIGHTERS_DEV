@@ -21,6 +21,8 @@ public class DCAI : MonoBehaviour
     private int currentZigzag = 0; // Current zigzag count
     private Vector2 moveDirection = Vector2.right; // Direction of movement
 
+    private AudioManager audioManager; // Reference to the AudioManager
+
 
     void Start()
     {
@@ -29,7 +31,8 @@ public class DCAI : MonoBehaviour
         {
             return; // Do nothing if collider is disabled
         }
-
+        // Get the AudioManager instance
+        audioManager = AudioManager.Instance;
         StartMovement();
     }
 
@@ -37,6 +40,8 @@ public class DCAI : MonoBehaviour
     {
         isMoving = true;
         startPosition = transform.position;
+        // Play the DC Defender sound
+        audioManager.PlayAt("Siren", transform);
     }
 
     void Update()
@@ -75,12 +80,15 @@ public class DCAI : MonoBehaviour
     {
         if (other.CompareTag("Ecoli") && caughtEcoli.Count < catchLimit && (other.GetComponent<EcoliAI>().getMovmentStatus()))
         {
+            // Play the catch sound
+            audioManager.Play("Squish");
             // Catch the Ecoli
             CatchEcoli(other.gameObject);
         }
 
         else if ((other.GetComponent<IBoss>() != null) && (other.GetComponent<IBoss>().getMovmentStatus()))
         {
+            audioManager.Play("Squish");
             // Damage the Boss
             other.GetComponent<HealthSystem>().TakeDamage(damage);
         }
@@ -104,6 +112,7 @@ public class DCAI : MonoBehaviour
     IEnumerator LeaveScreen()
     {
         isMoving = false;
+        audioManager.Stop("Siren"); // Stop the DC Defender sound
 
         // Move off the screen
         Vector2 exitDirection = new Vector2(1, 0); // Move right to exit the screen

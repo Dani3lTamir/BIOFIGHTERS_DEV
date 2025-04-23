@@ -19,6 +19,7 @@ public class TBAI : MonoBehaviour, IBoss
 
     void OnEnable()
     {
+        AudioManager.Instance.PlayAt("Puke", transform); // Play spawn sound
         // Initialize the TB when it is activated
         if (targetCell == null)
             ChooseRandomTarget();

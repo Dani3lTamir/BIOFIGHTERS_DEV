@@ -17,6 +17,7 @@ public class SalmonelaAI : MonoBehaviour, IBoss
 
 
 
+
     void OnEnable()
     {
         // Initialize the Salmonela when it is activated

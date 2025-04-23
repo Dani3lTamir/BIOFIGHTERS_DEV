@@ -15,8 +15,13 @@ public class HealthSystem : MonoBehaviour
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
     private Color originalColor; // Store the original color of the sprite
 
+    private AudioManager audioManager; // Reference to the AudioManager
+
      void Start()
     {
+        audioManager = AudioManager.Instance; // Get the AudioManager instance
+
+        // Initialize health
         currentHealth = maxHealth;
 
         // Get the SpriteRenderer component
@@ -74,6 +79,12 @@ public class HealthSystem : MonoBehaviour
         {
             Die();
         }
+
+        // Play damage sound effect if it's a boss
+        if (gameObject.TryGetComponent<IBoss>(out IBoss boss))
+        {         
+            audioManager.PlayAt("ShieldBlock", gameObject.transform); // Play damage sound
+        }
     }
 
     IEnumerator HideHealthBarAfterDelay(float delay)
@@ -102,6 +113,12 @@ public class HealthSystem : MonoBehaviour
     void Die()
     {
         // Handle death (e.g., play animation, destroy object, etc.)
+        // Play death sound effect if it's a boss
+        if (audioManager != null && gameObject.TryGetComponent<IBoss>(out IBoss boss))
+        {
+            audioManager.Play("Explode"); // Play death sound
+        }
+
         Debug.Log($"{gameObject.name} has died!");
         if (healthBarInstance != null)
             healthBarInstance.SetActive(false);

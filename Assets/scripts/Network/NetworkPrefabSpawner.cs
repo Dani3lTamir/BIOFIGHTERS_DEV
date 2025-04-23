@@ -138,7 +138,7 @@ public class NetworkPrefabSpawner : NetworkBehaviour
             Debug.LogError("[ServerRpc] Invalid prefab index!");
             return;
         }
-
+        AudioManager.Instance.Play("Drop"); // Play click sound
         GameObject prefab = spawnablePrefabs[prefabIndex];
         NetworkObject obj = NetworkObjectPool.Singleton.GetNetworkObject(prefab, position, Quaternion.identity);
         obj.Spawn(true);
@@ -170,6 +170,7 @@ public class NetworkPrefabSpawner : NetworkBehaviour
 
         if (NetworkShopButton.lastClickedButton != null)
         {
+            AudioManager.Instance.Play("WrongAnswer"); // Play error sound
             RectTransform rectTransform = NetworkShopButton.lastClickedButton.GetComponent<RectTransform>();
             FloatingTextManager.Instance.ShowFloatingText(message, rectTransform, Color.yellow);
         }

@@ -21,6 +21,9 @@ public class NetworkOverallHealth : NetworkBehaviour
 
     private HealthBarController healthBarController; // Reference to the health bar controller
 
+    private bool dying = false;
+
+
 
     void Awake()
     {
@@ -47,6 +50,12 @@ public class NetworkOverallHealth : NetworkBehaviour
             currentHealth.Value = CalculateOverallHealth();
         }
         // Update the health bar for all clients
+        // Check if the overall health is below a certain threshold
+        if (currentHealth.Value <= (maxHealth.Value / 4f) && !dying)
+        {
+            dying = true;
+            AudioManager.Instance.Play("LowHealth"); // Play the Heart sound
+        }
 
         healthBarController.UpdateHealthBar(currentHealth.Value, maxHealth.Value);
 

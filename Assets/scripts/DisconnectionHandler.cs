@@ -17,7 +17,7 @@ public class DisconnectionHandler : NetworkBehaviour
     {
         if (NetworkManager.Singleton != null)
             NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
-        if (NetworkManager.Singleton.IsListening)
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
         {
             NetworkManager.Singleton.Shutdown();
         }
@@ -29,6 +29,7 @@ public class DisconnectionHandler : NetworkBehaviour
         if (!(NetworkEventManager.Instance.IsGameEnded()))
         {
             Debug.Log("Disconnected from server. Showing disconnect screen.");
+            AudioManager.Instance.Play("LevelLose");
             NetworkManagerUI.Instance.SetPlayerDisconnectUIActive();
         }
     }
@@ -40,6 +41,8 @@ public class DisconnectionHandler : NetworkBehaviour
 
     private IEnumerator LeaveGameGracefully()
     {
+        AudioManager.Instance.StopAllAudio();
+        AudioManager.Instance.Play("BackButtonPress");
         if (NetworkManager.Singleton != null)
         {
             if (NetworkManager.Singleton.IsClient)

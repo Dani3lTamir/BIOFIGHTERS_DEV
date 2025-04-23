@@ -42,4 +42,14 @@ public class CutsceneController : MonoBehaviour
     {
         audioManager.Play("BigWhoosh"); // Play the whoosh sound
     }
+
+    public void PlaySirenSound()
+    {
+        audioManager.Play("Siren"); // Play the siren sound
+    }
+
+    public void StopSirenSound()
+    {
+        audioManager.Stop("Siren"); // Stop the siren sound
+    }
 }

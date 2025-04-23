@@ -41,6 +41,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         audioManager.Play("ButtonPress"); // Play button press sound when resuming
+        CloseSettings(); // Close settings menu if open
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -80,6 +81,36 @@ public class PauseMenu : MonoBehaviour
             Debug.LogError("MicroPediaUI instance not found in the scene.");
         }
     }
+
+
+    public void OpenSettings()
+    {
+        // Play button feedback sound
+        audioManager.Play("ButtonPress");
+        // This will find both active and inactive objects
+        SettingsMenu settings = FindObjectOfType<SettingsMenu>(true);
+
+        if (settings != null)
+        {
+            settings.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("SettingsMenu instance not found in the scene.");
+        }
+    }
+
+    public void CloseSettings()
+    {
+        // This will find both active and inactive objects
+        SettingsMenu settings = FindObjectOfType<SettingsMenu>(true);
+
+        if (settings != null)
+        {
+            settings.gameObject.SetActive(false);
+        }
+    }
+
 
 
     public void QuitToMenu()

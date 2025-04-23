@@ -14,5 +14,8 @@ public class Sound
     public bool loop = false; // Whether the sound should loop
 
     [HideInInspector]
+    public AudioMixerGroup mixerGroup; // The audio mixer group to which the sound belongs (SFX or Music)
+
+    [HideInInspector]
     public AudioSource source; // The audio source that will play the sound
 }

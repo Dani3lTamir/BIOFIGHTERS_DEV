@@ -4,9 +4,16 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance; // Singleton instance
-    public Sound[] sounds; // Array of sounds to manage
 
-    public Sound[] backgroundMusic; // Array of background music to manage
+    [Header("Mixer References")]
+    public AudioMixerGroup sfxMixerGroup;
+    public AudioMixerGroup musicMixerGroup;
+
+    [Header("Sound Effects")]
+    public Sound[] sounds;
+
+    [Header("Background Music")]
+    public Sound[] backgroundMusic;
 
     void Awake()
     {
@@ -14,7 +21,7 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-           // DontDestroyOnLoad(gameObject); // Keep this object across scenes
+            DontDestroyOnLoad(gameObject); // Keep this object across scenes
         }
         else
         {
@@ -28,6 +35,8 @@ public class AudioManager : MonoBehaviour
             sound.source.volume = sound.volume;
             sound.source.pitch = sound.pitch;
             sound.source.loop = sound.loop; 
+            sound.source.outputAudioMixerGroup = sfxMixerGroup; // Assign the SFX mixer group
+
         }
 
         foreach (Sound music in backgroundMusic)
@@ -37,6 +46,7 @@ public class AudioManager : MonoBehaviour
             music.source.volume = music.volume;
             music.source.pitch = music.pitch;
             music.source.loop = music.loop; 
+            music.source.outputAudioMixerGroup = musicMixerGroup; // Assign the Music mixer group
         }
     }
 
@@ -65,6 +75,7 @@ public class AudioManager : MonoBehaviour
             tempSource.pitch = sound.pitch;
             tempSource.loop = sound.loop; // Set loop to true or false based on the sound
             tempSource.spatialBlend = 1f; // make it 3D
+            tempSource.outputAudioMixerGroup = sfxMixerGroup;
             tempSource.Play();
 
             if (!tempSource.loop)
@@ -113,6 +124,19 @@ public class AudioManager : MonoBehaviour
         else
         {
             Debug.LogWarning("Background Music: " + musicName + " not found!");
+        }
+    }
+
+    public void StopAllAudio()
+    {
+        foreach (Sound sound in sounds)
+        {
+            sound.source.Stop();
+        }
+
+        foreach (Sound music in backgroundMusic)
+        {
+            music.source.Stop();
         }
     }
 }

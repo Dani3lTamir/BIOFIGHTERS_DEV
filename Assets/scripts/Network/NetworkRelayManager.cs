@@ -40,12 +40,14 @@ public class NetworkRelayManager : MonoBehaviour
             Debug.Log("[NetworkRelayManager] Setting up button listeners...");
             createRelayButton.onClick.AddListener(() =>
             {
+                AudioManager.Instance.Play("ButtonPress");
                 Debug.Log("[NetworkRelayManager] Create Relay button clicked");
                 CreateRelay();
             });
 
             joinRelayButton.onClick.AddListener(() =>
             {
+                AudioManager.Instance.Play("ButtonPress");
                 Debug.Log("[NetworkRelayManager] Join Relay button clicked");
                 if (!string.IsNullOrWhiteSpace(joinCodeInputField.text))
                 {

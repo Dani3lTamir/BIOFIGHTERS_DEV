@@ -15,6 +15,9 @@ public class NetworkTimer : NetworkBehaviour
     [SerializeField] private bool _autoStart = true;
     [SerializeField] private TextMeshProUGUI _timerText;
 
+    private bool last10Seconds = false; // Boolean to indicate if the last 10 seconds are reached
+
+
 
     public event Action OnTimerStarted;
     public event Action OnTimerEnded;
@@ -88,6 +91,13 @@ public class NetworkTimer : NetworkBehaviour
         {
             _timerText.text = FormatTime(GetDisplayTime());
         }
+
+        if (_remainingTime.Value <= 10 && !last10Seconds)
+        {
+            last10Seconds = true;
+            AudioManager.Instance.Play("Clock"); // Play the last 10 seconds sound
+        }
+
     }
 
     public string FormatTime(float time)

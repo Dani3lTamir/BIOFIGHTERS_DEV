@@ -26,6 +26,7 @@ public class NetworkShopButton : MonoBehaviour
 
     void SelectPrefab()
     {
+        AudioManager.Instance.Play("ButtonPress"); // Play click sound
         lastClickedButton = this; // Store the last clicked button
         // Notify the commander UI to move to this button's position
         commanderUI.MoveToButton(transform.position.x);

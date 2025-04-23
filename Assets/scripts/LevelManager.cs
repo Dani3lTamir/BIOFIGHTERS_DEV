@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
 
     public void WinLevel()
     {
+        AudioManager.Instance.StopAllAudio(); // Stop all audio before playing the win sound
         AudioManager.Instance.Play("LevelWin"); // Play level complete sound
         // Update the total score after a level is completed
         UpdateScore();
@@ -48,6 +49,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoseLevel()
     {
+        AudioManager.Instance.StopAllAudio(); // Stop all audio before playing the lose sound
         AudioManager.Instance.Play("LevelLose"); // Play level failed sound
         var managers = FindObjectsOfType<MonoBehaviour>().OfType<IDifficultyManager>();
         var manager = managers.FirstOrDefault();
@@ -57,9 +59,6 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        // Stop the background music
-        Scene scene = SceneManager.GetActiveScene();
-        AudioManager.Instance.StopBackgroundMusic(scene.name);
         int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
         {

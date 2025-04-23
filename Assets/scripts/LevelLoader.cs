@@ -74,6 +74,7 @@ public class LevelLoader : MonoBehaviour
     // Coroutine to handle the transition and loading
     IEnumerator LoadLevelCoroutine(string levelName)
     {
+        AudioManager.Instance.StopBackgroundMusic(SceneManager.GetActiveScene().name); // Stop the current background music
         // Play the transition animation (if available)
         if (transitionAnimator != null)
         {
@@ -89,20 +90,17 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevelCoroutine(int levelIndex)
     {
-        Debug.Log("Loading next level...1");
+        AudioManager.Instance.StopBackgroundMusic(SceneManager.GetActiveScene().name); // Stop the current background music
 
         // Play the transition animation (if available)
         if (transitionAnimator != null)
         {
             transitionAnimator.SetTrigger("Start"); // Trigger the transition animation
-            Debug.Log("Loading next level...2");
 
         }
-        Debug.Log("Loading next level...3");
 
         // Wait for the transition to complete
-        yield return new WaitForSeconds(transitionTime); ;
-        Debug.Log("Loading next level...4");
+        yield return new WaitForSeconds(transitionTime); 
 
         // Load the new scene
         SceneManager.LoadScene(levelIndex);

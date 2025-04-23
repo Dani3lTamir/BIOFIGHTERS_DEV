@@ -88,11 +88,15 @@ public class NetworkEventManager : NetworkBehaviour
             {
                 // Show UI for immune lose
                 NetworkManagerUI.Instance.SetImmuneLoseUIActive();
+                AudioManager.Instance.StopAllAudio(); // Stop all audio
+                AudioManager.Instance.Play("LevelLose"); // Play lose sound
             }
             else
             {
                 // Show UI for pathogen win
                 NetworkManagerUI.Instance.SetPathogenWinUIActive();
+                AudioManager.Instance.StopAllAudio(); // Stop all audio
+                AudioManager.Instance.Play("LevelWin"); // Play win sound
             }
         }
         else
@@ -102,11 +106,15 @@ public class NetworkEventManager : NetworkBehaviour
             {
                 // Show UI for immune win
                 NetworkManagerUI.Instance.SetImmuneWinUIActive();
+                AudioManager.Instance.StopAllAudio(); // Stop all audio
+                AudioManager.Instance.Play("LevelWin"); // Play win sound
             }
             else
             {
                 // Show UI for pathogen lose
                 NetworkManagerUI.Instance.SetPathogenLoseUIActive();
+                AudioManager.Instance.StopAllAudio(); // Stop all audio
+                AudioManager.Instance.Play("LevelLose"); // Play lose sound
             }
         }
     }
@@ -114,6 +122,7 @@ public class NetworkEventManager : NetworkBehaviour
     [ClientRpc]
     private void DisableLobbyUIClientRpc()
     {
+        AudioManager.Instance.Play("CorrectAnswer");
         NetworkManagerUI.Instance.SetLobbyUIInactive();
     }
 

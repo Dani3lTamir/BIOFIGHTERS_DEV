@@ -25,6 +25,22 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void OpenSettings()
+    {
+        PlayClickSound();
+        // This will find both active and inactive objects
+        SettingsMenu settings = FindObjectOfType<SettingsMenu>(true);
+
+        if (settings != null)
+        {
+            settings.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("SettingsMenu instance not found in the scene.");
+        }
+    }
+
     public void PlayMultiplayer()
     {
         PlayClickSound();
