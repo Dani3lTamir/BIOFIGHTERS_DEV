@@ -30,12 +30,12 @@ public class LevelLoader : MonoBehaviour
     void Update()
     {
         // For debugging purposes, load the next level when pressing the 'N' key except in the multiplayer lobby
-        if (Input.GetKeyDown(KeyCode.N) && SceneManager.GetActiveScene().name != "1v1_multi")
+        if (Input.GetKeyDown(KeyCode.N) && SceneManager.GetActiveScene().name != "1v1_multi" && SceneManager.GetActiveScene().name != "SP_Leaderboard" )
         {
             LoadNextLevel();
         }
         // For debugging purposes, reload the level when pressing the 'O' key except in the multiplayer lobby
-        if (Input.GetKeyDown(KeyCode.O) && SceneManager.GetActiveScene().name != "1v1_multi")
+        if (Input.GetKeyDown(KeyCode.O) && SceneManager.GetActiveScene().name != "1v1_multi" && SceneManager.GetActiveScene().name != "SP_Leaderboard")
         {
             LoadLevel(SceneManager.GetActiveScene().buildIndex);
         }

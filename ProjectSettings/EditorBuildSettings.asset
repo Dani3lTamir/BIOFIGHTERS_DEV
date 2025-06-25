@@ -48,6 +48,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Ending.unity
     guid: 8eb7c64693d591544be4de0ddd08bf2f
   - enabled: 1
+    path: Assets/Scenes/SP_Leaderboard.unity
+    guid: 7bb60fbc104c41146a266b766b5c0664
+  - enabled: 1
     path: Assets/Scenes/1v1_multi.unity
     guid: e821ec3c27e41ad4e945a562a15924b1
   m_configObjects:

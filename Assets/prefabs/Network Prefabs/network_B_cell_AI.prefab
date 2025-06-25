@@ -166,8 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   colliderRadius: 12
-  shootCooldown: 4
-  ammo: 20
+  shootCooldown: 3
+  maxAmmo: 20
   antiBodyPrefabIndex: 9
 --- !u!95 &-554530996069247722
 Animator:

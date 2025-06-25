@@ -219,7 +219,7 @@ MonoBehaviour:
   healthSystem: {fileID: 8648847720084554573}
   multiFactor: 2
   duplicationWeakeningFactor: 3
-  multiLimit: 13
+  multiLimit: 9
   covidPrefabIndex: 3
   animator: {fileID: 4661111186774657355}
 --- !u!114 &-4996767751859880646

@@ -7,17 +7,21 @@ public class NetworkBCellAI : NetworkBehaviour
 {
     [Header("Settings")]
     public float colliderRadius = 5f; // Radius within which the B cell can detect Enemies
-    public float shootCooldown = 2f; // Time between antibody shots
-    public int ammo = 5; // Number of antibodies the B cell can shoot before destroying itself
+    public float shootCooldown = 3f; // Time between antibody shots
+
+    [SerializeField] private int maxAmmo = 20; 
+    private int ammo; // Number of antibodies the B cell have left
 
     [SerializeField] private int antiBodyPrefabIndex; // Index for the antibody prefab in the network pool
 
     private float cooldownTimer; // Timer to track cooldown
 
-    void Start()
+    void OnEnable()
     {
         cooldownTimer = shootCooldown; // Initialize the cooldown timer
+        ammo = maxAmmo; // Initialize ammo to max ammo
     }
+
 
     void Update()
     {

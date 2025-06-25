@@ -36,6 +36,12 @@ public class NetworkAntibodyBehavior : NetworkBehaviour
 
             if (Vector3.Distance(transform.position, targetGO.transform.position) < 0.1f)
             {
+                // if the target has despawned return
+                if (targetGO == null || targetGO.GetComponent<NetworkObject>() == null || !targetGO.GetComponent<NetworkObject>().IsSpawned)
+                {
+                    DespawnSelf();
+                    return;
+                }
                 if (targetGO.CompareTag("Ecoli") && targetGO.GetComponent<NetworkEcoliAI>().getMovmentStatus())
                 {
                     targetGO.GetComponent<NetworkEcoliAI>().Die();
