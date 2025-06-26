@@ -29,10 +29,17 @@
 - The game cycles through these three phases multiple times.
 - Each cycle introduces **stronger pathogens** and **higher difficulty levels**, requiring faster responses and strategic use of immune cells.
 
+## Leaderboard
+- Want to know how your run compares to other player.
+- Each cycle introduces **stronger pathogens** and **higher difficulty levels**, requiring faster responses and strategic use of immune cells.
+
+
 ## Features
 - **Dynamic Difficulty**: The game adjusts as the player progresses, giving a ligther experience for **rookies**, and a more difficult one for **expirienced** players.
 - **Unique Abilities**: Different immune cells have distinct skills, encouraging strategic gameplay.
 - **Educational Elements**: Players learn about immune system functions in an interactive way through the **MicroPedia** - an interactive wiki that explains every Biological/Chemical element in the game.
+- **Leaderboard**: Want to know how your run compares to other players around the world? At the end of the campaign you'll get an aggregated score of your performance in the different leves, submit your score up on the **Leaderboard**!
+  
 
 
 ## 1v1 Multiplayer Mode
