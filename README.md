@@ -1,12 +1,7 @@
 # BIOFIGHTERS
 
-<iframe width="560" height="315" 
-  src="https://www.youtube.com/embed/q_wB3F5ZDRw" 
-  title="BIOFIGHTERS Trailer" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
+[Watch the BIOFIGHTERS Trailer on YouTube](https://www.youtube.com/watch?v=q_wB3F5ZDRw)
+
 
 
 
