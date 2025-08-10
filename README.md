@@ -2,6 +2,9 @@
 
 [Watch the BIOFIGHTERS Trailer on YouTube](https://www.youtube.com/watch?v=q_wB3F5ZDRw)
 
+# Play on itch.io NOW!
+https://dani3ltamir.itch.io/biofighters
+
 
 
 
