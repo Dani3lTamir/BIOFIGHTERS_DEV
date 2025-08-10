@@ -7,6 +7,7 @@ using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
+using Unity.Networking.Transport.Relay;
 using System.Threading.Tasks;
 
 public class NetworkRelayManager : MonoBehaviour
@@ -86,16 +87,16 @@ public class NetworkRelayManager : MonoBehaviour
 
             relayCodeText.text = joinCode;
 
-            Debug.Log("[NetworkRelayManager] Converting to relay server data...");
-            var relayServerData = AllocationUtils.ToRelayServerData(allocation, "dtls");
-            Debug.Log($"[NetworkRelayManager] Relay server data: {relayServerData}");
 
-            Debug.Log("[NetworkRelayManager] Setting up Unity Transport...");
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
+            Debug.Log("[NetworkRelayManager] Converting to relay server data...");
+
+            var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+            transport.SetRelayServerData(AllocationUtils.ToRelayServerData(allocation, "wss"));
 
             Debug.Log("[NetworkRelayManager] Starting host...");
             NetworkManager.Singleton.StartHost();
             Debug.Log("[NetworkRelayManager] Host started successfully");
+            
         }
         catch (RelayServiceException e)
         {
@@ -142,8 +143,8 @@ public class NetworkRelayManager : MonoBehaviour
 
             Debug.Log($"[NetworkRelayManager] Joined allocation. Region: {allocation.Region}");
 
-            var relayServerData = AllocationUtils.ToRelayServerData(allocation, "dtls");
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
+            var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+            transport.SetRelayServerData(AllocationUtils.ToRelayServerData(allocation, "wss"));
 
             Debug.Log("[NetworkRelayManager] Starting client...");
             if (!NetworkManager.Singleton.StartClient())

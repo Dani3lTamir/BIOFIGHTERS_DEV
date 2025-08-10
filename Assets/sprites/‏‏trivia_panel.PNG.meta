@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "\u200F\u200Ftrivia_panel_0": 4421906025279355160
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tentacle_power_up_0: -7841773785945245413
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

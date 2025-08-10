@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tentacle-removebg-preview_0: 1081355684205124815
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

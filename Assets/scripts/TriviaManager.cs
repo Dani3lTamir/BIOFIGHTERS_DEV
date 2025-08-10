@@ -3,6 +3,10 @@ using UnityEngine.UI;
 using TMPro; // For TextMeshPro components
 using System.Collections;
 using System.IO;
+using System;
+using UnityEngine.Networking;
+
+
 
 [System.Serializable]
 public class TriviaQuestion
@@ -56,28 +60,52 @@ public class TriviaManager : MonoBehaviour
     {
         audioManager = AudioManager.Instance; // Get the AudioManager instance
         triviaUI.SetActive(false); // Hide trivia UI at start
-        LoadTriviaQuestions();
+        StartCoroutine(LoadTriviaQuestions());
         InvokeRepeating("ShowRandomTrivia", triviaInterval, triviaInterval); // Show trivia every 'triviaInterval' seconds
     }
 
-    public void LoadTriviaQuestions()
+    public IEnumerator LoadTriviaQuestions()
     {
-        // Read the JSON file
-        string filePath = Path.Combine(  Application.streamingAssetsPath, jsonFileName);
+        string filePath = Path.Combine(Application.streamingAssetsPath, jsonFileName);
+        string json = string.Empty;
+
+        // WebGL loading path
+#if UNITY_WEBGL && !UNITY_EDITOR
+        using (UnityWebRequest request = UnityWebRequest.Get(filePath))
+        {
+            yield return request.SendWebRequest();
+            
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"WebGL load failed: {request.error}");
+                yield break;
+            }
+            
+            json = request.downloadHandler.text;
+        }
+#else
+        // Standalone/Editor path
         if (File.Exists(filePath))
         {
-            string json = File.ReadAllText(filePath);
-
-            // Deserialize the JSON into a TriviaQuestionList object
-            TriviaQuestionList questionList = JsonUtility.FromJson<TriviaQuestionList>(json);
-            triviaQuestions = questionList.questions; // Assign the questions to the triviaQuestions array
+            json = File.ReadAllText(filePath);
         }
         else
         {
-            Debug.LogError("Trivia questions file not found at " + filePath);
+            Debug.LogError($"File not found at: {filePath}");
+            yield break;
+        }
+#endif
+
+        try
+        {
+            triviaQuestions = JsonUtility.FromJson<TriviaQuestionList>(json).questions;
+            Debug.Log($"Loaded {triviaQuestions.Length} questions");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"JSON parse error: {e.Message}");
         }
     }
-
 
     public void ShowRandomTrivia()
     {
@@ -85,7 +113,7 @@ public class TriviaManager : MonoBehaviour
         triviaUI.SetActive(true); // Show the trivia UI
         audioManager.Play("Clock"); 
 
-        currentQuestion = triviaQuestions[Random.Range(0, triviaQuestions.Length)];
+        currentQuestion = triviaQuestions[UnityEngine.Random.Range(0, triviaQuestions.Length)];
         questionText.text = currentQuestion.questionText;
 
         for (int i = 0; i < optionButtons.Length; i++)

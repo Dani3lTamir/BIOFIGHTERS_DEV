@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DCantigen_0: 7978681570386717832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
